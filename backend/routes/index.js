@@ -2,9 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const apiRouter = require('./api');
-const { setTokenCookie } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
-const { restoreUser } = require('../../utils/auth.js');
+
 
 // router.get('/hello/world', function(req, res) {
 //   res.cookie('XSRF-TOKEN', req.csrfToken());
@@ -12,13 +10,13 @@ const { restoreUser } = require('../../utils/auth.js');
 // });
 
 // Add a XSRF-TOKEN cookie
-// router.get("/api/csrf/restore", (req, res) => {
-//     const csrfToken = req.csrfToken();
-//     res.cookie("XSRF-TOKEN", csrfToken);
-//     res.status(200).json({
-//       'XSRF-Token': csrfToken
-//     });
-//   });
+router.get("/api/csrf/restore", (req, res) => {
+    const csrfToken = req.csrfToken();
+    res.cookie("XSRF-TOKEN", csrfToken);
+    res.status(200).json({
+      'XSRF-Token': csrfToken
+    });
+  });
 
 // router.use('/api', apiRouter);
 
