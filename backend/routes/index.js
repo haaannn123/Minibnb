@@ -18,7 +18,7 @@ router.get("/api/csrf/restore", (req, res) => {
     });
   });
 
-// router.use('/api', apiRouter);
+router.use('/api', apiRouter);
 
 // router.get('/set-token-cookie', async (_req, res) => {
 //   const user = await User.findOne({
