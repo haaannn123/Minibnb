@@ -3,24 +3,48 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     static associate(models) {
-      Booking.belongsTo(models.Spot, { foreignKey: "spotId" });
-      Booking.belongsTo(models.User, { foreignKey: "userid" });
+      Booking.belongsTo(models.User, {
+        foreignKey: 'userId',
+        hooks: true,
+        onDelete: 'CASCADE'
+     });
+      Booking.belongsTo(models.Spot, {
+        foreignKey: 'spotId',
+        hooks: true,
+        onDelete: 'CASCADE'
+      });
     }
   }
   Booking.init(
     {
       spotId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        hooks: true,
       },
       userId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        hooks: true,
       },
       startDate: {
-        type: DataTypes.DATE,
+        allowNull: false,
+        type: DataTypes.DATEONLY,
       },
       endDate: {
-        type: DataTypes.DATE,
+        allowNull: false,
+        type: DataTypes.DATEONLY,
       },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updateAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      }
     },
     {
       sequelize,
