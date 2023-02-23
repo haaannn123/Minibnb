@@ -3,7 +3,7 @@ const express = require("express");
 const { User, Spot, Review, ReviewImage, SpotImage } = require("../../db/models");
 const router = express.Router();
 const { requireAuth } = require("../../utils/auth");
-
+const { validateSpot } = require("../../utils/validation")
 // Get all Spots
 router.get("/", async (req, res) => {
   const allSpots = await Spot.findAll();
@@ -155,7 +155,54 @@ router.get("/:spotId", async (req, res) => {
 
 
 // Create a spot
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, validateSpot, async (req, res) => {
+    const {address, city, state, country, lat, lng, name, description, price } = req.body;
+    const ownerId = req.user.id;
+    const newSpot = await Spot.create({ownerId, ...req.body});
+    if (newSpot){
+        res.status(201).json(newSpot);
+    }
+});
 
-})
+
+// Add an image to a Spot based on the Spot's id
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const { url, preview } = req.body
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId);
+    if (!spot){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    };
+    const newImage = await SpotImage.create({spotId, ...req.body})
+    res.status(200).json(newImage)
+});
+
+// Deletes an existing spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const { spotId } = req.params;
+    const userId = req.user.id;
+    const spot = await Spot.findByPk(spotId);
+    const ownerId = spot.ownerId
+
+    if (!spot){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (userId === ownerId){
+        spot.destroy();
+        return res
+            .status(200)
+            .json({
+                message: "Successfully deleted",
+                statusCode: 200
+            });
+    }
+});
+
 module.exports = router;
