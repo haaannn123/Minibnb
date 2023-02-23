@@ -41,85 +41,121 @@ router.get("/", async (req, res) => {
     for (let obj of spotImg) {
       url = obj.url;
     }
-    spotObj.previewImg = url;
+    spotObj.previewImage = url;
   }
   spotObj = { Spots: allSpots };
   res.status(200).json(spotObj);
 });
 
-// router.get("/", async (req, res) => {
-//     const allSpots = await Spot.findAll();
-//   //   let returnData = [];
-//     for (let spot of allSpots){
-//       // let payload = {};
-//       let reviewData = await Review.findAll({
-//           where: {
-//               spotId : spot.id
-//           }
-//       });
-//       // for (let key of spot.dataValues){
-//       //     payload[key] = spot[key];
-//       // }
-//       console.log('JUST ONE SPOT', spot);
-
-//     }
-//     const spotObj = { Spots: allSpots };
-//     res.status(200).json(spotObj);
-//   });
 
 // Get current user Spot
-// router.get("/current", async (req, res) => {
-//   const { user } = req;
-//   const ownerId = user.id;
-//     const currentUserSpots = await Spot.findAll({
-//         where: {
-//             ownerId: ownerId
-//         }
-//     });
-//     if (!currentUserSpots.length){
-//         res.json({
-//             message: "Spot couldn't be found",
-//             statusCode: 404
-//         });
-//     } else {
-//         res.status(200).json(currentUserSpots);
-//     }
-// });
+router.get("/current", async (req, res) => {
+  const { user } = req;
+  const ownerId = user.id;
+    const currentUserSpots = await Spot.findAll({
+        where: {
+            ownerId: ownerId
+        }
+    });
 
-// router.get('/current', requireAuth, async (req, res) => {
-//     const ownerId = req.user.id
-//     const spots = await Spot.findAll({
-//         where: {
-//             ownerId: ownerId
-//         },
-//     });
+    let spotObj;
+    for (let spot of currentUserSpots){
+        spotObj = spot.dataValues;
+        const reviews = await Review.findAll({
+            where: {
+                spotId: spot.id
+            }
+        });
 
-//     let avgRating;
-//     for (let i = 0; i < spots.length; i++) {
-//         const reviewCount = await Review.count({ where: { spotId: spots[i].id } })
-//         const sumOfStars = await Review.sum('stars', {
-//             where: { spotId: spots[i].id }
-//         });
+        let star = 0;
+        let count = 0;
+        let avg = 0;
+        for (let reviewObj of reviews){
+            star += reviewObj.stars;
+            count ++;
+            avg = star / count
+        }
 
-//         if (!sumOfStars) {
-//             avgRating = 0;
-//         } else {
-//             avgRating = (sumOfStars / reviewCount).toFixed(1);
-//         }
+        spotObj.avgRating = avg;
 
-//         spots[i].avgRating = avgRating;
 
-//         const spotImage = await SpotImage.findOne({
-//             where: { spotId: spots[i].id },
-//             attributes: ['id', 'url', 'preview']
-//         });
+        const spotImage = await SpotImage.findAll({
+            where: {
+                spotId: spot.id
+            }
+        });
+        let url;
+        for (let obj of spotImage){
+            url = obj.url
+        }
+        spotObj.previewImage = url;
+    };
 
-//         if (spotImage) spots[i].previewImage = spotImage.url;
-//         else spots[i].previewImage = 'No Image Available'
+    if (!currentUserSpots.length){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        });
+    } else {
+        let currUserSpotObj = { Spots: currentUserSpots};
+        res.status(200).json(currUserSpotObj);
+    };
+});
 
-//     }
 
-//     return res.json({ Spots: spots, avgRating})
-// });
 
+// Get details of a Spot from an id
+router.get("/:spotId", async (req, res) => {
+    const { spotId } = req.params;
+    const spot = await Spot.findByPk(spotId); // NOT ITERABLE
+
+    if (!spot){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+    let newSpot = spot.toJSON(); // ITERABLE
+
+    let review = await Review.findAll({
+        where: {
+            spotId: spot.id
+        }
+    });
+
+    let sumOfAllStars = 0;
+    let count = 0;
+    let avg = 0;
+    for (let reviewObj of review){
+        let values = reviewObj.dataValues;
+        sumOfAllStars += values.stars
+        count ++;
+        avg = sumOfAllStars / count;
+    }
+
+    const images = await SpotImage.findAll({
+        where: { spotId },
+        attributes: ['id', 'url', 'preview']
+    })
+
+    const owner = await User.findOne({
+        where: {
+            id: spot.ownerId
+        },
+        attributes: ['id', 'firstName', 'lastName']
+    });
+    console.log(owner)
+
+    newSpot.numReviews = count;
+    newSpot.avgStarRating = avg;
+    newSpot.SpotImages = images;
+    newSpot.Owner = owner;
+    res.status(200).json(newSpot);
+});
+
+
+// Create a spot
+router.post('/', requireAuth, async (req, res) => {
+
+})
 module.exports = router;
