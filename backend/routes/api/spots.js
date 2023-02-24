@@ -182,9 +182,28 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 
 // Edit a spot
-router.put('/:spotId', async (req, res) => {
-   
+router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
+    const currentUser = req.user.id;
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
 
+    // if the spot doesn't exist
+    if (!spot){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    };
+
+    if (currentUser === spot.dataValues.ownerId){
+         spot.update(req.body);
+        res.status(200).json(spot)
+    } else {
+        res.json({
+            message: "Spot must belong to current user",
+            statusCode: 403
+        })
+    }
 })
 
 
