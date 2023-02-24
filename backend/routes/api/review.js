@@ -3,6 +3,7 @@ const express = require("express");
 const { User, Spot, Review, ReviewImage, SpotImage } = require("../../db/models");
 const router = express.Router();
 const { requireAuth } = require("../../utils/auth");
+const { validateReview } = require("../../utils/validation");
 
 // Get all reviews of the current user
 router.get("/current", requireAuth, async (req, res) => {
@@ -95,5 +96,57 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
 });
 
 
-// 
+// Edit a review
+router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
+    const { reviewId } = req.params;
+    const currentUser = req.user.id;
+    const { review, stars } = req.body;
+
+    const reviews = await Review.findByPk(reviewId);
+
+    if (!reviews){
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    // Review must belong to the current user
+    if (currentUser !== reviews.dataValues.userId){
+        res.json({
+            message: "Review must belong to the current user",
+            statusCode: 403
+        })
+    } else {
+        reviews.update(req.body);
+        res.status(200).json(reviews)
+    }
+})
+
+
+// Delete a review
+router.delete('/:reviewId', requireAuth, async (req, res) =>{
+    const { reviewId } = req.params;
+    const currentUser = req.user.id;
+    const reviews = await Review.findByPk(reviewId);
+
+    if (!reviews){
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (currentUser === reviews.dataValues.userId){
+        reviews.destroy();
+        res.json({
+            message: "Successfully deleted",
+            statusCode: 200
+        })
+    }
+});
+
+
+
+
 module.exports = router;

@@ -185,6 +185,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const currentUser = req.user.id;
     const { spotId } = req.params
+    const { address, city, country, lat, lng, name, description, price} = req.body
     const spot = await Spot.findByPk(spotId)
 
     // if the spot doesn't exist
@@ -223,9 +224,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     if (userId === ownerId){
         spot.destroy();
-        return res
-            .status(200)
-            .json({
+        res.json({
                 message: "Successfully deleted",
                 statusCode: 200
             });
