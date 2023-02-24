@@ -40,6 +40,23 @@ const handleSpotValidationErrors = (req, _res, next) => {
   next();
 };
 
+const handleReviewValidationErrors = (req, _res, next) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    const errors = {};
+    validationErrors
+      .array()
+      .forEach(error => errors[error.param] = error.msg);
+
+    const err = Error("Validation Error");
+    err.errors = errors;
+    err.status = 400;
+    err.statusCode = 400
+    next(err);
+  }
+  next();
+};
 
 const validateSpot = [
   check('address')
@@ -79,7 +96,19 @@ const validateSpot = [
     handleSpotValidationErrors
 ]
 
+const validateReview = [
+    check('review')
+      .notEmpty()
+      .withMessage("Review text is required"),
+    check('stars')
+      .notEmpty()
+      .bail()
+      .isFloat({min: 1, max: 5})
+      .withMessage("Stars must be an integer from 1 to 5"),
+      handleReviewValidationErrors
+];
+
 
 module.exports = {
-  handleValidationErrors, handleSpotValidationErrors , validateSpot
+  handleValidationErrors, handleSpotValidationErrors , handleReviewValidationErrors,validateSpot, validateReview
 };
