@@ -40,7 +40,18 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
     static associate(models) {
-      // define association here
+      User.hasMany(models.Spot, {
+        foreignKey: 'ownerId',
+        onDelete: 'CASCADE'
+      });
+      User.hasMany(models.Booking, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+      });
+      User.hasMany(models.Review, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+      });
     }
   };
 
@@ -76,16 +87,10 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         allowNull: false,
         type: DataTypes.STRING,
-        validate: {
-          len: [1, 25],
-        }
       },
       lastName: {
         allowNull: false,
         type: DataTypes.STRING,
-        validate: {
-          len: [1, 25]
-        }
       }
     },
     {
