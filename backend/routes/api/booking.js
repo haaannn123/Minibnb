@@ -64,10 +64,70 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 
-    // booking must belong to current user
-    if (currentUser === bookings.userId){
-        bookings.update(req.body);
+    // checking conflicts
+    const bookingsConflicts = await Booking.findAll({
+        where: {
+          spotId: bookings.spotId,
+          startDate: { [Op.lte]: endDate },
+          endDate: { [Op.gte]: startDate },
+        },
+      });
+
+      // dates already reserved
+      if (bookingsConflicts.length >= 1) {
+        res.status(403).json({
+          message: "Sorry, this spot is already booked for the specified dates",
+          statusCode: 403,
+          errors: {
+            startDate: "Start date conflicts with an existing booking",
+            endDate: "End date conflicts with an existing booking",
+          },
+        });
+      }
+
+      // past bookings can't be modified
+      if (bookings.endDate < Date.now()){
+        res.status(403).json({
+            message: "Past bookings can't be modified",
+            statusCode: 403
+        })
+      };
+
+      if (endDate < startDate){
+        res.status(400).json({
+            message: "Validation error",
+            statusCode: 400,
+            errors: {
+                endDate: "endDate cannot come before startDate",
+              }
+        })
+      }
+
+      bookings.update(req.body);
+      res.status(200).json(bookings)
+});
+
+
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+    const { bookingId } = req.params;
+    const currentUser = req.user.id;
+    const booking = await Booking.findByPk(bookingId);
+    const userId = booking.userId;
+    if (!booking){
+        res.status(404).json({
+            message: "Booking couldn't be found",
+            statusCode: 404
+        })
+    }
+    if (currentUser === userId){
+        booking.destroy();
+        res.status(200).json({
+            message: "Successfully deleted",
+            statusCode: 200
+        })
     }
 });
+
+
 
 module.exports = router;

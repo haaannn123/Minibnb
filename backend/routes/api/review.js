@@ -74,7 +74,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
   const { reviewId } = req.params;
   const review = await Review.findByPk(reviewId);
   if (!review) {
-    res.json({
+    res.status(404).json({
       message: "Review couldn't be found",
       statusCode: 404,
     });
@@ -105,7 +105,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     const reviews = await Review.findByPk(reviewId);
 
     if (!reviews){
-        res.json({
+        res.status(404).json({
             message: "Review couldn't be found",
             statusCode: 404
         })
@@ -113,7 +113,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 
     // Review must belong to the current user
     if (currentUser !== reviews.dataValues.userId){
-        res.json({
+        res.status(403).json({
             message: "Review must belong to the current user",
             statusCode: 403
         })
@@ -131,7 +131,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) =>{
     const reviews = await Review.findByPk(reviewId);
 
     if (!reviews){
-        res.json({
+        res.status(404).json({
             message: "Review couldn't be found",
             statusCode: 404
         })
@@ -139,7 +139,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) =>{
 
     if (currentUser === reviews.dataValues.userId){
         reviews.destroy();
-        res.json({
+        res.status(200).json({
             message: "Successfully deleted",
             statusCode: 200
         })
