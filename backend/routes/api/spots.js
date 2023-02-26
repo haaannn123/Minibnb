@@ -42,58 +42,40 @@ router.get("/", async (req, res) => {
 
   const allSpots = await Spot.findAll({ ...pagination });
 
-  let spotObj;
-  for (let spot of allSpots) {
-    const findImage = await SpotImage.findOne({
-      attributes: ["url"],
-      where: {
-        spotId: spot.id,
-        preview: true,
-      },
-      raw: true,
-    });
+  let spot;
+  for (let spotObj of allSpots){
+    spot = spotObj.dataValues;
 
-    if (findImage) {
-      spot.dataValues.previewImg = findImage.url;
-    } else {
-      spot.dataValues.previewImg = null;
-    }
-
-    spotObj = spot.dataValues;
-    const reviews = await Review.findAll({
-      where: {
-        spotId: spot.id,
-      },
-    });
-
-    let starReview = 0;
+    // find the average rating of all stars
+    const reviews = await Review.findAll();
+    let sumOfStars = 0;
     let count = 0;
     let avg = 0;
-    if (!reviews.length) {
-      avg = 0;
-    } else {
-      for (let reviewObj of reviews) {
-        starReview += reviewObj.stars;
-        count++;
-      }
-      avg = starReview / count;
+    for (const reviewObj of reviews){
+      sumOfStars += reviewObj.stars
+      count ++
+      avg = sumOfStars / count
     }
-    spotObj.avgRating = avg;
+    spot.avgRating = avg;
 
-    const spotImg = await SpotImage.findAll({
+
+    const spotImage = await SpotImage.findAll({
       where: {
         spotId: spot.id,
       },
     });
-
     let url;
-    for (let obj of spotImg) {
+    for (let obj of spotImage) {
       url = obj.url;
     }
-    spotObj.previewImage = url;
+    spot.previewImage = url;
   }
-  spotObj = { Spots: allSpots, page: page, size: size };
-  res.status(200).json(spotObj);
+
+  res.status(200).json({
+    Spots: allSpots,
+    page: page,
+    size: size
+  });
 });
 
 // Get current user Spot
