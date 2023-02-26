@@ -19,6 +19,25 @@ router.get("/", async (req, res) => {
   if (page >= 1 && size >= 1) {
     pagination.limit = size;
     pagination.offset = size * (page - 1);
+  } else {
+    if (isNaN(page) || !Number.isInteger(page) || page < 1 || page > 10) {
+      res.status(400).json({
+        message: "Validation Error",
+        statusCode: 400,
+        error: {
+          page: "Page must be greater than or equal to 1"
+        }
+      })
+    }
+    if (isNaN(size) || !Number.isInteger(size) || size < 1 || size > 20) {
+      res.status(400).json({
+        message: "Validation Error",
+        statusCode: 400,
+        error: {
+          size: "Size must be an integer greater than or equal to 1 and less than or equal to 20"
+        }
+      })
+    }
   }
 
   const allSpots = await Spot.findAll({ ...pagination });
@@ -327,7 +346,7 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) =>
     if (currentUser === reviewId) {
       res.status(403).json({
         message: "User already has a review for this spot",
-        statusCode: 403
+        statusCode: 403,
       });
     }
   }
@@ -435,7 +454,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
     });
   }
   const newBooking = await Booking.create({ userId, spotId, ...req.body });
-  res.json(newBooking)
+  res.json(newBooking);
 
   res.status(200).json(bookings);
 });
