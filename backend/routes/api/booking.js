@@ -132,13 +132,17 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     const { bookingId } = req.params;
     const currentUser = req.user.id;
     const booking = await Booking.findByPk(bookingId);
-    const userId = booking.userId;
+
+
+    console.log('BOOOKING HERE \n', booking, '\n')
     if (!booking){
         res.status(404).json({
             message: "Booking couldn't be found",
             statusCode: 404
         })
     }
+    const userId = booking.userId;
+    
     if (currentUser === userId){
         booking.destroy();
         res.status(200).json({

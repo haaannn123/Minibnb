@@ -5,13 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Booking.belongsTo(models.User, {
         foreignKey: 'userId',
-        hooks: true,
-        onDelete: 'CASCADE'
+        hooks: true
      });
       Booking.belongsTo(models.Spot, {
         foreignKey: 'spotId',
-        hooks: true,
-        onDelete: 'CASCADE'
+        hooks: true
       });
     }
   }
@@ -20,14 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       spotId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        hooks: true,
+
       },
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        hooks: true,
+
       },
       startDate: {
         allowNull: false,

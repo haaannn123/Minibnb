@@ -33,10 +33,19 @@ const validateSignup = [
       const { firstName, lastName, email, password, username } = req.body;
       const user = await User.signup({firstName, lastName, email, username, password});
 
-      await setTokenCookie(res, user);
+
+
+      let token = await setTokenCookie(res, user);
+
+      console.log(token)
 
       return res.json({
-        user: user
+        id: user.id,
+        email: email,
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        token: token
       });
     }
   );
