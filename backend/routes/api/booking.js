@@ -41,7 +41,7 @@ router.get('/current', requireAuth, async (req, res) => {
             spot.previewImage = url
         }
 
-        booking.Spot = allSpots
+        booking.Spot = spot
 
     }
 
