@@ -142,7 +142,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
 
     let spot = await Spot.findByPk(booking.spotId);
-    if (booking.userId !== currUserId && spot.ownerId !== currUserId) {
+    if (booking.userId !== currentUser && spot.ownerId !== currentUser) {
         return res.status(403).json({
             message: "Forbidden: Cannot delete booking if you are not the spot owner or booking owner",
             statusCode: 403
