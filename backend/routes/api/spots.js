@@ -343,24 +343,21 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) =>
     });
   }
 
-  // if spot already exists
-  const reviews = await Review.findAll({
+  // if review for spot already exists
+  const reviews = await Review.findOne({
     where: {
+      userId: userId,
       spotId: spotId,
     },
   });
 
-  for (let reviewObj of reviews) {
-    let reviewId = reviewObj.dataValues.userId;
-
-    console.log('REVIEW ID HERE', reviewId);
-    if (userId === reviewId) {
+    if (reviews){
       res.status(403).json({
         message: "User already has a review for this spot",
         statusCode: 403,
       });
     }
-  }
+
   const newReview = await Review.create({ spotId, userId, ...req.body });
 
   if (newReview) {
@@ -473,8 +470,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
   }
   const newBooking = await Booking.create({ userId, spotId, ...req.body });
   res.json(newBooking);
-
-  res.status(200).json(bookings);
 });
 
 module.exports = router;
