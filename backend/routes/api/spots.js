@@ -47,7 +47,11 @@ router.get("/", async (req, res) => {
     spot = spotObj.dataValues;
 
     // find the average rating of all stars
-    const reviews = await Review.findAll();
+    const reviews = await Review.findAll({
+      where: {
+        spotId: spot.id
+      }
+    });
     let sumOfStars = 0;
     let count = 0;
     let avg = 0;
@@ -68,7 +72,13 @@ router.get("/", async (req, res) => {
     for (let obj of spotImage) {
       url = obj.url;
     }
-    spot.previewImage = url;
+
+    if (url){
+      spot.previewImage = url;
+    } else {
+      spot.previewImage = null;
+    }
+
   }
 
   res.status(200).json({
