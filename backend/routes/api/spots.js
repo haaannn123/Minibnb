@@ -25,43 +25,42 @@ router.get("/", async (req, res) => {
         message: "Validation Error",
         statusCode: 400,
         error: {
-          page: "Page must be greater than or equal to 1"
-        }
-      })
+          page: "Page must be greater than or equal to 1",
+        },
+      });
     }
     if (isNaN(size) || !Number.isInteger(size) || size < 1 || size > 20) {
       res.status(400).json({
         message: "Validation Error",
         statusCode: 400,
         error: {
-          size: "Size must be an integer greater than or equal to 1 and less than or equal to 20"
-        }
-      })
+          size: "Size must be an integer greater than or equal to 1 and less than or equal to 20",
+        },
+      });
     }
   }
 
   const allSpots = await Spot.findAll({ ...pagination });
 
   let spot;
-  for (let spotObj of allSpots){
+  for (let spotObj of allSpots) {
     spot = spotObj.dataValues;
 
     // find the average rating of all stars
     const reviews = await Review.findAll({
       where: {
-        spotId: spot.id
-      }
+        spotId: spot.id,
+      },
     });
     let sumOfStars = 0;
     let count = 0;
     let avg = 0;
-    for (const reviewObj of reviews){
-      sumOfStars += reviewObj.stars
-      count ++
-      avg = sumOfStars / count
+    for (const reviewObj of reviews) {
+      sumOfStars += reviewObj.stars;
+      count++;
+      avg = sumOfStars / count;
     }
     spot.avgRating = avg;
-
 
     const spotImage = await SpotImage.findAll({
       where: {
@@ -73,18 +72,17 @@ router.get("/", async (req, res) => {
       url = obj.url;
     }
 
-    if (url){
+    if (url) {
       spot.previewImage = url;
     } else {
       spot.previewImage = null;
     }
-
   }
 
   res.status(200).json({
     Spots: allSpots,
     page: page,
-    size: size
+    size: size,
   });
 });
 
@@ -201,7 +199,7 @@ router.post("/", requireAuth, validateSpot, async (req, res) => {
 
 // Add an image to a Spot based on the Spot's id
 router.post("/:spotId/images", requireAuth, async (req, res) => {
-  const currentUser = req.user.id
+  const currentUser = req.user.id;
   const { url, preview } = req.body;
   const { spotId } = req.params;
   const spot = await Spot.findByPk(spotId);
@@ -212,12 +210,11 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     });
   }
 
-
-  if (currentUser !== spot.ownerId){
+  if (currentUser !== spot.ownerId) {
     res.status(403).json({
       message: "Forbidden",
-      statusCode: 403
-    })
+      statusCode: 403,
+    });
   } else {
     const newImage = await SpotImage.create({ spotId, ...req.body });
     res.status(200).json(newImage);
@@ -245,8 +242,8 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
   } else {
     res.status(403).json({
       message: "Forbidden",
-      statusCode: 403
-    })
+      statusCode: 403,
+    });
   }
 });
 
@@ -255,7 +252,6 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
   const userId = req.user.id;
   const spot = await Spot.findByPk(spotId);
-
 
   if (!spot) {
     res.status(404).json({
@@ -275,8 +271,8 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
   } else {
     res.status(403).json({
       message: "Forbidden",
-      statusCode: 403
-    })
+      statusCode: 403,
+    });
   }
 });
 
@@ -351,17 +347,17 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) =>
     },
   });
 
-    if (reviews){
-      res.status(403).json({
-        message: "User already has a review for this spot",
-        statusCode: 403,
-      });
+  if (reviews) {
+    res.status(403).json({
+      message: "User already has a review for this spot",
+      statusCode: 403,
+    });
+  } else {
+    const newReview = await Review.create({ spotId, userId, ...req.body });
+
+    if (newReview) {
+      res.status(201).json(newReview);
     }
-
-  const newReview = await Review.create({ spotId, userId, ...req.body });
-
-  if (newReview) {
-    res.status(201).json(newReview);
   }
 });
 
@@ -427,11 +423,11 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
     });
   }
 
-  if (spot.ownerId === userId){
+  if (spot.ownerId === userId) {
     res.status(403).json({
       message: "Forbidden",
-      statusCode: 403
-    })
+      statusCode: 403,
+    });
   }
 
   // EndDate must not come before startDate;
