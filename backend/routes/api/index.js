@@ -26,7 +26,6 @@ router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
 });
 
-
 module.exports = router;
 
 // index file- taking all the other routes in sep files adjacent and importing it
