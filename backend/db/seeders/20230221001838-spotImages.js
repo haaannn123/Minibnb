@@ -12,7 +12,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "image.url",
+        url: "https://i.imgur.com/eVwv81J.png",
         preview: false,
       },
       {
@@ -29,6 +29,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     options.tableName = 'SpotImages';
+    const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
       id : {[Op.in] : [1, 2, 3]}
     }, {})
