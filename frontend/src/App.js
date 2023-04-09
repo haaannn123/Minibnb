@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Switch , Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import GetAllSpots from "./components/GetAllSpots"
 
 function App() {
   const dispatch = useDispatch();
@@ -13,8 +14,13 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
+      <Navigation isLoaded={isLoaded}/>
+      {isLoaded &&
+        <Switch>
+          <Route path="/">
+            <GetAllSpots />
+          </Route>
+        </Switch>}
     </>
   );
 }

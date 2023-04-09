@@ -1,0 +1,17 @@
+.header {
+    border: 1px solid black;
+    display: flex;
+}
+
+.header-link{
+
+}
+
+.header-font {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.img-logo {
+    max-with: 510px;
+    max-height: 50px
+}
