@@ -1,6 +1,6 @@
-.header {
-    direction: flex;
-    flex-wrap: w
+.navbar{
+    display: flex;
+    justify-content: space-between
 }
 
 .header-link{
@@ -14,6 +14,11 @@
 }
 
 .img-logo {
-    max-with: 510px;
+    max-width: 510px;
     max-height: 50px
+}
+
+.user-dropdown, .profile-dropdown{
+    position: absolute;
+    right: 0%
 }

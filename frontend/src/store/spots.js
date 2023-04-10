@@ -1,13 +1,19 @@
-import { csrfFetch } from './csrf';
+// import { csrfFetch } from './csrf';
 
 /* Action Type Constants */
 export const GET_SPOTS = "spots/GET_SPOTS";
+export const GET_SINGLE_SPOT = "spots/GET_SINGLE_SPOT";
 
 /* Action Creator */
 export const allSpots = (spots) => ({
     type: GET_SPOTS,
     spots
-})
+});
+
+export const singleSpot = (spotId) => ({
+    type: GET_SINGLE_SPOT,
+    spotId
+});
 
 
 /* THUNK Action Creator */
@@ -18,11 +24,16 @@ export const fetchSpots = () => async (dispatch) => {
         const spots = await res.json();
         dispatch(allSpots(spots))
     }
-}
-// make thunk
-// connect to component
-// make sure it works
+};
 
+export const fetchSingleSpot = () => async (dispatch) => {
+    const res = await fetch('/api/spots/:spotId');
+
+    if (res.ok){
+        const spotId = await res.json();
+        dispatch(singleSpot(spotId))
+    }
+}
 
 /* Reducer */
 let initialState = {
@@ -34,14 +45,19 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch(action.type){
         case GET_SPOTS:
-        newState = {...state}
-        const allSpots = {}
-        // state is empty right now
-        action.spots.Spots.forEach((spot) => {
-            allSpots[spot.id] = spot
-        })
-        newState.allSpots = allSpots;
-        return newState;
+            newState = {...state}
+            const allSpots = {}
+            // state is empty right now
+            action.spots.Spots.forEach((spot) => {
+                allSpots[spot.id] = spot
+            })
+            newState.allSpots = allSpots;
+            return newState;
+        case GET_SINGLE_SPOT:
+            newState = {...state}
+            const singleSpot = {}
+            
+            return newState;
     default:
         return state;
     }
