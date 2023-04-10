@@ -9,18 +9,15 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
+
       <div className="header">
         {/* for logo */}
-        <Link className="header-link">
+        <Link className="header-link" to="/">
           <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
           <span className="header-font">minibnb</span>
         </Link>
+      {isLoaded && <ProfileButton user={sessionUser}/>}
       </div>
-      {isLoaded && (
-        <li>
-          <ProfileButton user={sessionUser} />
-        </li>
-      )}
     </>
   );
 }

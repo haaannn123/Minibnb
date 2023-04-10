@@ -17,7 +17,7 @@ const GetAllSpots = () => {
       <div className="cards-container">
         {spots.map((spot) => {
           return (
-            <div className="card">
+            <div className="card" tooltip={spot.name}>
                 <img src={spot.previewImage} alt="house" className="card-image" />
               <div className="card-location">
                 <h3>{`${spot.city}, ${spot.state}`}</h3>

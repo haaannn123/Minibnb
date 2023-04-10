@@ -1,6 +1,7 @@
 .header {
-    direction: flex;
-    flex-wrap: w
+    display: flex;
+    flex-direction : row;
+    justify-content: space-between;
 }
 
 .header-link{
@@ -14,6 +15,10 @@
 }
 
 .img-logo {
-    max-with: 510px;
+    max-width: 510px;
     max-height: 50px
+}
+
+.profile-button{
+    border-radius: px;
 }
