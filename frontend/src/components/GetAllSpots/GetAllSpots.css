@@ -1,7 +1,23 @@
+/* .spots {
+    display: flex;
+    width: 100vw;
+    justify-content: center
+} */
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
 .card{
-    border: 4px solid black;
     display: flex;
     flex-direction: column;
+    padding: 6px;
+    margin: 6px;
+    height: 390px;
+    font-size: 90%;
 }
 
 .card-location{
@@ -10,6 +26,56 @@
     justify-content: space-between;
 }
 
-.tooltip{
-    
+.card-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.rating {
+    font-weight: 1px
+}
+
+.stars-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.star {
+    font-size: 10px;
+    margin-right: 3px;
+}
+
+.spot-price {
+    margin: 0px 0px 0px 0px;
+}
+
+@media (max-width: 549px) {
+    .card {
+        width: 90%;
+        height: 640px;
+        padding-right: 6%;
+    }
+}
+
+@media (min-width: 550px) and (max-width: 949px){
+    .card {
+        width: 40%;
+        height: 350px;
+    }
+}
+
+@media (min-width: 950px) and (max-width: 1127px){
+    .card {
+        width: 27%;
+    }
+}
+
+@media (min-width: 1128px){
+    .card {
+        width: 22%;
+        height: 410px
+    }
 }

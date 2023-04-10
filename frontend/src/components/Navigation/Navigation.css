@@ -1,14 +1,16 @@
 .header {
-    border: 1px solid black;
-    display: flex;
+    direction: flex;
+    flex-wrap: w
 }
 
 .header-link{
-
+    text-decoration: none;
 }
 
 .header-font {
     font-family: 'Montserrat', sans-serif;
+    color: #ff385c;
+    font-size: 25px;
 }
 
 .img-logo {
