@@ -15,12 +15,14 @@ function App() {
 
   return (
     <>
+    <div className="entire-container">
       <Navigation isLoaded={isLoaded}/>
       {isLoaded &&
         <Switch>
           <Route exact path="/" component={GetAllSpots}/>
           <Route exact path="/:spotId" component={GetSingleSpot} />
         </Switch>}
+      </div>
     </>
   );
 }

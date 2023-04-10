@@ -15,6 +15,10 @@ export const singleSpot = (spotId) => ({
     spotId
 });
 
+export const spot = (spots) => ({
+    type: GET_SPOT,
+    spots
+});
 
 /* THUNK Action Creator */
 export const fetchSpots = () => async (dispatch) => {
@@ -56,7 +60,7 @@ const spotReducer = (state = initialState, action) => {
         case GET_SINGLE_SPOT:
             newState = {...state}
             const singleSpot = {}
-            
+
             return newState;
     default:
         return state;
