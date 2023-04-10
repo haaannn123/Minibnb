@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    flex-direction : row;
+    justify-content: space-between;
+}
+
+.header-link{
+    text-decoration: none;
+}
+
+.header-font {
+    font-family: 'Montserrat', sans-serif;
+    color: #ff385c;
+    font-size: 25px;
+}
+
+.img-logo {
+    max-width: 510px;
+    max-height: 50px
+}
+
+.profile-button{
+    border-radius: px;
+}

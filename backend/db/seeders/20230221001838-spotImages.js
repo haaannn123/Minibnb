@@ -12,16 +12,24 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "image.url",
-        preview: false,
+        url: "https://i.imgur.com/ZQZdcko.jpg",
+        preview: true,
       },
       {
         spotId: 2,
-        url: "image2.url",
-        preview: false,
+        url: "https://i.imgur.com/GJt1Y2D.jpg",
+        preview: true,
       },{
         spotId: 3,
-        url: "image2.url",
+        url: "https://i.imgur.com/dSzUITY.png",
+        preview: true,
+      },{
+        spotId: 4,
+        url: "https://i.imgur.com/oyYvwoh.jpg",
+        preview: true,
+      },{
+        spotId: 5,
+        url: "https://i.imgur.com/UOdza8F.png",
         preview: true,
       }
     ])
@@ -29,8 +37,9 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     options.tableName = 'SpotImages';
+    const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      id : {[Op.in] : [1, 2, 3]}
+      id : {[Op.in] : [1, 2, 3, 4, 5]}
     }, {})
   }
 };

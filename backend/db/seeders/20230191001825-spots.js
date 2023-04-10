@@ -20,20 +20,20 @@ module.exports = {
       country: "USA",
       lat: 37.7073317,
       lng: -121.4011945,
-      name: "MC Hammer's Home",
-      description: "The place where MC Hammer lives",
-      price: 700000.00
+      name: "Han's House",
+      description: "This cottage core is your perfect getaway from the busy city",
+      price: 115.00
     },{
       ownerId: 2,
       address: "1007 Mountain Dr.",
-      city: "Gotham City",
-      state: "New York",
-      country: "USA",
+      city: "Buckaroo",
+      state: "Oklahoma",
+      country: "United States of America",
       lat: 40.7445855,
       lng: -73.9875203,
-      name: "Wayne Manor",
-      description: "The place where Bruce Wayne resides",
-      price: 9000000.00
+      name: "Brennan's home",
+      description: "Luxury tiny home",
+      price: 2075.00
     },{
       ownerId: 3,
       address: "6 Hungtington Ln",
@@ -42,9 +42,31 @@ module.exports = {
       country: "Poland",
       lat: 54.2316144,
       lng: 21.3282428,
-      name: "Witcher's House",
+      name: "William's home",
+      description: "Home by the lake",
+      price: 275.00
+    },{
+      ownerId: 4,
+      address: "123 Apple Ln",
+      city: "Arlington",
+      state: "Virginia",
+      country: "United States",
+      lat: 56.33345,
+      lng: 21.3282428,
+      name: "Cameron's House",
       description: "The place where Geralt was born",
       price: 50.00
+    },{
+      ownerId: 5,
+      address: "789 Rotten Tomatoe",
+      city: "Galio",
+      state: "Alabama",
+      country: "United States",
+      lat: 54.2316144,
+      lng: 13.234343,
+      name: "Andrea's House",
+      description: "Wooden home",
+      price: 175.00
     }
     ])
   },
@@ -53,7 +75,7 @@ module.exports = {
     options.tableName = "Spots";
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name : { [Op.in]: ["MC Hammer's Home", "Wayne Manor", "Witcher's House"] }
+      name : { [Op.in]: ["Han's House", "Brennan's Home", "William's Home", "Cameron's House", "Andrea's House"] }
     }, {})
   }
 };
