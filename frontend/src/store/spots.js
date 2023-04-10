@@ -15,12 +15,8 @@ export const singleSpot = (spotId) => ({
     spotId
 });
 
-export const spot = (spots) => ({
-    type: GET_SPOT,
-    spots
-});
-
 /* THUNK Action Creator */
+// making fetch requesst to backend
 export const fetchSpots = () => async (dispatch) => {
     const res = await fetch('/api/spots');
 
@@ -30,11 +26,13 @@ export const fetchSpots = () => async (dispatch) => {
     }
 };
 
-export const fetchSingleSpot = () => async (dispatch) => {
-    const res = await fetch('/api/spots/:spotId');
+export const fetchSingleSpot = (spotId) => async (dispatch) => {
+    console.log(spotId)
+    const res = await fetch(`/api/spots/${spotId}`);
 
     if (res.ok){
         const spotId = await res.json();
+        console.log(spotId)
         dispatch(singleSpot(spotId))
     }
 }
@@ -59,8 +57,8 @@ const spotReducer = (state = initialState, action) => {
             return newState;
         case GET_SINGLE_SPOT:
             newState = {...state}
-            const singleSpot = {}
-
+            // const singleSpot = {}
+            newState.singleSpot[action.spotId.id] = action.spotId
             return newState;
     default:
         return state;
