@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "authenticate-me",
   "version": "1.0.0",
   "description": "",
@@ -25,3 +26,31 @@
   },
   "homepage": "https://github.com/haaannn123/AirBnb#readme"
 }
+=======
+    "name": "authenticate-me",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "render-postbuild": "npm run build --prefix frontend",
+        "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+        "dev:backend": "npm install --prefix backend start",
+        "dev:frontend": "npm install --prefix frontend start",
+        "sequelize": "npm run --prefix backend sequelize",
+        "sequelize-cli": "npm run --prefix backend sequelize-cli",
+        "start": "npm start --prefix backend",
+        "build": "npm run build --prefix backend"
+      },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/haaannn123/AirBnb.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/haaannn123/AirBnb/issues"
+    },
+    "homepage": "https://github.com/haaannn123/AirBnb#readme"
+  }
+>>>>>>> 9221143fdafc3a56bf7ea21bd1baca3878e3f9cd

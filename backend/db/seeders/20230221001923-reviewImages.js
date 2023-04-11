@@ -19,14 +19,21 @@ module.exports = {
       },{
         reviewId: 2,
         url: 'images2.url',
+      },{
+        reviewId: 4,
+        url: 'images3.url',
+      },{
+        reviewId: 5,
+        url: 'images1.url',
       }
     ])
   },
 
   down: async (queryInterface, Sequelize) => {
     options.tableName = 'ReviewImages';
+    const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      id : {[Op.in] : [1, 2, 3]}
+      id : {[Op.in] : [1, 2, 3, 4, 5]}
     }, {})
   }
 };
