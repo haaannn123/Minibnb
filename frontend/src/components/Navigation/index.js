@@ -5,7 +5,6 @@ import ProfileButton from "./ProfileButton";
 import OpenModalButton from '../OpenModelButton'
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import GetSingleSpot from '../GetSingleSpot'
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {

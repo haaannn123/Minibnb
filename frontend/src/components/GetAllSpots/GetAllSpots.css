@@ -19,6 +19,7 @@
     height: 390px;
     font-size: 90%;
     position: relative;
+    text-decoration: none;
 }
 
 .card::before,
