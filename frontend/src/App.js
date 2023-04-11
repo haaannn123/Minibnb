@@ -6,7 +6,10 @@ import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/GetAllSpots";
 import GetSingleSpot from "./components/GetSingleSpot";
 import CreateNewSpot from "./components/CreateNewSpot";
+
 import SignupFormModal from "./components/SignupFormModal";
+
+
 
 function App() {
   const dispatch = useDispatch();

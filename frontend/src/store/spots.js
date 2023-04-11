@@ -44,21 +44,13 @@ export const fetchSingleSpot = (spotId) => async (dispatch) => {
     }
 }
 
-// we are sending all of the infromation in the object
-// we need to specify the method because we arent fetching data
-export const newSpot = (spotObj) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/new`, {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(spotObj),
-    });
-
-    // sends object to server
-    if (res.ok){
-        const spots = await res.json();
-        dispatch(createSpot(spots));
-    } // sending this to reducer
-}
+// export const newSpot = (spots) => async (dispatch) => {
+//     const res = await csrfFetch(`/api/spots/new`, {
+//         method: "POST",
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(spots)
+//     });
+// }
 
 
 /* Reducer */
