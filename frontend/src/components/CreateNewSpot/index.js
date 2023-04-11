@@ -3,7 +3,7 @@ const CreateNewSpot = () => {
 
     return (
         <div className="spot-form">
-            <h3>Create New Spot</h3>
+            <h3>Create New Spot HELLO</h3>
         </div>
     )
 }
