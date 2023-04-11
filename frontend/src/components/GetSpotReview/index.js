@@ -6,14 +6,25 @@ import { fetchReviews } from "../../store/review";
 const GetSpotReview = () => {
     const {spotId} = useParams();
     const dispatch = useDispatch();
-    const review = useSelector((state) => console.log("REVIEW:", state));
-    
+    const reviews = useSelector((state) => state.reviews[spotId]);
+    console.log("REVIEWS:", reviews);
+
     useEffect(() => {
         dispatch(fetchReviews(spotId))
-    }, [dispatch,spotId])
+    }, [dispatch,spotId]);
+
+    if (!reviews) return null;
+
+    const formattedDate = new Date(reviews.createdAt).toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric'
+    });
+
     return (
         <div>
-            <h3>Hello THIS IS WORKING</h3>
+            <h4>{reviews.User.firstName}</h4>
+            <h5>{formattedDate}</h5>
+            <p>{reviews.review}</p>
         </div>
     )
 };

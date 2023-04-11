@@ -1,9 +1,7 @@
-// import { csrfFetch } from './csrf';
-
-// Action Type Constants
+/* Action Type Constants */
 export const GET_REVIEWS = "reviews/GET_REVIEWS";
 
-// Action Creator
+/* Action Creator */
 export const getReviews = (reviews) => ({
     type: GET_REVIEWS,
     reviews
