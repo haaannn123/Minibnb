@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+import { application } from 'express';
+>>>>>>> f0f437e362e9038adb6ef31df37a4092eb3b5d55
 import { csrfFetch } from './csrf';
 
 /* Action Type Constants */
@@ -46,11 +50,22 @@ export const fetchSingleSpot = (spotId) => async (dispatch) => {
 }
 
 // export const newSpot = (spots) => async (dispatch) => {
+<<<<<<< HEAD
 //     const res = await csrfFetch(`/api/spots/new`, {
+=======
+//     const res = await csrfFetch(`/api/spots/`, {
+>>>>>>> f0f437e362e9038adb6ef31df37a4092eb3b5d55
 //         method: "POST",
 //         headers: { 'Content-Type': 'application/json' },
 //         body: JSON.stringify(spots)
 //     });
+<<<<<<< HEAD
+=======
+
+//     if (res.ok){
+//         const newSpot = await res.json();
+//     }
+>>>>>>> f0f437e362e9038adb6ef31df37a4092eb3b5d55
 // }
 
 
