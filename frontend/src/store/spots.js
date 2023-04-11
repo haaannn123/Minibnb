@@ -44,13 +44,18 @@ export const fetchSingleSpot = (spotId) => async (dispatch) => {
     }
 }
 
-// export const newSpot = (spots) => async (dispatch) => {
-//     const res = await csrfFetch(`/api/spots/new`, {
-//         method: "POST",
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(spots)
-//     });
-// }
+export const newSpot = (spots) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/new`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spots)
+    });
+
+    if (res.ok){
+        const spots = await res.json();
+        dispatch(createSpot(spots));
+    }
+}
 
 
 /* Reducer */
