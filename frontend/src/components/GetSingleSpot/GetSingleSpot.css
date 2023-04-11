@@ -1,0 +1,12 @@
+.spot-image {
+    border-radius: 10px;
+}
+.spot-info{
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-box {
+    border: 1px solid black;
+    display: flex
+}

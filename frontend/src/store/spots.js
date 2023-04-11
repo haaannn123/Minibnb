@@ -1,8 +1,10 @@
-// import { csrfFetch } from './csrf';
+
+import { csrfFetch } from './csrf';
 
 /* Action Type Constants */
 export const GET_SPOTS = "spots/GET_SPOTS";
 export const GET_SINGLE_SPOT = "spots/GET_SINGLE_SPOT";
+export const CREATE_SPOT = "spots/CREATE_SPOT";
 
 /* Action Creator */
 export const allSpots = (spots) => ({
@@ -14,6 +16,11 @@ export const singleSpot = (spotId) => ({
     type: GET_SINGLE_SPOT,
     spotId
 });
+
+export const createSpot = (spotList) => ({
+    type: CREATE_SPOT,
+    spotList
+})
 
 /* THUNK Action Creator */
 // making fetch requesst to backend
@@ -37,6 +44,15 @@ export const fetchSingleSpot = (spotId) => async (dispatch) => {
         dispatch(singleSpot(spotId))
     }
 }
+
+// export const newSpot = (spots) => async (dispatch) => {
+//     const res = await csrfFetch(`/api/spots/new`, {
+//         method: "POST",
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(spots)
+//     });
+// }
+
 
 /* Reducer */
 let initialState = {
