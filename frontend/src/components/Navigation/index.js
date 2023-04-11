@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
           <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
           <span className="header-font">minibnb</span>
       </NavLink>
-      <NavLink to="/new">Create New Spot</NavLink>
+      <NavLink to="/spots/new">Create New Spot</NavLink>
       {isLoaded &&
       <li>
         <ProfileButton user={sessionUser} />

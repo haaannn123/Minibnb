@@ -26,11 +26,11 @@ function App() {
           </Route>
           <Route exact path="/" component={GetAllSpots}/>
           <Route exact path="/:spotId" component={GetSingleSpot} />
-          <Route path="/new" component={CreateNewSpot} />
+          <Route path="/spots/new" component={CreateNewSpot} />
         </Switch>}
       </div>
     </>
   );
-}
+};
 
 export default App;
