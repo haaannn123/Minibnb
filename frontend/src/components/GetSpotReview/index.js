@@ -7,7 +7,6 @@ const GetSpotReview = () => {
     const {spotId} = useParams();
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.reviews[spotId]);
-    console.log("REVIEWS:", reviews);
 
     useEffect(() => {
         dispatch(fetchReviews(spotId))

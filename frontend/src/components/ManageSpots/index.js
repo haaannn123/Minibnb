@@ -1,10 +1,11 @@
 import './ManageSpots.css'
+import { NavLink } from 'react-router-dom';
 
 const ManageSpots = () => {
 
     return (
         <div>
-           <h1>Manage Spots</h1>
+           <>Manage Spots</>
         </div>
     )
 }

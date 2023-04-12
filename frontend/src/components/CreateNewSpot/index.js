@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 import { newSpot } from '../../store/spots';
 import './CreateNewSpot.css'
 
 const CreateNewSpot = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -21,7 +22,6 @@ const CreateNewSpot = () => {
     // const [image3, setImage3] = useState('');
     // const [image4, setImage4] = useState('');
     const [errors, setErrors] = useState('');
-    const history = useHistory();
 
   const handleSubmit = async (e) =>  {
     e.preventDefault()
@@ -60,6 +60,7 @@ const CreateNewSpot = () => {
     };
 
     const promise =  await dispatch(newSpot(spot));
+    console.log('PROMISE', promise);
 
     if (promise){
          history.push(`/spots/${promise.id}`);

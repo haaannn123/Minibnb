@@ -10,15 +10,15 @@ const GetSingleSpot = () => {
   const dispatch = useDispatch();
 
   const singleSpot = useSelector((state) => state.spots.singleSpot);
+  console.log('SINGLE SPOT:',singleSpot);
   const spotImages = singleSpot.SpotImages;
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
   }, [dispatch, spotId]);
 
-  if (!singleSpot) return null;
-  if (!spotImages) return null;
-
+    if (!singleSpot) return null;
+    if (!spotImages) return null;
   return (
     <>
       <div>
