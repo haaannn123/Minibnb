@@ -1,5 +1,8 @@
+import { csrfFetch } from "./csrf";
+
 /* Action Type Constants */
 export const GET_REVIEWS = "reviews/GET_REVIEWS";
+export const CREATE_REVIEWS = "reviews/CREATE_REVIEWS";
 
 /* Action Creator */
 export const getReviews = (reviews) => ({
@@ -7,12 +10,31 @@ export const getReviews = (reviews) => ({
     reviews
 });
 
+export const createReviews = (reviewObj) => ({
+    type: CREATE_REVIEWS,
+    reviewObj
+})
+
+/* THUNK ACTION CREATOR */
 export const fetchReviews = (spotId) => async (dispatch) => {
     const res = await fetch(`/api/spots/${spotId}/reviews`);
 
     if (res.ok){
         const reviews = await res.json();
         dispatch(getReviews(reviews))
+    }
+}
+
+export const newReview = (review, spotId) => async (dispatch ) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(review)
+    });
+
+    if (res.ok){
+        const reviews = await res.json();
+        dispatch(createReviews(reviews))
     }
 }
 
@@ -31,6 +53,9 @@ const reviewReducer = (state = initialState, action) => {
                 spot[review.id] = review;
             })
             return newState.spot = spot;
+        case CREATE_REVIEWS:
+            newState = {...state};
+            newState.spot[action.reviewObj.id] = action.reviewObj
     default:
         return state;
     }

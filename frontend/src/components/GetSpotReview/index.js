@@ -7,7 +7,6 @@ const GetSpotReview = () => {
     const {spotId} = useParams();
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.reviews[spotId]);
-    console.log("REVIEWS:", reviews);
 
     useEffect(() => {
         dispatch(fetchReviews(spotId))
@@ -21,11 +20,15 @@ const GetSpotReview = () => {
     });
 
     return (
-        <div>
+        {if (reviews) {
+            <div>
             <h4>{reviews.User.firstName}</h4>
             <h5>{formattedDate}</h5>
             <p>{reviews.review}</p>
         </div>
+        } else {
+            
+        }}
     )
 };
 export default GetSpotReview;

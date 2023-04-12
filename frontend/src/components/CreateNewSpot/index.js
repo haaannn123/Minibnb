@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 import { newSpot } from '../../store/spots';
 import './CreateNewSpot.css'
 
 const CreateNewSpot = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -16,12 +17,11 @@ const CreateNewSpot = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState();
     const [prevImage, setPrevImage] = useState("");
-    const [image1, setImage1] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
-    const [image4, setImage4] = useState('');
+    // const [image1, setImage1] = useState('');
+    // const [image2, setImage2] = useState('');
+    // const [image3, setImage3] = useState('');
+    // const [image4, setImage4] = useState('');
     const [errors, setErrors] = useState('');
-    const history = useHistory();
 
   const handleSubmit = async (e) =>  {
     e.preventDefault()
@@ -36,10 +36,18 @@ const CreateNewSpot = () => {
         if (!name.length) err.name = "Name is required";
         if (!price) err.price = "Price is required";
         if (!prevImage.length) err.prevImage = "Preview Image is required";
-        if (!image1.endsWith('.jpg') || !image1.endsWith('.jpeg') || !image1.endsWith('.png')) err.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-        if (!image2.endsWith('.jpg') || !image2.endsWith('.jpeg') || !image2.endsWith('.png')) err.image2 = 'Image URL must end in .png, .jpg, or .jpeg'
-        if (!image3.endsWith('.jpg') || !image3.endsWith('.jpeg') || !image3.endsWith('.png')) err.image3 = 'Image URL must end in .png, .jpg, or .jpeg'
-        if (!image4.endsWith('.jpg') || !image4.endsWith('.jpeg') || !image4.endsWith('.png')) err.image4 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // if (image1.length < 1){
+        //     if (!image1.endsWith('.jpg') || !image1.endsWith('.jpeg') || !image1.endsWith('.png')) err.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // }
+        // if (image2.length < 1){
+        //     if (!image2.endsWith('.jpg') || !image2.endsWith('.jpeg') || !image2.endsWith('.png')) err.image2 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // }
+        // if (image3.length < 1){
+        //     if (!image3.endsWith('.jpg') || !image3.endsWith('.jpeg') || !image3.endsWith('.png')) err.image3 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // }
+        // if (image4.length < 1){
+        //     if (!image4.endsWith('.jpg') || !image4.endsWith('.jpeg') || !image4.endsWith('.png')) err.image4 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // }
     setErrors(err);
 
     const spot = {
@@ -53,17 +61,18 @@ const CreateNewSpot = () => {
         prevImage,
         lat,
         lng,
-        image1,
-        image2,
-        image3,
-        image4
+        // image1,
+        // image2,
+        // image3,
+        // image4
     };
 
     const promise =  await dispatch(newSpot(spot));
+    console.log('PROMISE', promise);
 
     if (promise){
-         history.push(`/spot/${promise.id}`);
-         return
+        history.push(`/spots/${promise.id}`);
+        return
     }
   }
 
@@ -162,7 +171,7 @@ const CreateNewSpot = () => {
                     value={prevImage}
                     onChange={(event) => setPrevImage(event.target.value)}/>
                 <p className="errors">{errors.prevImage}</p>
-                <input
+                {/* <input
                     type="text"
                     placeholder='Image URL'
                     value={image1}
@@ -185,7 +194,7 @@ const CreateNewSpot = () => {
                     placeholder='Image URL'
                     value={image4}
                     onChange={(event) => setImage4(event.target.value)}/>
-                <p className="errors">{errors.image4}</p>
+                <p className="errors">{errors.image4}</p> */}
                 </label>
         <div>
             <button>Create Spot</button>
