@@ -28,8 +28,8 @@ function App() {
             <SignupFormModal />
           </Route>
           <Route exact path="/" component={GetAllSpots}/>
-          <Route exact path="/:spotId" component={GetSingleSpot} />
           <Route path="/spots/new" component={CreateNewSpot} />
+          <Route exact path="/spots/:spotId" component={GetSingleSpot} />
         </Switch>}
       </div>
     </>
