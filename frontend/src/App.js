@@ -6,8 +6,8 @@ import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/GetAllSpots";
 import GetSingleSpot from "./components/GetSingleSpot";
 import CreateNewSpot from "./components/CreateNewSpot";
-
 import SignupFormModal from "./components/SignupFormModal";
+import ManageSpots from "./components/ManageSpots";
 
 
 
@@ -29,7 +29,8 @@ function App() {
           </Route>
           <Route exact path="/" component={GetAllSpots}/>
           <Route path="/spots/new" component={CreateNewSpot} />
-          <Route exact path="/spots/:spotId" component={GetSingleSpot} />
+          <Route path="/spots/current" component={ManageSpots}/>
+          <Route path="/spots/:spotId" component={GetSingleSpot} />
         </Switch>}
       </div>
     </>

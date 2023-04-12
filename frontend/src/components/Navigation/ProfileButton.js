@@ -4,12 +4,13 @@ import * as sessionActions from '../../store/session';
 import OpenModalButton from "../OpenModelButton";
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-import ManageSpots from "../ManageSpots";
+import { Link } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -38,11 +39,12 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-      <button onClick={() => setShowMenu(!showMenu)}>
+      <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -51,7 +53,9 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
-            <ManageSpots />
+           <div>
+           <Link exact="true" to="/spots/current">Manage Spots</Link>
+           </div>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>

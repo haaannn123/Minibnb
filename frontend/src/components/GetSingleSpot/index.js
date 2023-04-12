@@ -10,7 +10,6 @@ const GetSingleSpot = () => {
   const dispatch = useDispatch();
 
   const singleSpot = useSelector((state) => state.spots.singleSpot);
-  console.log('SINGLE SPOT:',singleSpot);
   const spotImages = singleSpot.SpotImages;
 
   useEffect(() => {

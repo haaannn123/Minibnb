@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 export const GET_SPOTS = "spots/GET_SPOTS";
 export const GET_SINGLE_SPOT = "spots/GET_SINGLE_SPOT";
 export const CREATE_SPOT = "spots/CREATE_SPOT";
+export const MANAGE_SPOT = "spots/MANAGE_SPOT"
 
 /* Action Creator */
 export const allSpots = (spots) => ({
@@ -19,13 +20,17 @@ export const singleSpot = (spotId) => ({
 export const createSpot = (spotObj) => ({
     type: CREATE_SPOT,
     spotObj
+});
+
+export const userSpots = (userSpotObj) => ({
+    type: MANAGE_SPOT,
+    userSpotObj
 })
 
 /* THUNK Action Creator */
 // making fetch requesst to backend
 export const fetchSpots = () => async (dispatch) => {
     const res = await fetch('/api/spots');
-
     if (res.ok){
         const spots = await res.json();
         dispatch(allSpots(spots))
@@ -33,10 +38,7 @@ export const fetchSpots = () => async (dispatch) => {
 };
 
 export const fetchSingleSpot = (spotId) => async (dispatch) => {
-
     const res = await fetch(`/api/spots/${spotId}`);
-    // console.log("RES:", res);
-
     if (res.ok){
         const spotId = await res.json();
         // console.log(spotId);
@@ -58,11 +60,21 @@ export const newSpot = (spots) => async (dispatch) => {
     }
 }
 
+export const fetchUserSpots = () => async (dispatch) => {
+    const res = await csrfFetch('/api/spots/current');
+
+    if (res.ok){
+        const userSpots = await res.json();
+        dispatch(fetchUserSpots(userSpots))
+    }
+}
+
 
 /* Reducer */
 let initialState = {
     allSpots: {},
-    singleSpot: {}
+    singleSpot: {},
+    userSpots: {}
 };
 
 const spotReducer = (state = initialState, action) => {
@@ -85,6 +97,14 @@ const spotReducer = (state = initialState, action) => {
         case CREATE_SPOT:
             newState = {...state, singleSpot: {...state.singleSpot}};
             newState.singleSpot = action.spotObj
+            return newState;
+        case MANAGE_SPOT:
+            newState = {...state};
+            const userSpots = {};
+            action.userSpotObj.Spots.forEach((spot) => {
+                userSpots[spot.id] = spot;
+            });
+            newState.userSpots = userSpots;
             return newState;
     default:
         return state;
