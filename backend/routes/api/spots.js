@@ -194,7 +194,7 @@ router.post("/", requireAuth, validateSpot, async (req, res) => {
   const newSpot = await Spot.create({ ownerId, ...req.body });
   if (newSpot) {
     res.status(201).json(newSpot);
-  }
+  };
 });
 
 // Add an image to a Spot based on the Spot's id
