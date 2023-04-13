@@ -41,7 +41,7 @@ const UpdateSpot = () => {
         if (description.length < 30) err.description = "Description needs a minimum of 30 characters"
         if (!name.length) err.name = "Name is required";
         if (!price) err.price = "Price is required";
-        // if (!prevImage.length) err.prevImage = "Preview Image is required";
+        if (!prevImage.length) err.prevImage = "Preview Image is required";
     setErrors(err);
 
     const spot = {

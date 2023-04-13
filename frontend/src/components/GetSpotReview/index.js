@@ -6,6 +6,7 @@ import { fetchReviews } from "../../store/review";
 const GetSpotReview = () => {
     const {spotId} = useParams();
     const dispatch = useDispatch();
+    // object .values
     const reviews = useSelector((state) => state.reviews[spotId]);
     useEffect(() => {
         dispatch(fetchReviews(spotId))
