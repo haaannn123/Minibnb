@@ -1,26 +1,32 @@
+import './UpdateSpot.css'
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import { newSpot } from '../../store/spots';
-import './CreateNewSpot.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { fetchSingleSpot, updateSpot } from '../../store/spots';
+import { useEffect } from 'react';
 
-const CreateNewSpot = () => {
+const UpdateSpot = () => {
+    const {spotId} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const [country, setCountry] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
+
+    const spot = useSelector((state) => state.spots.singleSpot);
+    console.log("SPOT HERE LOOK HERE!:", spot)
+
+    useEffect(() => {
+        dispatch(fetchSingleSpot(spotId))
+    }, [dispatch, spotId])
+
+    const [country, setCountry] = useState(spot.country);
+    const [address, setAddress] = useState(spot.address);
+    const [city, setCity] = useState(spot.city);
+    const [state, setState] = useState(spot.state);
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
-    const [description, setDescription] = useState('');
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState();
-    const [prevImage, setPrevImage] = useState("");
-    // const [image1, setImage1] = useState('');
-    // const [image2, setImage2] = useState('');
-    // const [image3, setImage3] = useState('');
-    // const [image4, setImage4] = useState('');
+    const [description, setDescription] = useState(spot.description);
+    const [name, setName] = useState(spot.name);
+    const [price, setPrice] = useState(spot.price);
+    const [prevImage, setPrevImage] = useState(spot.SpotImages[0]);
     const [errors, setErrors] = useState('');
 
   const handleSubmit = async (e) =>  {
@@ -35,11 +41,7 @@ const CreateNewSpot = () => {
         if (description.length < 30) err.description = "Description needs a minimum of 30 characters"
         if (!name.length) err.name = "Name is required";
         if (!price) err.price = "Price is required";
-        if (!prevImage.length) err.prevImage = "Preview Image is required";
-        // if (!image1.endsWith('.jpg') || !image1.endsWith('.jpeg') || !image1.endsWith('.png')) err.image1 = 'Image URL must end in .png, .jpg, or .jpeg'
-        // if (!image2.endsWith('.jpg') || !image2.endsWith('.jpeg') || !image2.endsWith('.png')) err.image2 = 'Image URL must end in .png, .jpg, or .jpeg'
-        // if (!image3.endsWith('.jpg') || !image3.endsWith('.jpeg') || !image3.endsWith('.png')) err.image3 = 'Image URL must end in .png, .jpg, or .jpeg'
-        // if (!image4.endsWith('.jpg') || !image4.endsWith('.jpeg') || !image4.endsWith('.png')) err.image4 = 'Image URL must end in .png, .jpg, or .jpeg'
+        // if (!prevImage.length) err.prevImage = "Preview Image is required";
     setErrors(err);
 
     const spot = {
@@ -53,24 +55,17 @@ const CreateNewSpot = () => {
         prevImage,
         lat: 80.123213,
         lng: 100.123,
-        // image1,
-        // image2,
-        // image3,
-        // image4
     };
 
-    const promise =  await dispatch(newSpot(spot));
-    console.log('PROMISE', promise);
-
-    if (promise){
-         history.push(`/spots/${promise.id}`);
-         return
+    if (spot){
+         await dispatch(updateSpot(spot, spotId))
+        history.push(`/spots/${spotId}`);
     }
   }
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-    <h1>Create a new Spot</h1>
+    <h1>Update your Spot</h1>
     <h2>Where's your place located?</h2>
     <h4>Guests will only get your exact address once they book a reservation.</h4>
         <label>Country
@@ -195,4 +190,4 @@ const CreateNewSpot = () => {
   );
 };
 
-export default CreateNewSpot;
+export default UpdateSpot;
