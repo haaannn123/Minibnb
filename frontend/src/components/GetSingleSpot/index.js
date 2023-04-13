@@ -10,7 +10,15 @@ const GetSingleSpot = () => {
   const dispatch = useDispatch();
 
   const singleSpot = useSelector((state) => state.spots.singleSpot);
+  console.log("SINGLE SPOT:!!!!!", singleSpot)
   const spotImages = singleSpot.SpotImages;
+  const checkReviews = (reviews) => {
+      if (reviews === 0) {
+        return "New"
+      } else {
+        return singleSpot.avgStarRating;
+      }
+  }
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
@@ -37,13 +45,13 @@ const GetSingleSpot = () => {
         <div className="info-box">
             <p>${singleSpot.price} night</p>
             <p>
-              <i class="fa-sharp fa-solid fa-star"></i>
-              {singleSpot.avgStarRating}
+              <i className="fa-sharp fa-solid fa-star"></i>
+              {checkReviews(singleSpot.numReviews)}
             </p>
-            <p>{singleSpot.numReviews}</p>
               <button>Reserve</button>
         </div>
       </div>
+      {checkReviews(singleSpot.numReviews)}
       <GetSpotReview />
     </>
   );

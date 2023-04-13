@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchUserSpots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
+import DeleteSpotModal from "../DeleteSpotModal";
+import OpenModalButton from "../OpenModelButton";
+
 const ManageSpots = () => {
   const dispatch = useDispatch();
   const spots = Object.values(useSelector((state) => state.spots.user));
@@ -30,7 +33,10 @@ const ManageSpots = () => {
                 <NavLink to={`/spots/${spot.id}/edit`}>
                     <button>Update</button>
                 </NavLink>
-                <button>Delete</button>
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteSpotModal spotId={spot.id}/>}>
+                </OpenModalButton>
             </div>
           );
         })}
