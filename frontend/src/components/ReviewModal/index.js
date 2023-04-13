@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
+import './ReviewModal.css'
 
-function ReviewModal() {
+function ReviewModal({spotId}) {
+;
   return (
     <>
+    <div className="review-modal-container">
       <h1>How was your stay?</h1>
-      <textarea placeholder="Leave your review here..."></textarea>
-      <div>
-        <div className="">
+      <textarea placeholder="Leave your review here..." className="textarea-review"></textarea>
+      <div className="star-rating">
+        <div onMouseEnter="">
           <span className="material-symbols-outlined">star</span>
         </div>
-        <div>
+        <div onMouseenter="">
           <span className="material-symbols-outlined">star</span>
         </div>
-        <div>
+        <div onMouseEnter="">
           <span className="material-symbols-outlined">star</span>
         </div>
-        <div>
+        <div onMouseEnter="">
           <span className="material-symbols-outlined">star</span>
         </div>
-        <div>
+        <div onMouseEnter="">
           <span className="material-symbols-outlined">star</span>
         </div>
       </div>
-      <button>Submit Your Review</button>
+      <button className="submit-review-button">Submit Your Review</button>
+      </div>
     </>
   );
 }

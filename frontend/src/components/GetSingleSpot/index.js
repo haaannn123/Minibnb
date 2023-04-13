@@ -5,26 +5,17 @@ import { fetchSingleSpot } from "../../store/spots";
 import GetSpotReview from "../GetSpotReview";
 import OpenModalButton from "../OpenModelButton";
 import ReviewModal from "../ReviewModal";
-import { fetchReviews } from "../../store/review";
-
 import "./GetSingleSpot.css";
-import { Op } from "sequelize";
 
 const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
-  //   const reviews = useSelector((state) => state.reviews[spotId]);
-
-  //   useEffect(() => {
-  //     dispatch(fetchReviews(spotId))
-  // }, [dispatch,spotId]);
-
   const singleSpot = useSelector((state) => state.spots.singleSpot);
-  console.log("SINGLE SPOT:!!!!!", singleSpot.reviews);
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
-  // console.log
+
+
   const checkReviews = (reviews) => {
     if (reviews === 0) {
       return (
@@ -69,7 +60,17 @@ const GetSingleSpot = () => {
 
       {numberReviews > 0 ? (
         <div>
-          {singleSpot.avgStarRating}
+          <h3>
+          <i className="fa-sharp fa-solid fa-star star"></i>
+            {singleSpot.avgStarRating}
+          </h3>
+          <h3>
+            {singleSpot.numReviews}
+          </h3>
+          <OpenModalButton
+             buttonText='Post Your Review'
+             modalComponent={<ReviewModal spotId={spotId} />}
+          />
           <GetSpotReview />
         </div>
       ) : (
