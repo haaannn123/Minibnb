@@ -11,7 +11,12 @@ const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
+  const sessionUser = useSelector((state) => state.session.user);
+  console.log("sesssionuseeerrr:", sessionUser.id)
   const singleSpot = useSelector((state) => state.spots.singleSpot);
+  const allReviews = Object.values(useSelector((state) => state.reviews.spot))
+  const objReviews = allReviews.map((review) => review.User.id);
+  console.log("HEREHEREHERE:", objReviews)
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
 
@@ -28,6 +33,49 @@ const GetSingleSpot = () => {
       return singleSpot.avgStarRating;
     }
   };
+
+  const ifUser = () => {
+    if (sessionUser && sessionUser.id !== singleSpot.Owner.id){
+      return (
+        <OpenModalButton
+        buttonText='Post Your Review'
+        modalComponent={<ReviewModal spotId={spotId}/>}/>
+      )
+    }
+  }
+  // !objReviews.includes(sessionUser.id)
+
+  const reviewHeader = () => {
+    if (numberReviews === 0){
+      return (
+        <div>
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <h3>New</h3>
+      </div>
+      )
+    } else {
+      return (
+        <div>
+        <i class="fa-sharp fa-solid fa-star"></i>
+        <h4>{singleSpot.avgStarRating}</h4>
+        <h4>{numberReviews} reviews</h4>
+      </div>
+      )
+    }
+  }
+
+  const renderReviews = () => {
+    if (numberReviews === 0){
+      return (
+        <h4>Be the first to Post a Review!</h4>
+      )
+    } else {
+      return (
+      <GetSpotReview />
+      )
+    }
+  }
+
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
@@ -57,32 +105,9 @@ const GetSingleSpot = () => {
           <button>Reserve</button>
         </div>
       </div>
-
-      {numberReviews > 0 ? (
-        <div>
-          <h3>
-          <i className="fa-sharp fa-solid fa-star star"></i>
-            {singleSpot.avgStarRating}
-          </h3>
-          <h3>
-            {singleSpot.numReviews}
-          </h3>
-          <OpenModalButton
-             buttonText='Post Your Review'
-             modalComponent={<ReviewModal spotId={spotId} />}
-          />
-          <GetSpotReview />
-        </div>
-      ) : (
-        <div>
-          <h1>NEW</h1>
-          <OpenModalButton
-             buttonText='Post Your Review'
-             modalComponent={<ReviewModal spotId={spotId} />}
-          />
-          <p>Be the first to post a review!</p>
-        </div>
-      )}
+      {reviewHeader()}
+      {ifUser()}
+      {renderReviews()}
     </>
   );
 };
