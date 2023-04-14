@@ -1,6 +1,11 @@
 .navbar{
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    position: sticky;
+    top: 0%;
+    z-index: 20;
+    width: 100%;
+    background-color: white;
 }
 
 .hidden{
@@ -25,4 +30,8 @@
 .user-dropdown, .profile-dropdown{
     position: absolute;
     right: 0%
+}
+
+.profile-button{
+    border-radius: 10px;
 }

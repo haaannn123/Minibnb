@@ -2,11 +2,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReviews } from "../../store/review";
+import OpenModalButton from "../OpenModelButton";
+import DeleteReview from "../DeleteReview";
 
 const GetSpotReview = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
+  const allReviews = Object.values(useSelector((state) => state.reviews.spot))
   const reviews = Object.values(useSelector((state) => state.reviews.spot));
   console.log("reviews:", reviews);
   useEffect(() => {
@@ -34,6 +37,10 @@ const GetSpotReview = () => {
          </div>
         );
       })}
+      <OpenModalButton
+      buttonText="Delete"
+      modalComponent={<DeleteReview  reviewIdd={allReviews.id}/>}
+      />
     </>
   );
 };

@@ -25,6 +25,10 @@ module.exports = {
       },{
         reviewId: 5,
         url: 'images1.url',
+      },
+      {
+        reviewId: 6,
+        url: 'images1.url',
       }
     ])
   },

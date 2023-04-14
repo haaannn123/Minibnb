@@ -9,6 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
+    position: relative
 }
 
 .card{

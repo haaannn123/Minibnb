@@ -5,7 +5,6 @@ import { fetchSingleSpot } from "../../store/spots";
 import GetSpotReview from "../GetSpotReview";
 import OpenModalButton from "../OpenModelButton";
 import ReviewModal from "../ReviewModal";
-import DeleteReview from '../DeleteReview'
 import "./GetSingleSpot.css";
 
 const GetSingleSpot = () => {
@@ -13,7 +12,7 @@ const GetSingleSpot = () => {
   const dispatch = useDispatch();
 
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sesssionuseeerrr:", sessionUser.id)
+  console.log("sesssionuseeerrr:", sessionUser)
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot))
   console.log('ALL REVIEWSS HEREREE:', allReviews)
@@ -37,7 +36,7 @@ const GetSingleSpot = () => {
   };
 
   const ifUser = () => {
-    if (sessionUser && sessionUser.id !== singleSpot.Owner.id){
+    if (sessionUser ){
       return (
         <OpenModalButton
         buttonText='Post Your Review'
@@ -45,6 +44,7 @@ const GetSingleSpot = () => {
       )
     }
   }
+  // && sessionUser.id !== singleSpot.Owner.id
   // !objReviews.includes(sessionUser.id)
 
   const reviewHeader = () => {
@@ -111,11 +111,6 @@ const GetSingleSpot = () => {
       {reviewHeader()}
       {ifUser()}
       {renderReviews()}
-
-      <OpenModalButton
-      buttonText="Delete"
-      modalComponent={<DeleteReview  />}
-      />
 
     </>
   );

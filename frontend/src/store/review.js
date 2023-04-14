@@ -74,7 +74,7 @@ const reviewReducer = (state = initialState, action) => {
             newState.spot[action.reviewObj.id] = action.reviewObj
             return newState;
         case DELETE_REVIEWS:
-            const deleteState = {...state};
+            const deleteState = {...state, spot:{...state.spot}};
             delete removeReviews[action.review];
             return deleteState
     default:

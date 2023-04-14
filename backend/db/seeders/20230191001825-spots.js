@@ -20,7 +20,7 @@ module.exports = {
       country: "USA",
       lat: 37.7073317,
       lng: -121.4011945,
-      name: "Han's House",
+      name: "On a whim",
       description: "This cottage core is your perfect getaway from the busy city",
       price: 115.00
     },{
@@ -41,7 +41,7 @@ module.exports = {
       state: "Kaer Morhen",
       country: "Poland",
       lat: 54.2316144,
-      lng: 21.3282428,
+      lng: 23.3282428,
       name: "William's home",
       description: "Home by the lake",
       price: 275.00
@@ -67,6 +67,17 @@ module.exports = {
       name: "Andrea's House",
       description: "Wooden home",
       price: 175.00
+    },{
+      ownerId: 6,
+      address: "23457 Pixie Ln",
+      city: "Moss",
+      state: "Ohio",
+      country: "United States",
+      lat: 23.2316144,
+      lng: 13.234343,
+      name: "Fairy Garden",
+      description: "This only exists in your dreams...",
+      price: 90.00
     }
     ])
   },

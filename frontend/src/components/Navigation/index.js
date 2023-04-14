@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import OpenModalButton from '../OpenModelButton'
+import OpenModalButton from "../OpenModelButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
@@ -19,30 +19,32 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="user-dropdown">
-        <OpenModalButton
-          buttonText="Log In"
-          modalComponent={<LoginFormModal />}
-        />
-         <OpenModalButton
-        buttonText="Sign Up"
-        modalComponent={<SignupFormModal />}
-          />
-          <NavLink />
+        <OpenModalButton buttonText="Log In" modalComponent={<LoginFormModal />} />
+        <OpenModalButton buttonText="Sign Up" modalComponent={<SignupFormModal />} />
+        <NavLink />
       </div>
     );
-  }
+    }
+
+    const createSpotButton = () => {
+      if (sessionUser) {
+        return <NavLink to="/spots/new">Create New Spot</NavLink>;
+      }
+    };
+
   return (
     <div className="navbar">
       <NavLink exact to="/" className="header-link">
-          <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
-          <span className="header-font">minibnb</span>
+        <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
+        <span className="header-font">minibnb</span>
+        {}
       </NavLink>
-      <NavLink to="/spots/new">Create New Spot</NavLink>
-      {isLoaded &&
-      <li>
-        <ProfileButton user={sessionUser} />
-      </li>
-      }
+      {createSpotButton()}
+      {isLoaded && (
+        <div>
+          <ProfileButton user={sessionUser} />
+        </div>
+      )}
     </div>
   );
 }
