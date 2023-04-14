@@ -27,8 +27,14 @@ function LoginFormModal() {
   // console.log('Errors:', errors.credential);
 
   const demoUser = () => {
-    setCredential("DemoUser");
-    setPassword('password');
+    return dispatch(sessionActions.login({ credential: "DemoUser", password: "password" }))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors({credential: "The provided credentials were invalid."});
+        }
+      });
   }
 
   return (

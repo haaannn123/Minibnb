@@ -22,8 +22,9 @@
 
 .login-button-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-top: 1px;
+    padding-top: 2px;
     margin: 1px
 }
 

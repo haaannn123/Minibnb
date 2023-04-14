@@ -35,3 +35,23 @@
 .profile-button{
     border-radius: 10px;
 }
+
+.dropdown-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border: 1px solid black
+}
+
+.user-info-styling{
+    margin: 3%;
+    border-bottom: 1px gray;
+}
+
+.manage-spots{
+    color: black;
+    text-decoration: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black
+}
