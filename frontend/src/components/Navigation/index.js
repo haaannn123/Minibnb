@@ -21,7 +21,6 @@ function Navigation({ isLoaded }) {
       <div className="user-dropdown">
         <OpenModalButton buttonText="Log In" modalComponent={<LoginFormModal />} />
         <OpenModalButton buttonText="Sign Up" modalComponent={<SignupFormModal />} />
-        <NavLink />
       </div>
     );
     }
