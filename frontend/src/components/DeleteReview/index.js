@@ -14,7 +14,7 @@ const DeleteReview = ({reviewId}) => {
     const closeModalSubmit = () => {
         return closeModal;
     }
-    
+
     return (
         <form onSubmit={(handleSubmit)}>
             <h1>Confirm Delete</h1>
