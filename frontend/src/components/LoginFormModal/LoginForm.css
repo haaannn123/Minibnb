@@ -31,5 +31,6 @@
 .login-button{
     background-color: #FF385C;
     color: white;
+    margin: 10px;
     box-shadow: 2px 2px 1px black;
 }

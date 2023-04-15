@@ -9,7 +9,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
-    position: relative
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 35px;
+    margin-right: 30px;
 }
 
 .card{
@@ -21,6 +24,7 @@
     font-size: 90%;
     position: relative;
     text-decoration: none;
+    color: black
 }
 
 .card::before,

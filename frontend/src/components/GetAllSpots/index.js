@@ -23,7 +23,7 @@ const GetAllSpots = () => {
                 <h3>{`${spot.city}, ${spot.state}`}</h3>
                 <div className="stars-container">
                   <i className="fa-sharp fa-solid fa-star star"></i>
-                  <h3 className="rating">{spot.avgRating}</h3>
+                  <h3 className="rating">{spot.avgRating === 0 ? "New" : spot.avgRating.toFixed(1) }</h3>
                 </div>
               </div>
               <h4 className="spot-price">{`$${spot.price} night`}</h4>

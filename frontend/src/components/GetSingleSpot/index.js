@@ -10,17 +10,19 @@ import "./GetSingleSpot.css";
 const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sesssionuseeerrr:", sessionUser)
+  console.log("sessionUSER here:", sessionUser);
   const singleSpot = useSelector((state) => state.spots.singleSpot);
-  const allReviews = Object.values(useSelector((state) => state.reviews.spot))
-  console.log('ALL REVIEWSS HEREREE:', allReviews)
-  const objReviews = allReviews.map((review) => review.User.id);
-  console.log("HEREHEREHERE:", objReviews)
+  console.log("SINGLE SPOT", singleSpot);
+  const allReviews = Object.values(useSelector((state) => state.reviews.spot));
+  let userReview;
+  for (let reviewObj of allReviews){
+    userReview = reviewObj.userId;
+  }
+  console.log('REVIEW THAT I WANT:', userReview)
   const spotImages = singleSpot.SpotImages;
+  // console.log("SPOT IMAGES:", spotImages);
   const numberReviews = singleSpot.numReviews;
-
 
   const checkReviews = (reviews) => {
     if (reviews === 0) {
@@ -36,56 +38,46 @@ const GetSingleSpot = () => {
   };
 
   const ifUser = () => {
-    if (sessionUser ){
-      return (
-        <OpenModalButton
-        buttonText='Post Your Review'
-        modalComponent={<ReviewModal spotId={spotId}/>}/>
-      )
+    if (sessionUser && sessionUser.id !== singleSpot.ownerId && userReview !== sessionUser.id) {
+      return <OpenModalButton buttonText="Post Your Review" modalComponent={<ReviewModal spotId={spotId} />} />;
     }
-  }
-  // && sessionUser.id !== singleSpot.Owner.id
+  };
   // !objReviews.includes(sessionUser.id)
 
   const reviewHeader = () => {
-    if (numberReviews === 0){
+    if (numberReviews === 0) {
       return (
         <div>
-        <i class="fa-sharp fa-solid fa-star"></i>
-        <h3>New</h3>
-      </div>
-      )
+          <i class="fa-sharp fa-solid fa-star"></i>
+          <h3>New</h3>
+        </div>
+      );
     } else {
       return (
         <div>
-        <i class="fa-sharp fa-solid fa-star"></i>
-        <h4>{singleSpot.avgStarRating}</h4>
-        <h4>{numberReviews} reviews</h4>
-      </div>
-      )
+          <i class="fa-sharp fa-solid fa-star"></i>
+          <h4>{singleSpot.avgStarRating}</h4>
+          <h4>{numberReviews > 1 ? `${numberReviews} reviews`: `${numberReviews} review`}</h4>
+        </div>
+      );
     }
-  }
+  };
 
   const renderReviews = () => {
-    if (numberReviews === 0){
-      return (
-        <h4>Be the first to Post a Review!</h4>
-      )
+    if (numberReviews === 0) {
+      return <h4>Be the first to Post a Review!</h4>;
     } else {
-      return (
-      <GetSpotReview />
-      )
+      return <GetSpotReview />;
     }
-  }
-
+  };
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
   }, [dispatch, spotId]);
 
-
   if (!singleSpot) return null;
   if (!spotImages) return null;
+  if (!singleSpot.Owner) return null;
   return (
     <>
       <div>
@@ -105,13 +97,12 @@ const GetSingleSpot = () => {
         <div className="info-box">
           <p>${singleSpot.price} night</p>
           <p>{checkReviews(singleSpot.numReviews)}</p>
-          <button>Reserve</button>
+          <button onClick={() => window.alert("Feature coming soon!")}>Reserve</button>
         </div>
       </div>
       {reviewHeader()}
       {ifUser()}
       {renderReviews()}
-
     </>
   );
 };
