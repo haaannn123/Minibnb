@@ -10,8 +10,10 @@ const GetSpotReview = () => {
   const dispatch = useDispatch();
 
   const allReviews = Object.values(useSelector((state) => state.reviews.spot))
-  const reviews = Object.values(useSelector((state) => state.reviews.spot));
-  console.log("reviews:", reviews);
+  const reviews = Object.values(useSelector((state) => state.reviews.spot)).sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+  // console.log("reviews:", reviews);
   useEffect(() => {
     dispatch(fetchReviews(spotId));
   }, [dispatch, spotId]);
@@ -39,7 +41,7 @@ const GetSpotReview = () => {
       })}
       <OpenModalButton
       buttonText="Delete"
-      modalComponent={<DeleteReview  reviewIdd={allReviews.id}/>}
+      modalComponent={<DeleteReview  reviewId={allReviews.id}/>}
       />
     </>
   );

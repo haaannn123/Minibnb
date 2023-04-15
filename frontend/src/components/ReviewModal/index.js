@@ -93,7 +93,7 @@ function ReviewModal({ spotId }) {
                   handleClick(5);
                 }}
               >
-              </i>
+              </i> Stars
             </div>
           </div>
           <button

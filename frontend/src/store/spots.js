@@ -53,7 +53,6 @@ export const fetchSingleSpot = (spotId) => async (dispatch) => {
   const res = await fetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const spotId = await res.json();
-    console.log(spotId);
     dispatch(singleSpot(spotId));
   }
 };
@@ -106,7 +105,6 @@ export const updateSpot = (spot, spotId) => async (dispatch) => {
 
   if (res.ok) {
     const newSpot = await res.json();
-    // console.log('NEWSPOT HERE!!!!!!!!:', newSpot);
     dispatch(updateSpot(newSpot));
     return newSpot;
   }
@@ -158,7 +156,7 @@ const spotReducer = (state = initialState, action) => {
       newState.user = user;
       return newState;
     case UPDATE_SPOT:
-      newState = { ...state };
+      newState = { ...state, singleSpot: { ...state.singleSpot } };
       newState.singleSpot = action.spotId;
       return newState;
     case DELETE_SPOT:

@@ -299,7 +299,7 @@ router.get("/:spotId/reviews", async (req, res) => {
 
     const users = await User.findAll({
       where: {
-        id: spotId,
+        id: review.userId,
       },
       attributes: ["id", "firstName", "lastName"],
     });
