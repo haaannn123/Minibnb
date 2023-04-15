@@ -5,16 +5,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { fetchSingleSpot, updateSpot } from "../../store/spots";
 import { useEffect } from "react";
 
-const UpdateSpot = () => {
+const UpdateSpot = ({spot}) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const spot = useSelector((state) => state.spots);
-  
-  useEffect(() => {
-    dispatch(fetchSingleSpot(spotId));
-  }, [dispatch, spotId]);
 
   const [country, setCountry] = useState(spot.country);
   const [address, setAddress] = useState(spot.address);
@@ -25,7 +19,6 @@ const UpdateSpot = () => {
   const [description, setDescription] = useState(spot.description);
   const [name, setName] = useState(spot.name);
   const [price, setPrice] = useState(spot.price);
-  console.log(spot);
   const [prevImage, setPrevImage] = useState(spot.SpotImages);
   const [errors, setErrors] = useState("");
 
