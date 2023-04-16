@@ -2,16 +2,17 @@ import "./ReviewModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { newReview } from "../../store/review";
 import { useModal } from "../../context/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ReviewModal({ spotId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [review, setReviews] = useState("");
   const [stars, setStar] = useState(null);
+  const [rating, setRating] = useState(0);
 
   const sessionUser = useSelector((state) => state.session.user);
-  console.log('SESSION USER HERE:', sessionUser);
+  // console.log('SESSION USER HERE:', sessionUser);
 
   const user = {
     id: sessionUser.id,
@@ -19,14 +20,22 @@ function ReviewModal({ spotId }) {
     lastName : sessionUser.lastName
   }
 
+  useEffect(() => {
+    if (stars){
+      const newRating = stars
+      setRating(newRating);
+    }
+  }, [stars])
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const reviews = {
       review,
-      stars,
+      stars: rating,
     };
     dispatch(newReview(reviews, spotId, user))
     .then(closeModal);
+    setStar(null);
   };
 
   const handleClick = (rating) => {

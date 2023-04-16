@@ -42,6 +42,7 @@ export const newReview = (review, spotId, user) => async (dispatch ) => {
         const reviews = await res.json();
         reviews.User = user;
         dispatch(createReviews(reviews));
+        window.location.reload()
         return reviews;
     }
 }

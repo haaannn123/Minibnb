@@ -9,8 +9,8 @@ const GetSpotReview = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const allReviews = Object.values(useSelector((state) => state.reviews.spot))
-  console.log("HERESAY HERE SAY:", allReviews);
+  // const allReviews = Object.values(useSelector((state) => state.reviews.spot))
+  // console.log("HERESAY HERE SAY:", allReviews);
 
   const reviews = Object.values(useSelector((state) => state.reviews.spot)).sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
