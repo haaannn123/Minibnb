@@ -13,35 +13,56 @@ module.exports = {
       options,
       [
         {
-          spotId: 2,
-          userId: 6,
+          spotId: 1,
+          userId: 10,
           startDate: "2023-02-20",
           endDate: "2023-02-24",
         },
         {
-          spotId: 3,
-          userId: 2,
+          spotId: 2,
+          userId: 9,
           startDate: "2023-02-25",
           endDate: "2023-03-01",
         },
         {
-          spotId: 1,
-          userId: 3,
-          startDate: "2023-03-03",
-          endDate: "2023-03-07",
-        },{
-          spotId: 5,
-          userId: 4,
+          spotId: 3,
+          userId: 8,
           startDate: "2023-03-03",
           endDate: "2023-03-07",
         },{
           spotId: 4,
-          userId: 5,
+          userId: 7,
+          startDate: "2023-03-03",
+          endDate: "2023-03-07",
+        },{
+          spotId: 5,
+          userId: 6,
           startDate: "2023-03-03",
           endDate: "2023-03-07",
         },
         {
           spotId: 6,
+          userId: 5,
+          startDate: "2023-03-03",
+          endDate: "2023-03-07",
+        },
+        {
+          spotId: 7,
+          userId: 4,
+          startDate: "2023-03-03",
+          endDate: "2023-03-07",
+        },{
+          spotId: 8,
+          userId: 3,
+          startDate: "2023-03-03",
+          endDate: "2023-03-07",
+        },{
+          spotId: 9,
+          userId: 2,
+          startDate: "2023-03-03",
+          endDate: "2023-03-07",
+        },{
+          spotId: 10,
           userId: 1,
           startDate: "2023-03-03",
           endDate: "2023-03-07",
