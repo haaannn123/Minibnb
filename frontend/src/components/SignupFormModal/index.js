@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
+import { Redirect } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -41,34 +43,39 @@ function SignupFormModal() {
     });
   };
 
+  if (sessionUser) return <Redirect to="/" />;
+
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+        {errors.email && <p>{errors.email}</p>}
+        {errors.username && <p>{errors.username}</p>}
+      <h1 className="signup-text">Sign Up</h1>
+      <form className="signup-container-form" onSubmit={handleSubmit}>
         <label>
-          Email
           <input
             type="text"
+            className="signup"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
         <label>
-          Username
           <input
             type="text"
+            className="signup"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
         <label>
-          First Name
           <input
             type="text"
+            className="signup"
+            placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
@@ -76,9 +83,10 @@ function SignupFormModal() {
         </label>
         {errors.firstName && <p>{errors.firstName}</p>}
         <label>
-          Last Name
           <input
             type="text"
+            className="signup"
+            placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
@@ -86,9 +94,10 @@ function SignupFormModal() {
         </label>
         {errors.lastName && <p>{errors.lastName}</p>}
         <label>
-          Password
           <input
             type="password"
+            className="signup"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -96,9 +105,10 @@ function SignupFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <label>
-          Confirm Password
           <input
             type="password"
+            className="signup"
+            placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -107,7 +117,7 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}
-        <button type="submit">Sign Up</button>
+        <button className="signup-button" type="submit" disabled={!email.length || (!username.length) || !firstName.length|| !lastName.length || !password.length || !confirmPassword.length || username.length < 4 || password.length < 6}>Sign Up</button>
       </form>
     </>
   );

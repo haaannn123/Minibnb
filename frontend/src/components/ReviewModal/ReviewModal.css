@@ -1,0 +1,18 @@
+.star-rating{
+    display: flex;
+    justify-content: center;
+}
+
+.review-modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-review-button{
+    width: 80%
+}
+
+.textarea-review{
+    width: 95%;
+}

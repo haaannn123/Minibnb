@@ -9,6 +9,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 35px;
+    margin-right: 30px;
 }
 
 .card{
@@ -19,6 +23,8 @@
     height: 390px;
     font-size: 90%;
     position: relative;
+    text-decoration: none;
+    color: black
 }
 
 .card::before,
@@ -31,7 +37,7 @@
 }
 
 .card::before{
-    content: attr(tooltip);
+    content: attr(data-tooltip);
     color: white;
     padding: .5rem;
     border-radius: .3rem;

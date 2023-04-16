@@ -1,0 +1,36 @@
+.login-modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0vw 10vw 4vw 10vw
+}
+
+.credentials-error {
+    color: red
+}
+
+.credentials-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+/* .credentials-input {
+    border; 1px solid black
+} */
+
+.login-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2px;
+    margin: 1px
+}
+
+.login-button{
+    background-color: #FF385C;
+    color: white;
+    margin: 10px;
+    box-shadow: 2px 2px 1px black;
+}

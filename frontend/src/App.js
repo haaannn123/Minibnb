@@ -3,8 +3,13 @@ import { useDispatch } from "react-redux";
 import { Switch , Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import GetAllSpots from "./components/GetAllSpots"
-import Spot from "./components/Spot";
+import GetAllSpots from "./components/GetAllSpots";
+import GetSingleSpot from "./components/GetSingleSpot";
+import CreateNewSpot from "./components/CreateNewSpot";
+import SignupFormModal from "./components/SignupFormModal";
+import ManageSpots from "./components/ManageSpots";
+import GetSpotForUpdated from "./components/UpdateSpot/GetSpotForUpdated";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -19,12 +24,18 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded &&
         <Switch>
+          <Route path="/signup">
+            <SignupFormModal />
+          </Route>
           <Route exact path="/" component={GetAllSpots}/>
-          <Route path="/:spotId" component={Spot}/>
+          <Route path="/spots/new" component={CreateNewSpot} />
+          <Route path="/spots/current" component={ManageSpots}/>
+          <Route path="/spots/:spotId/edit" component={GetSpotForUpdated}/>
+          <Route path="/spots/:spotId" component={GetSingleSpot} />
         </Switch>}
       </div>
     </>
   );
-}
+};
 
 export default App;
