@@ -9,11 +9,16 @@ const GetSpotForUpdated = () => {
 
     useEffect(() => {
         dispatch(fetchSingleSpot(spotId))
-    });
+    }, [dispatch, spotId]);
 
-    const spot = useSelector((state) => state.spot.singleSpot);
+    const spot = useSelector((state) => state.spots.singleSpot);
 
-    if (spot){
+    // if (spot){
+    //     return <UpdateSpot spot={spot}/>
+    // } else {
+    //     return null;
+    // }
+    if (spot.SpotImages){
         return <UpdateSpot spot={spot}/>
     } else {
         return null;

@@ -19,7 +19,7 @@ const UpdateSpot = ({spot}) => {
   const [description, setDescription] = useState(spot.description);
   const [name, setName] = useState(spot.name);
   const [price, setPrice] = useState(spot.price);
-  const [prevImage, setPrevImage] = useState(spot.SpotImages);
+  const [prevImage, setPrevImage] = useState(spot.SpotImages[0].url);
   const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
@@ -45,7 +45,7 @@ const UpdateSpot = ({spot}) => {
       description,
       name,
       price,
-      prevImage,
+      //prevImage,
       lat: 80.123213,
       lng: 100.123,
     };
@@ -151,7 +151,7 @@ const UpdateSpot = ({spot}) => {
         <p className="errors">{errors.image4}</p> */}
       </label>
       <div>
-        <button>Create Spot</button>
+        <button>Update Spot</button>
       </div>
     </form>
   );
