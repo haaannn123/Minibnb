@@ -92,12 +92,14 @@ const GetSingleSpot = () => {
           {spotImages.map((obj) => {
             return <img src={obj.url} alt="cottage house" className="spot-image" />;
           })}
-        </div>
+        </div >
         <div className="information-container">
+          <div className="under-details">
           <h3>
             Hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}
           </h3>
           <h4>{singleSpot.description}</h4>
+          </div>
           <div className="info-box">
             <p>${singleSpot.price} night</p>
             <p>{checkReviews(singleSpot.numReviews)}</p>
