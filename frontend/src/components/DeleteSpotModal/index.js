@@ -2,9 +2,11 @@ import "./DeleteSpotModal.css"
 import { useModal } from '../../context/Modal';
 import { removeSpot } from "../../store/spots";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 const DeleteSpotModal = ({spotId}) => {
     const {closeModal } = useModal();
     const dispatch = useDispatch();
+    const history = useHistory
 
     const handleSubmit = () => {
         dispatch(removeSpot(spotId))

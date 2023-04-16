@@ -27,7 +27,7 @@ function Navigation({ isLoaded }) {
 
     const createSpotButton = () => {
       if (sessionUser) {
-        return <NavLink to="/spots/new">Create New Spot</NavLink>;
+        return <NavLink className="create-new-spot" to="/spots/new">Create a New Spot</NavLink>;
       }
     };
 
@@ -36,7 +36,6 @@ function Navigation({ isLoaded }) {
       <NavLink exact to="/" className="header-link">
         <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
         <span className="header-font">minibnb</span>
-        {}
       </NavLink>
       {createSpotButton()}
       {isLoaded && (

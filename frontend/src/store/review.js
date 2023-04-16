@@ -16,7 +16,7 @@ export const createReviews = (reviewObj) => ({
     reviewObj
 });
 
-export const deleteRemove = (review) => ({
+export const deleteReview = (review) => ({
     type: DELETE_REVIEWS,
     review
 })
@@ -47,10 +47,12 @@ export const newReview = (review, spotId, user) => async (dispatch ) => {
 }
 
 export const removeReviews = (reviewId) => async (dispatch) => {
-    const res = await csrfFetch(`api/reviews/${reviewId}`);
+    const res = await csrfFetch(`/api/reviews/${reviewId}`,{
+        method: 'DELETE',
+    });
 
     if (res.ok){
-        dispatch(deleteRemove(reviewId))
+        await dispatch(deleteReview(reviewId))
     }
 }
 
@@ -74,8 +76,8 @@ const reviewReducer = (state = initialState, action) => {
             newState.spot[action.reviewObj.id] = action.reviewObj
             return newState;
         case DELETE_REVIEWS:
-            const deleteState = {...state, spot:{...state.spot}};
-            delete removeReviews[action.review];
+            const deleteState = {...state};
+            delete removeReviews.spot[action.review];
             return deleteState
     default:
         return state;

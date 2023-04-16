@@ -1,6 +1,4 @@
-.spot-image {
-    border-radius: 10px;
-}
+
 .spot-info{
     display: flex;
     justify-content: space-around;
@@ -9,4 +7,16 @@
 .info-box {
     border: 1px solid black;
     display: flex
+}
+
+.information-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(244, 238, 238);
+}
+
+.spot-description{
+    display: flex;
+    flex-direction: column;
 }

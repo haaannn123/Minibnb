@@ -8,8 +8,10 @@ import DeleteReview from "../DeleteReview";
 const GetSpotReview = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-
+  const sessionUser = useSelector((state) => state.session.user);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot))
+  console.log("HERESAY HERE SAY:", allReviews);
+
   const reviews = Object.values(useSelector((state) => state.reviews.spot)).sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
@@ -27,6 +29,15 @@ const GetSpotReview = () => {
     });
   };
 
+  const deleteButtonReview = (review) => {
+    if (sessionUser && sessionUser.id === review.userId){
+      return <OpenModalButton
+      buttonText="Delete"
+      modalComponent={<DeleteReview  reviewId={review.id} spotId={spotId}/>}
+      />
+    }
+  };
+
   return (
     <>
        {reviews.map((review) => {
@@ -36,13 +47,10 @@ const GetSpotReview = () => {
              <h4>{review.User.firstName}</h4>
              <h5>{formattedDate(review)}</h5>
              <h5>{review.review}</h5>
+             {deleteButtonReview(review)}
          </div>
         );
       })}
-      <OpenModalButton
-      buttonText="Delete"
-      modalComponent={<DeleteReview  reviewId={allReviews.id}/>}
-      />
     </>
   );
 };

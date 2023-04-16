@@ -14,12 +14,16 @@
 
 .header-link{
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-font {
     font-family: 'Montserrat', sans-serif;
     color: #ff385c;
     font-size: 25px;
+    padding: 10px;
 }
 
 .img-logo {
@@ -54,4 +58,9 @@
     text-decoration: none;
     border-top: 1px solid black;
     border-bottom: 1px solid black
+}
+
+.create-new-spot{
+    text-decoration: none;
+    color: rgb(146, 146, 248)
 }

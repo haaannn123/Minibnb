@@ -2,8 +2,7 @@ import "./UpdateSpot.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { fetchSingleSpot, updateSpot } from "../../store/spots";
-import { useEffect } from "react";
+import { updateSpot } from "../../store/spots";
 
 const UpdateSpot = ({spot}) => {
   const { spotId } = useParams();

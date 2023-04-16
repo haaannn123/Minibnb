@@ -11,17 +11,13 @@ const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sessionUSER here:", sessionUser);
   const singleSpot = useSelector((state) => state.spots.singleSpot);
-  console.log("SINGLE SPOT", singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
   let userReview;
-  for (let reviewObj of allReviews){
+  for (let reviewObj of allReviews) {
     userReview = reviewObj.userId;
   }
-  console.log('REVIEW THAT I WANT:', userReview)
   const spotImages = singleSpot.SpotImages;
-  // console.log("SPOT IMAGES:", spotImages);
   const numberReviews = singleSpot.numReviews;
 
   const checkReviews = (reviews) => {
@@ -33,7 +29,14 @@ const GetSingleSpot = () => {
         </>
       );
     } else {
-      return singleSpot.avgStarRating;
+      return (
+        <>
+          <i class="fa-sharp fa-solid fa-star"></i>
+          <p>{singleSpot.avgStarRating}</p>
+          <div>·</div>
+          <h4>{numberReviews > 1 ? `${numberReviews} reviews` : `${numberReviews} review`}</h4>
+        </>
+      );
     }
   };
 
@@ -57,7 +60,7 @@ const GetSingleSpot = () => {
         <div>
           <i class="fa-sharp fa-solid fa-star"></i>
           <h4>{singleSpot.avgStarRating}</h4>
-          <h4>{numberReviews > 1 ? `${numberReviews} reviews`: `${numberReviews} review`}</h4>
+          <h4>{numberReviews > 1 ? `${numberReviews} reviews` : `${numberReviews} review`}</h4>
         </div>
       );
     }
@@ -89,15 +92,17 @@ const GetSingleSpot = () => {
           {spotImages.map((obj) => {
             return <img src={obj.url} alt="cottage house" className="spot-image" />;
           })}
+        </div>
+        <div className="information-container">
           <h3>
             Hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}
           </h3>
           <h4>{singleSpot.description}</h4>
-        </div>
-        <div className="info-box">
-          <p>${singleSpot.price} night</p>
-          <p>{checkReviews(singleSpot.numReviews)}</p>
-          <button onClick={() => window.alert("Feature coming soon!")}>Reserve</button>
+          <div className="info-box">
+            <p>${singleSpot.price} night</p>
+            <p>{checkReviews(singleSpot.numReviews)}</p>
+            <button onClick={() => window.alert("Feature coming soon!")}>Reserve</button>
+          </div>
         </div>
       </div>
       {reviewHeader()}
