@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { NavLink } from "react-router-dom";
 import "./LoginForm.css";
+import { Link } from "react-router-dom";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -24,10 +25,10 @@ function LoginFormModal() {
         }
       });
   };
-  // console.log('Errors:', errors.credential);
+
 
   const demoUser = () => {
-    return dispatch(sessionActions.login({ credential: "DemoUser", password: "password" }))
+    return dispatch(sessionActions.login({ credential: "DemoUser", password: "coolbeans123" }))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
@@ -69,7 +70,7 @@ function LoginFormModal() {
         </div>
         <div className="login-button-container">
         <button  className="login-button" type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-        <NavLink onClick={() => demoUser()} to="">Log in as Demo User</NavLink>
+        <button onClick={demoUser}>Log in as Demo User</button>
         </div>
       </form>
       </div>

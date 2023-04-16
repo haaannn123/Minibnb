@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalButton from "../OpenModelButton";
 import LoginFormModal from "../LoginFormModal";
@@ -20,9 +20,9 @@ function ProfileButton({ user }) {
 
   useEffect(() => {
     if (!showMenu) return;
-
+    // console.log("ulref.current", ulRef.current)
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -33,6 +33,8 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
+
+  const sessionUser = useSelector((state) => state.session.user)
 
   const logout = (e) => {
     e.preventDefault();
