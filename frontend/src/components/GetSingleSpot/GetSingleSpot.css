@@ -46,14 +46,14 @@
   object-fit: cover;
   max-height: 500px;
   margin: 2px;
-  height: 410px;
+  height: 407px;
   border: 1px solid black;
 }
 
 .four-images {
   display: flex;
   flex-direction: row;
-  max-height: 500px;
+  max-height: 600px;
   width: 50%;
   height: 800px
 }
