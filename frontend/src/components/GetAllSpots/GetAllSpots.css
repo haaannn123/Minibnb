@@ -33,7 +33,7 @@
   position: absolute;
   top: -0.25rem;
   left: 50%;
-  transform: translateX(-50%) translateY(410%) scale(var(--scale));
+  transform: translateX(-50%) translateY(350%) scale(var(--scale));
 }
 
 .card::before {
