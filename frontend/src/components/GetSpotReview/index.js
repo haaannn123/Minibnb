@@ -30,25 +30,22 @@ const GetSpotReview = () => {
   };
 
   const deleteButtonReview = (review) => {
-    if (sessionUser && sessionUser.id === review.userId){
-      return <OpenModalButton
-      buttonText="Delete"
-      modalComponent={<DeleteReview  reviewId={review.id} spotId={spotId}/>}
-      />
+    if (sessionUser && sessionUser.id === review.userId) {
+      return <OpenModalButton buttonText="Delete" modalComponent={<DeleteReview reviewId={review.id} spotId={spotId} />} />;
     }
   };
 
   return (
     <>
-       {reviews.map((review) => {
-        console.log("review", review)
+      {reviews.map((review) => {
+        console.log("review", review);
         return (
           <div>
-             <h4>{review.User.firstName}</h4>
-             <h5>{formattedDate(review)}</h5>
-             <h5>{review.review}</h5>
-             {deleteButtonReview(review)}
-         </div>
+            <h4>{review.User.firstName}</h4>
+            <h5>{formattedDate(review)}</h5>
+            <h5>{review.review}</h5>
+            {deleteButtonReview(review)}
+          </div>
         );
       })}
     </>

@@ -57,25 +57,27 @@ function ProfileButton({ user }) {
             <div className="dropdown-user-info">
               <p className="user-info-styling">Hello, {user.firstName}</p>
               <p className="user-info-styling">{user.email}</p>
+              {/* <div className="user-info-styling"> */}
+              <NavLink className="manage-spots" to="/spots/current">
+                Manage Spots
+              </NavLink>
+              {/* </div> */}
               <div className="user-info-styling">
-                <NavLink className="manage-spots" to="/spots/current">
-                  Manage Spots
-                </NavLink>
-              </div>
-              <div className="user-info-styling">
-                <button className="logout-button" onClick={logout}>Log Out</button>
+                <button className="logout-button" onClick={logout}>
+                  Log Out
+                </button>
               </div>
             </div>
           </>
         ) : (
-          <>
-            <li>
+          <div className="dropdown-user-info">
+            <li className="auth-button">
               <OpenModalButton buttonText="Log In" onButtonClick={closeMenu} modalComponent={<LoginFormModal />} />
             </li>
-            <li>
+            <li className="auth-button">
               <OpenModalButton buttonText="Sign Up" onButtonClick={closeMenu} modalComponent={<SignupFormModal />} />
             </li>
-          </>
+          </div>
         )}
       </ul>
     </>

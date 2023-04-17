@@ -17,3 +17,15 @@
   height: 26px;
   font-family: "Montserrat", sans-serif;
 }
+
+.delete-review-container {
+  padding: 20px;
+  margin: 20px;
+}
+.modal-title {
+  font-size: 25px;
+}
+
+.modal-subtitle {
+  font-size: 20px;
+}

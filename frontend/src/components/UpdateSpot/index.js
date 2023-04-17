@@ -28,14 +28,14 @@ const UpdateSpot = ({ spot }) => {
     if (!address.length) err.address = "Address is required";
     if (!city.length) err.city = "City is required";
     if (!state.length) err.state = "State is required";
-    if (!lat) err.lat = "Latitude is required";
-    if (!lng) err.lng = "Longitude is required";
+
     if (description.length < 30) err.description = "Description needs a minimum of 30 characters";
     if (!name.length) err.name = "Name is required";
     if (!price) err.price = "Price is required";
     if (!prevImage.length) err.prevImage = "Preview Image is required";
     setErrors(err);
 
+    if (Object.values(err).length > 0) return;
     const spot = {
       country,
       address,
