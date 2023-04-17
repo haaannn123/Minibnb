@@ -20,6 +20,22 @@ const GetSingleSpot = () => {
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
 
+  // const getPrice = (number) => {
+  //   if ((number && typeof number === INTEGER) || typeof number === FLOAT) {
+  //     return number.toFixed(2);
+  //   } else {
+  //     return null;
+  //   }
+  // };
+
+  // const getRating = (rating) => {
+  //   if ((rating && typeof rating === INTEGER) || typeof rating === FLOAT) {
+  //     return rating.toFixed(1);
+  //   } else {
+  //     return null;
+  //   }
+  // };
+
   const checkReviews = (reviews) => {
     if (reviews === 0) {
       return (
@@ -32,7 +48,7 @@ const GetSingleSpot = () => {
       return (
         <div className="review-info">
           <i class="fa-sharp fa-solid fa-star"></i>
-          <p>{singleSpot?.avgStarRating?.toFixed(1)}</p>
+          <p>{singleSpot.avgStarRating}</p>
           <div className="centered-dot">·</div>
           <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
         </div>
@@ -59,7 +75,7 @@ const GetSingleSpot = () => {
       return (
         <div className="reviews-header">
           <i class="fa-sharp fa-solid fa-star"></i>
-          <h4>{singleSpot?.avgStarRating?.toFixed(1)}</h4>
+          <h4>{singleSpot?.avgStarRating}</h4>
           <div className="centered-dot">·</div>
           <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
         </div>
