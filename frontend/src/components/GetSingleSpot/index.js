@@ -24,7 +24,7 @@ const GetSingleSpot = () => {
     if (stars && typeof stars === "number") {
       return stars.toFixed(1);
     } else {
-      return null;
+      return stars;
     }
   };
 
@@ -32,7 +32,7 @@ const GetSingleSpot = () => {
     if (price && typeof price === "number") {
       return price.toFixed(2);
     } else {
-      return null;
+      return price;
     }
   };
 
