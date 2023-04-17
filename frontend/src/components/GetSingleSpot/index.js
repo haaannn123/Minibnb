@@ -20,22 +20,6 @@ const GetSingleSpot = () => {
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
 
-  // const getPrice = (number) => {
-  //   if ((number && typeof number === INTEGER) || typeof number === FLOAT) {
-  //     return number.toFixed(2);
-  //   } else {
-  //     return null;
-  //   }
-  // };
-
-  // const getRating = (rating) => {
-  //   if ((rating && typeof rating === INTEGER) || typeof rating === FLOAT) {
-  //     return rating.toFixed(1);
-  //   } else {
-  //     return null;
-  //   }
-  // };
-
   const checkReviews = (reviews) => {
     if (reviews === 0) {
       return (
@@ -133,7 +117,7 @@ const GetSingleSpot = () => {
           <div className="single-spot-reservation">
             <div className="single-spot-reservation-info">
               <div className="single-spot-price-container">
-                <p className="single-spot-price">${singleSpot?.price?.toFixed(2)}</p>
+                <p className="single-spot-price">${singleSpot?.price}</p>
                 <p>night</p>
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
