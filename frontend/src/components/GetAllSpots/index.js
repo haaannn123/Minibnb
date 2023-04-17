@@ -12,6 +12,24 @@ const GetAllSpots = () => {
     dispatch(fetchSpots());
   }, [dispatch]);
 
+  const getStars = (stars) => {
+    console.log(stars, typeof stars);
+    if (stars && typeof stars === "number") {
+      console.log("inside");
+      return stars.toFixed(1);
+    } else {
+      return null;
+    }
+  };
+
+  const getPrice = (price) => {
+    if (price && typeof price === "number") {
+      return price.toFixed(2);
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="spots">
       <div className="cards-container">
@@ -23,10 +41,10 @@ const GetAllSpots = () => {
                 <h3>{`${spot.city}, ${spot.state}`}</h3>
                 <div className="stars-container">
                   <i className="fa-sharp fa-solid fa-star star"></i>
-                  <h3 className="rating">{spot.avgRating === 0 ? "New" : spot?.avgRating}</h3>
+                  <h3 className="rating">{spot.avgRating === 0 ? "New" : getStars(spot.avgRating)}</h3>
                 </div>
               </div>
-              <h4 className="spot-price">{`$${spot?.price} night`}</h4>
+              <h4 className="spot-price">{`$${getPrice(spot.price)} night`}</h4>
             </NavLink>
           );
         })}

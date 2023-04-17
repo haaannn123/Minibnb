@@ -20,6 +20,22 @@ const GetSingleSpot = () => {
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
 
+  const getStars = (stars) => {
+    if (stars && typeof stars === "number") {
+      return stars.toFixed(1);
+    } else {
+      return null;
+    }
+  };
+
+  const getPrice = (price) => {
+    if (price && typeof price === "number") {
+      return price.toFixed(2);
+    } else {
+      return null;
+    }
+  };
+
   const checkReviews = (reviews) => {
     if (reviews === 0) {
       return (
@@ -32,7 +48,7 @@ const GetSingleSpot = () => {
       return (
         <div className="review-info">
           <i class="fa-sharp fa-solid fa-star"></i>
-          <p>{singleSpot.avgStarRating}</p>
+          <p>{getStars(singleSpot.avgStarRating)}</p>
           <div className="centered-dot">·</div>
           <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
         </div>
@@ -59,7 +75,7 @@ const GetSingleSpot = () => {
       return (
         <div className="reviews-header">
           <i class="fa-sharp fa-solid fa-star"></i>
-          <h4>{singleSpot?.avgStarRating}</h4>
+          <h4>{getStars(singleSpot?.avgStarRating)}</h4>
           <div className="centered-dot">·</div>
           <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
         </div>
@@ -117,7 +133,7 @@ const GetSingleSpot = () => {
           <div className="single-spot-reservation">
             <div className="single-spot-reservation-info">
               <div className="single-spot-price-container">
-                <p className="single-spot-price">${singleSpot?.price}</p>
+                <p className="single-spot-price">${getPrice(singleSpot.price)}</p>
                 <p>night</p>
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
