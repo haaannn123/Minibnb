@@ -63,7 +63,7 @@ function ProfileButton({ user }) {
                 </NavLink>
               </div>
               <div className="user-info-styling">
-                <button onClick={logout}>Log Out</button>
+                <button className="logout-button" onClick={logout}>Log Out</button>
               </div>
             </div>
           </>

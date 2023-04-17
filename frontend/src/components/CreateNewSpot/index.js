@@ -54,10 +54,10 @@ const CreateNewSpot = () => {
       //   SpotImages: spotImages
     };
 
-    const promise = await dispatch(newSpot(spot, spotImages))
-        // .then((res) => {
-        //     console.log("RES",res)
-        // })
+    const promise = await dispatch(newSpot(spot, spotImages));
+    // .then((res) => {
+    //     console.log("RES",res)
+    // })
     if (promise) {
       history.push(`/spots/${promise.id}`);
       return;
@@ -68,56 +68,96 @@ const CreateNewSpot = () => {
     <form onSubmit={handleSubmit} className="form-container">
       <h1>Create a new Spot</h1>
       <h2>Where's your place located?</h2>
-      <div>Guests will only get your exact address once they book a reservation.</div>
+      <div className="guest-text">Guests will only get your exact address once they book a reservation.</div>
       <label>
         Country
         <p className="errors">{errors.country}</p>
-        <input type="text" placeholder="Country" value={country} onChange={(event) => setCountry(event.target.value)} />
+        <input
+          className="long-input"
+          type="text"
+          placeholder="Country"
+          value={country}
+          onChange={(event) => setCountry(event.target.value)}
+        />
       </label>
       <label>
         Street Address
         <p className="errors">{errors.address}</p>
-        <input type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
+        <input
+          className="long-input"
+          type="text"
+          placeholder="Address"
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
+        />
       </label>
       <div className="inner-inputs">
-        <label>
+        <label className="city-label">
           City
           <p className="errors">{errors.city}</p>
-          <input type="text" placeholder="City" value={city} onChange={(event) => setCity(event.target.value)} />,
+          <input
+            className="city-input"
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+          />
+          ,
         </label>
-        <label>
+        <label className="state-label">
           State
           <p className="errors">{errors.state}</p>
-          <input type="text" placeholder="State" value={state} onChange={(event) => setState(event.target.value)} />
+          <input
+            className="state-input"
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={(event) => setState(event.target.value)}
+          />
         </label>
       </div>
-      <label>
-        <h3>Describe your place to guests</h3>
+      <label className="label-seperate description">
+        <h3 className="section-title">Describe your place to guests</h3>
         Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the
         neighborhood.
-        <textarea type="text" placeholder="Please write at least 30 characters" value={description} onChange={(event) => setDescription(event.target.value)} />
+        <textarea
+          className="description-input"
+          type="text"
+          placeholder="Please write at least 30 characters"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
       </label>
       <p className="errors">{errors.description}</p>
-      <label>
-        <h3>Create a title for your spot</h3>
+      <label className="label-seperate">
+        <h3 className="section-title">Create a title for your spot</h3>
         Catch guests' attention with a spot title that highlights what makes your place special.
         <input type="text" placeholder="Name of your spot" value={name} onChange={(event) => setName(event.target.value)} />
       </label>
       <p className="errors">{errors.name}</p>
-      <label>
-        <h3>Set a base price for your spot</h3>
-        Competitive pricing can help your listing stand out and rank higher in search results. $
-        <input type="text" placeholder="Price per night(USD)" value={price} onChange={(event) => setPrice(event.target.value)} />
+      <label className="label-seperate">
+        <h3 className="section-title">Set a base price for your spot</h3>
+        Competitive pricing can help your listing stand out and rank higher in search results.
+        <div className="price-input-container">
+          <p>$</p>
+          <input
+            className="price-input"
+            type="text"
+            placeholder="Price per night(USD)"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+          />
+        </div>
       </label>
       <p className="errors">{errors.price}</p>
-      <label>
-        <h3>Liven up your spot with photos</h3>
+      <label className="label-seperate">
+        <h3 className="section-title">Liven up your spot with photos</h3>
         Submit a link to at least one photo to publish your spot.
         <input type="text" placeholder="Preview Image URL" value={prevImage} onChange={(event) => setPrevImage(event.target.value)} />
         <p className="errors">{errors.prevImage}</p>
       </label>
-      <div>
-        <button>Create Spot</button>
+      <div className="create-spot-container">
+        <button className="create-spot-button">Create Spot</button>
       </div>
     </form>
   );

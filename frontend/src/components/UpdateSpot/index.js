@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateSpot } from "../../store/spots";
 
-const UpdateSpot = ({spot}) => {
+const UpdateSpot = ({ spot }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -150,7 +150,7 @@ const UpdateSpot = ({spot}) => {
         <p className="errors">{errors.image4}</p> */}
       </label>
       <div>
-        <button>Update Spot</button>
+        <button>Update your Spot</button>
       </div>
     </form>
   );

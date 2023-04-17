@@ -1,18 +1,99 @@
 .errors {
-    color: red;
-    font-family: 'Montserrat', sans-serif;
+  color: red;
+  font-family: "Montserrat", sans-serif;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    margin: 50px 200px 50px 200px;
-    background-color:rgb(242, 242, 242)
+  display: flex;
+  flex-direction: column;
+  margin: 50px 200px 50px 200px;
+  background-color: rgb(242, 242, 242);
+  padding: 10px;
 }
 
 .inner-inputs {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
 }
 
+.long-input {
+  width: 95%;
+  margin-bottom: 20px;
+}
+
+.guest-text {
+  margin-bottom: 40px;
+}
+
+/* .create-spot-subsection {
+  width: 90%;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px;
+} */
+
 /* DO MEDIA QUERIES */
+
+.label-seperate {
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+
+.create-spot-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.create-spot-button {
+  background-color: #ff385c;
+  color: white;
+  margin: 8px;
+  box-shadow: 2px 2px 1px black;
+  font-family: "Montserrat", sans-serif;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.description-input {
+  margin-top: 10px;
+}
+
+.city-label {
+  width: 60%;
+}
+
+.state-label {
+  width: 40%;
+}
+
+.city-input {
+  width: 90%;
+}
+
+.state-input {
+  width: 87%;
+}
+
+.price-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.price-input {
+  display: block;
+  height: 20px;
+  margin-left: 5px;
+  width: 90%;
+}
+
+.section-title {
+  margin-top: 5px;
+}

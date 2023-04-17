@@ -1,4 +1,4 @@
-
+/*
 .spot-info{
     display: flex;
     justify-content: space-around;
@@ -25,4 +25,122 @@
     direction: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
+} */
+
+.spot-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.spot-images-container {
+  display: flex;
+  flex-direction: row;
+  max-height: 500px;
+  width: 95vw;
+}
+
+.preview-image {
+  width: 50%;
+  object-fit: cover;
+  max-height: 500px;
+  margin: 2px;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.four-images {
+  display: flex;
+  flex-direction: row;
+  max-height: 500px;
+  width: 50%;
+}
+
+.four-images-subset {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.image-coming {
+  width: 94%;
+  height: 40%;
+  object-fit: cover;
+  border: 1px solid black;
+  margin: 2px;
+}
+
+.single-spot-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 30px;
+  width: 95%;
+}
+
+.single-spot-details-info {
+  width: 60%;
+}
+
+.single-spot-reservation {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.single-spot-reservation-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.review-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.centered-dot {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.reviews-section-container {
+  width: 95vw;
+}
+
+.reviews-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.single-spot-price {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.single-spot-price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.reserve-button {
+  background-color: #ff385c;
+  color: white;
+  margin: 8px;
+  margin-top: 18px;
+  box-shadow: 2px 2px 1px black;
+  height: 26px;
+  font-family: "Montserrat", sans-serif;
 }

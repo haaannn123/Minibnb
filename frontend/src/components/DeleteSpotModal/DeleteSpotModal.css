@@ -1,0 +1,19 @@
+.delete-spot-button {
+  background-color: #ff385c;
+  color: white;
+  margin: 8px;
+  margin-top: 18px;
+  box-shadow: 2px 2px 1px black;
+  height: 26px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.cancle-delete-button {
+    background-color: rgb(102, 102, 102);
+    color: white;
+    margin: 8px;
+    margin-top: 18px;
+    box-shadow: 2px 2px 1px black;
+    height: 26px;
+    font-family: "Montserrat", sans-serif;
+}
