@@ -19,9 +19,9 @@ const DeleteReview = ({ reviewId, spotId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Confirm Delete</h1>
-      <h1>Are you sure you want to delete this review?</h1>
+    <form className="delete-review-container" onSubmit={handleSubmit}>
+      <h1 className="modal-title">Confirm Delete</h1>
+      <h1 className="modal-subtitle">Are you sure you want to delete this review?</h1>
       <button className="delete-review-button" type="submit">
         Yes (Delete Review)
       </button>
