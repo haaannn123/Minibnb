@@ -55,12 +55,13 @@
   flex-direction: row;
   max-height: 600px;
   width: 50%;
+  height: 800px
 }
 
 .four-images-subset {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 57%;
 }
 
 .image-coming {
