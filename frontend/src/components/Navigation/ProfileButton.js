@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalButton from "../OpenModelButton";
 import LoginFormModal from "../LoginFormModal";
@@ -34,13 +34,13 @@ function ProfileButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
-  const sessionUser = useSelector((state) => state.session.user)
+  // const sessionUser = useSelector((state) => state.session.user)
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    history.push('/')
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -57,12 +57,14 @@ function ProfileButton({ user }) {
             <div className="dropdown-user-info">
               <p className="user-info-styling">Hello, {user.firstName}</p>
               <p className="user-info-styling">{user.email}</p>
-            <div className='user-info-styling'>
-              <NavLink className="manage-spots"to="/spots/current">Manage Spots</NavLink>
-            </div>
-            <div className="user-info-styling">
-              <button onClick={logout}>Log Out</button>
-            </div>
+              <div className="user-info-styling">
+                <NavLink className="manage-spots" to="/spots/current">
+                  Manage Spots
+                </NavLink>
+              </div>
+              <div className="user-info-styling">
+                <button className="logout-button" onClick={logout}>Log Out</button>
+              </div>
             </div>
           </>
         ) : (

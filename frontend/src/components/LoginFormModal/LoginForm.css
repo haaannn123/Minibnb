@@ -3,18 +3,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0vw 10vw 4vw 10vw
+    padding: 0vw 10vw 4vw 10vw;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .credentials-error {
-    color: red
+    color: red;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .credentials-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    font-family: 'Montserrat', sans-serif;
 }
 /* .credentials-input {
     border; 1px solid black
@@ -25,12 +27,26 @@
     flex-direction: column;
     justify-content: center;
     padding-top: 2px;
-    margin: 1px
+    margin: 1px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .login-button{
     background-color: #FF385C;
     color: white;
-    margin: 10px;
+    margin: 8px;
     box-shadow: 2px 2px 1px black;
+    height: 26px;
+    font-family: 'Montserrat', sans-serif;
+}
+.credentials-input, .demo-user-button{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.demo-user-button{
+    font-family: 'Montserrat', sans-serif;
+    margin: 7px;
+    /* width: 10px; */
+    height: 22px;
+    margin-top: 3px;
 }

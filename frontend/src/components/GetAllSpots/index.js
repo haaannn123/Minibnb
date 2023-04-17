@@ -26,7 +26,7 @@ const GetAllSpots = () => {
                   <h3 className="rating">{spot.avgRating === 0 ? "New" : spot.avgRating.toFixed(1) }</h3>
                 </div>
               </div>
-              <h4 className="spot-price">{`$${spot.price} night`}</h4>
+              <h4 className="spot-price">{`$${spot.price.toFixed(2)} night`}</h4>
             </NavLink>
           );
         })}

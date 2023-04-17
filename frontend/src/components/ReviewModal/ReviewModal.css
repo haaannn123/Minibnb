@@ -1,18 +1,19 @@
-.star-rating{
-    display: flex;
-    justify-content: center;
+.star-rating {
+  display: flex;
+  justify-content: center;
 }
 
-.review-modal-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.review-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 20px 20px;
 }
 
-.submit-review-button{
-    width: 80%
+.submit-review-button {
+  width: 80%;
 }
 
-.textarea-review{
-    width: 95%;
+.textarea-review {
+  width: 95%;
 }

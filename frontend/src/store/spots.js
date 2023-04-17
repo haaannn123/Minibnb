@@ -94,6 +94,10 @@ export const fetchUserSpots = () => async (dispatch) => {
     dispatch(userSpot(spots));
     return spots;
   }
+
+  if (res.status === 404) {
+    return {};
+  }
 };
 
 export const updateSpot = (spot, spotId) => async (dispatch) => {
@@ -156,13 +160,13 @@ const spotReducer = (state = initialState, action) => {
       newState.user = user;
       return newState;
     case UPDATE_SPOT:
-        newState = { ...state }
-        newState.singleSpot[action.spot] = action.list
-        return newState;
+      newState = { ...state };
+      newState.singleSpot[action.spot] = action.list;
+      return newState;
     case DELETE_SPOT:
-      const updatedState = { ...state }
-            delete updatedState.allSpots[action.spotId]
-            return updatedState;
+      const updatedState = { ...state };
+      delete updatedState.allSpots[action.spotId];
+      return updatedState;
     default:
       return state;
   }
