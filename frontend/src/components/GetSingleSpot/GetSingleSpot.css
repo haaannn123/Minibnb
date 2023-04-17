@@ -46,7 +46,7 @@
   object-fit: cover;
   max-height: 500px;
   margin: 2px;
-  height: 100%;
+  height: 410px;
   border: 1px solid black;
 }
 
@@ -55,12 +55,13 @@
   flex-direction: row;
   max-height: 500px;
   width: 50%;
+  height: 800px
 }
 
 .four-images-subset {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 57%;
 }
 
 .image-coming {
