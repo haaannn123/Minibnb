@@ -14,6 +14,13 @@ Minibnb is a full-stack clone of AirBnB. Users can easily create "spots" showcas
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
+## Connect with me!
+ <div id="">
+    <a href="https://www.linkedin.com/in/han-nguyen-developer/">
+      <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+    </a> 
+   </div>
+
 ## How to clone locally: 
 1. Start by cloning the repo.
 2. Open the root folder and make sure to type "npm install" into your terminal
