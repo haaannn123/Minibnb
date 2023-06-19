@@ -59,6 +59,11 @@
   background: white;
   border: 1px solid black;
   font-family: "Montserrat", sans-serif;
+  position: relative;
+  margin-top: 200px;
+  margin-right: 50px;
+  border-radius: 10px;
+  padding: 1rem;
 }
 
 .user-info-styling {
