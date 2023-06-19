@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModelButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
+import SearchBar from "../Search";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -37,6 +38,7 @@ function Navigation({ isLoaded }) {
         <img src="https://i.imgur.com/68fXf2O.png" className="img-logo" alt="mini hand emoji" />
         <span className="header-font">minibnb</span>
       </NavLink>
+      <SearchBar />
       {createSpotButton()}
       {isLoaded && (
         <div>
