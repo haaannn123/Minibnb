@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
 
     const createSpotButton = () => {
       if (sessionUser) {
-        return <NavLink className="create-new-spot" to="/spots/new">Create a New Spot</NavLink>;
+        return <NavLink className="create-new-spot" to="/spots/new">minibnb your home</NavLink>;
       }
     };
 
@@ -41,9 +41,7 @@ function Navigation({ isLoaded }) {
       <SearchBar />
       {createSpotButton()}
       {isLoaded && (
-        <div>
           <ProfileButton user={sessionUser} />
-        </div>
       )}
     </div>
   );

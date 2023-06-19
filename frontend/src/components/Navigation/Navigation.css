@@ -1,10 +1,13 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: sticky;
   top: 0%;
   z-index: 30;
   background-color: white;
+  padding: 1rem 4rem;
+  border-bottom: 1px solid rgb(217, 217, 217);
 }
 
 .hidden {
@@ -20,7 +23,7 @@
 
 .header-font {
   font-family: "Montserrat", sans-serif;
-  color: #ff385c;
+  color: black;
   font-size: 25px;
   padding: 10px;
 }
@@ -41,9 +44,8 @@
   border-radius: 50px;
   color: black;
   padding: 7px 10px 7px 10px;
-  border: 2px solid black;
-  margin-top: 20%;
-  margin-right: 20px;
+  border: 2px solid rgb(168, 168, 168);
+  background-color: white;
 }
 
 .profile:hover {
@@ -84,9 +86,7 @@
 
 .create-new-spot {
   text-decoration: none;
-  color: rgb(146, 146, 248);
-  margin-top: 20px;
-  margin-left: 200px;
+  color: black;
   font-family: "Montserrat", sans-serif;
 }
 
