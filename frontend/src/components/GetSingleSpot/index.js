@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchSingleSpot } from "../../store/spots";
 import GetSpotReview from "../GetSpotReview";
 import OpenModalButton from "../OpenModelButton";
@@ -10,6 +10,7 @@ import "./GetSingleSpot.css";
 const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
+  const [guests, setGuests] = useState();
   const sessionUser = useSelector((state) => state.session.user);
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
@@ -138,9 +139,28 @@ const GetSingleSpot = () => {
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
             </div>
-            <button className="reserve-button" onClick={() => window.alert("Feature coming soon!")}>
+            <div>
+              <div className="reserving-box">
+                  <div>
+                    <label for="check-in">CHECK-IN</label>
+                    <input id="check-in" type="date"/>
+                  </div>
+                  <div>
+                    <label for="check-in">CHECKOUT</label>
+                    <input id="check-in" type="date"/>
+                  </div>
+              </div>
+              <div >
+                  <label>GUESTS</label>
+                  <span>1 guests</span>
+              </div>
+            </div>
+
+
+            <button className="reserve-button">
               Reserve
             </button>
+            <p>You won't be charged yet</p>
           </div>
         </div>
         <div className="reviews-section-container">

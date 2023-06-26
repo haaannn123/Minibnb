@@ -145,3 +145,8 @@
   height: 26px;
   font-family: "Montserrat", sans-serif;
 }
+
+.reserving-box{
+  border: 1px solid black;
+  display: flex;
+}
