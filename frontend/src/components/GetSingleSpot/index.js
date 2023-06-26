@@ -6,6 +6,7 @@ import GetSpotReview from "../GetSpotReview";
 import OpenModalButton from "../OpenModelButton";
 import ReviewModal from "../ReviewModal";
 import "./GetSingleSpot.css";
+import { thunkGetBookings } from "../../store/bookings";
 
 const GetSingleSpot = () => {
   const { spotId } = useParams();
@@ -14,6 +15,7 @@ const GetSingleSpot = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
+
   let userReview;
   for (let reviewObj of allReviews) {
     userReview = reviewObj.userId;
@@ -94,6 +96,7 @@ const GetSingleSpot = () => {
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
+    dispatch(thunkGetBookings())
   }, [dispatch, spotId]);
 
   if (!singleSpot) return null;
@@ -126,41 +129,47 @@ const GetSingleSpot = () => {
         })}
         <div className="single-spot-details">
           <div className="single-spot-details-info">
-            <h3>
-              Hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}
-            </h3>
+            <h2>Entire home hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}</h2>
+            <p className="home-occupancy">{singleSpot.guests} guests · {singleSpot.bedrooms} bedrooms · {singleSpot.beds} beds · {singleSpot.bath} baths</p>
             <h4>{singleSpot.description}</h4>
           </div>
           <div className="single-spot-reservation">
             <div className="single-spot-reservation-info">
               <div className="single-spot-price-container">
-                <p className="single-spot-price">${getPrice(singleSpot.price)}</p>
-                <p>night</p>
+                <p className="single-spot-price">${getPrice(singleSpot.price)} night</p>
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
             </div>
-            <div>
-              <div className="reserving-box">
-                  <div>
-                    <label for="check-in">CHECK-IN</label>
-                    <input id="check-in" type="date"/>
+            <div className="reserving-box">
+              <div className="checks">
+                  <div className='check-in-container'>
+                    <label className="reservation-labels" for="check-in">CHECK-IN</label>
+                    <input 
+                      id="check-in" 
+                      type="date"
+                      required/>
                   </div>
-                  <div>
-                    <label for="check-in">CHECKOUT</label>
-                    <input id="check-in" type="date"/>
+                  <div className="check-out-container">
+                    <label className="reservation-labels" for="check-in">CHECKOUT</label>
+                    <input 
+                      id="check-in" 
+                      type="date"
+                      required/>
                   </div>
               </div>
-              <div >
-                  <label>GUESTS</label>
-                  <span>1 guests</span>
+              <div className="number-of-guests">
+                    <label className="reservation-labels" for="guests">GUESTS</label>
+                    <input 
+                      id="guests" 
+                      type="number"
+                      placeholder={singleSpot.guests}
+                      required/>
               </div>
             </div>
-
-
             <button className="reserve-button">
               Reserve
             </button>
-            <p>You won't be charged yet</p>
+            <p className="text-under-reserve-button">You won't be charged yet</p>
           </div>
         </div>
         <div className="reviews-section-container">

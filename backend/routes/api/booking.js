@@ -21,7 +21,7 @@ router.get('/current', requireAuth, async (req, res) => {
             where: {
                 ownerId: currentUser
             },
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price']
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'guests', 'bedrooms', 'beds', 'bath']
         })
         let spot;
         for (let obj of allSpots){

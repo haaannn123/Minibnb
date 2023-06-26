@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import spotReducer from './spots'
 import reviewReducer from './review';
+import bookingsReducer from './bookings';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducer,
   reviews: reviewReducer,
+  bookingsReducer
 });
 
 // in production, the enhancer should only apply the thunk middlware

@@ -22,6 +22,10 @@ module.exports = {
         name: "By the Lake",
         description: "This place has everything you need for you perfect getaway! With stunning views, and 5 mins from downtown.",
         price: 115.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 2,
@@ -34,6 +38,10 @@ module.exports = {
         name: "Happy House",
         description: "This beautiful home is located in the heart of Houston and offers a peaceful retreat from the busy city. Enjoy the beautiful natural surroundings and take in the stunning views.",
         price: 100,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 3,
@@ -46,6 +54,10 @@ module.exports = {
         name: "Youtuber's House",
         description: "Home by the lake",
         price: 2000.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 4,
@@ -59,6 +71,10 @@ module.exports = {
         description:
           "This beautiful home is located in the heart of Denver and offers stunning views of the city and the Rocky Mountains.",
         price: 165.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 5,
@@ -71,6 +87,10 @@ module.exports = {
         name: "The Houston Haven",
         description: "This beautiful home is located in the heart of Houston and offers a peaceful retreat from the busy city.",
         price: 145.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 6,
@@ -83,6 +103,10 @@ module.exports = {
         name: "The San Francisco Escape",
         description: "This beautiful home is located in the heart of San Francisco and offers stunning views of the city skyline.",
         price: 195.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 7,
@@ -95,6 +119,10 @@ module.exports = {
         name: "Cedar Grove Retreat",
         description: "This rustic cabin is the perfect escape from the hustle and bustle of the city.",
         price: 95.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 8,
@@ -107,6 +135,10 @@ module.exports = {
         name: "Kanao Tsuyuri",
         description: "Stay with us forever, we will protect you from demons.",
         price: 200.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 9,
@@ -120,6 +152,10 @@ module.exports = {
         description:
           "This beautiful mountain home is the perfect place to unwind and reconnect with nature. Enjoy the peaceful surroundings and take in the breathtaking views.",
         price: 175.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
       {
         ownerId: 10,
@@ -133,6 +169,10 @@ module.exports = {
         description:
           "This beautiful home is the perfect place to relax and recharge. Enjoy the beautiful natural surroundings and take in the stunning views of the city.",
         price: 135.0,
+        guests: 5,
+        bedrooms: 4,
+        beds: 4,
+        bath: 2,
       },
     ]);
   },
