@@ -13,9 +13,7 @@ const GetAllSpots = () => {
   }, [dispatch]);
 
   const getStars = (stars) => {
-    console.log(stars, typeof stars);
     if (stars && typeof stars === "number") {
-      console.log("inside");
       return stars.toFixed(1);
     } else {
       return stars;

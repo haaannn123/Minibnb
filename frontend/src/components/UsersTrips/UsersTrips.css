@@ -1,0 +1,52 @@
+.user-trips-container{
+    padding: .5rem 4.5rem;
+}
+
+.user-trips-header{
+    padding-bottom: 1rem;
+}
+
+.user-trips-card-container{
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.destination-card{
+    width: 350px;
+    height: 350px;
+    box-shadow: 0px 5px 10px rgba(154, 154, 154, 0.38);
+    border-radius: 5px;
+}
+
+.destination-img{
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.destination-details{
+    padding: 1rem;
+}
+
+.destination-dates{
+    font-size: 14px;
+    color: rgba(101, 101, 101, 0.736)
+}
+
+.destination-city{
+    font-size: 25px;   
+}
+
+.change-booking{
+    border: none;
+    background-color: white;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1440px){
+   
+}

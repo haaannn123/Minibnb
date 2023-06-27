@@ -383,7 +383,6 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
       },
       attributes: ["spotId", "startDate", "endDate"],
     });
-    console.log("BOOKINGS", regularBookings);
     res.status(200).json(regularBookings);
   } else {
     const ownerBookings = await Booking.findAll({

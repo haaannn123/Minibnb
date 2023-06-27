@@ -6,15 +6,21 @@ import GetSpotReview from "../GetSpotReview";
 import OpenModalButton from "../OpenModelButton";
 import ReviewModal from "../ReviewModal";
 import "./GetSingleSpot.css";
-import { thunkGetBookings } from "../../store/bookings";
+import { thunkCreateBookings, thunkGetUserBookings } from "../../store/bookings";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const GetSingleSpot = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const [guests, setGuests] = useState();
+  const currentDate = new Date().toISOString().split('T')[0];
+  const [startDate, setStartDate] = useState(currentDate);
+  const [guests, setGuests] = useState()
+  const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
+  const history = useHistory()
 
   let userReview;
   for (let reviewObj of allReviews) {
@@ -22,6 +28,20 @@ const GetSingleSpot = () => {
   }
   const spotImages = singleSpot.SpotImages;
   const numberReviews = singleSpot.numReviews;
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let bookings = {
+      startDate,
+      endDate,
+      numberOfGuests: guests
+    }
+
+    dispatch(thunkCreateBookings(singleSpot.id, bookings))
+    history.push('/bookings/current')
+  }
 
   const getStars = (stars) => {
     if (stars && typeof stars === "number") {
@@ -64,7 +84,6 @@ const GetSingleSpot = () => {
       return <OpenModalButton buttonText="Post Your Review" modalComponent={<ReviewModal spotId={spotId} />} />;
     }
   };
-  // !objReviews.includes(sessionUser.id)
 
   const reviewHeader = () => {
     if (numberReviews === 0) {
@@ -94,10 +113,14 @@ const GetSingleSpot = () => {
     }
   };
 
+
+
+
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
-    dispatch(thunkGetBookings())
+    dispatch(thunkGetUserBookings())
   }, [dispatch, spotId]);
+
 
   if (!singleSpot) return null;
   if (!spotImages) return null;
@@ -140,6 +163,7 @@ const GetSingleSpot = () => {
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
             </div>
+            <form onSubmit={handleSubmit} className="form-form">
             <div className="reserving-box">
               <div className="checks">
                   <div className='check-in-container'>
@@ -147,6 +171,9 @@ const GetSingleSpot = () => {
                     <input 
                       id="check-in" 
                       type="date"
+                      value={startDate}
+                      onChange = {(e) => setStartDate(e.target.value)}
+                      min={currentDate}
                       required/>
                   </div>
                   <div className="check-out-container">
@@ -154,6 +181,9 @@ const GetSingleSpot = () => {
                     <input 
                       id="check-in" 
                       type="date"
+                      value={endDate}
+                      min={new Date(new Date(startDate).getTime() + 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                      onChange = {(e) => setEndDate(e.target.value)}
                       required/>
                   </div>
               </div>
@@ -162,14 +192,17 @@ const GetSingleSpot = () => {
                     <input 
                       id="guests" 
                       type="number"
+                      value={parseInt(guests)}
+                      onChange={(e) => setGuests(e.target.value)}
                       placeholder={singleSpot.guests}
+                      max={singleSpot.guests}
+                      min="1"
                       required/>
               </div>
             </div>
-            <button className="reserve-button">
-              Reserve
-            </button>
+            <button type="submit" className="reserve-button">Reserve</button>
             <p className="text-under-reserve-button">You won't be charged yet</p>
+            </form>
           </div>
         </div>
         <div className="reviews-section-container">

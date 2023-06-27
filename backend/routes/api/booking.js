@@ -6,48 +6,40 @@ const { requireAuth } = require("../../utils/auth");
 const {Op} = require('sequelize');
 
 router.get('/current', requireAuth, async (req, res) => {
-    const currentUser = req.user.id;
-    const allBookings = await Booking.findAll({
+      const allBookings = await Booking.findAll({
         where: {
-            userId: currentUser
-        }
-    });
-    let booking;
-    for (let obj of allBookings){
-        booking = obj.dataValues
-
-
-        const allSpots = await Spot.findAll({
-            where: {
-                ownerId: currentUser
-            },
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'guests', 'bedrooms', 'beds', 'bath']
-        })
-        let spot;
-        for (let obj of allSpots){
-            spot = obj.dataValues;
-
-
-            const spotImages = await SpotImage.findAll({
-                where: {
-                    spotId: currentUser
-                }
-            })
-            let url;
-            for (let obj of spotImages){
-                url = obj.url
-            }
-
-            spot.previewImage = url
-        }
-
-        booking.Spot = spot
-
-    }
-
-    const bookings = {Bookings: allBookings};
-    res.status(200).json(bookings);
-})
+          userId: req.user.id
+        },
+        include: [
+          {
+            model: Spot,
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+            include: [SpotImage]
+          }
+        ]
+      });
+  
+      const spots = allBookings.reduce((spotsArr, booking) => {
+        const spotData = booking.Spot.toJSON();
+        spotData.previewImage = null;
+  
+        spotData.SpotImages.forEach(image => {
+          if (image.preview) {
+            spotData.previewImage = image.url;
+          }
+        });
+  
+        return [...spotsArr, spotData];
+      }, []);
+  
+      const bookingData = allBookings.map(booking => ({
+        ...booking.toJSON(),
+        Spot: spots.find(spot => spot.id === booking.Spot.id)
+      }));
+  
+      const bookings = { Bookings: bookingData };
+      res.status(200).json(bookings);
+  });
 
 // Edit a booking
 router.put('/:bookingId', requireAuth, async (req, res) => {

@@ -57,9 +57,6 @@ const CreateNewSpot = () => {
     };
 
     const promise = await dispatch(newSpot(spot, spotImages));
-    // .then((res) => {
-    //     console.log("RES",res)
-    // })
     if (promise) {
       history.push(`/spots/${promise.id}`);
       return;

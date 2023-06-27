@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import "./DeleteReviewModal.css";
 const DeleteReview = ({ reviewId, spotId }) => {
   const { closeModal } = useModal();
-  console.log("REVIEWID:", reviewId);
   const dispatch = useDispatch();
   const history = useHistory();
 

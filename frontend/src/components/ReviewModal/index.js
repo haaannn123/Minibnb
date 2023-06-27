@@ -13,7 +13,6 @@ function ReviewModal({ spotId }) {
   const [hoverNumber, setHoverNumber] = useState(0);
 
   const sessionUser = useSelector((state) => state.session.user);
-  // console.log('SESSION USER HERE:', sessionUser);
 
   const user = {
     id: sessionUser.id,

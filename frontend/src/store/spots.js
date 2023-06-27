@@ -77,7 +77,6 @@ export const newSpot = (spots, spotImages) => async (dispatch) => {
       const newImages = await sptImgs.json();
       if (newImages) {
         spots.SpotImages = [newImages];
-        console.log("HEYOOOO CREATED SPOTS HERE: ", spots);
         dispatch(createSpot(spots));
         return spots;
       }
@@ -90,7 +89,6 @@ export const fetchUserSpots = () => async (dispatch) => {
 
   if (res.ok) {
     const spots = await res.json();
-    console.log("SPOTS:", spots);
     dispatch(userSpot(spots));
     return spots;
   }

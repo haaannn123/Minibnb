@@ -15,7 +15,9 @@ export const actionCreateBookings = (bookings) => ({
     bookings
 });
 
-export const thunkGetBookings = () => async (dispatch) => {
+
+
+export const thunkGetUserBookings = () => async (dispatch) => {
     const res = await fetch("/api/bookings/current")
 
     if (res.ok){
@@ -24,13 +26,17 @@ export const thunkGetBookings = () => async (dispatch) => {
     }
 }
 
-export const thunkCreateBookings = (spotId) => async (dispatch) => {
-    const res = await fetch(`/api/spots/${spotId}/bookings`, {
-        method: 'POST'
+export const thunkCreateBookings = (spotId, bookings) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: 'POST',
+        headers: {'Content-Type': "application/json"},
+        body: JSON.stringify(bookings)
     })
 
     if (res.ok){
-
+        const new_bookings = await res.json();
+        dispatch(actionCreateBookings(new_bookings))
+        dispatch(thunkGetUserBookings())
     }
 }
 
@@ -45,6 +51,10 @@ const bookingsReducer = (state = initialState, action) => {
                 newState = {...state};
                 newState.bookings= action.bookings
                 return newState;
+            case CREATE_BOOKINGS:
+                newState = {...state};
+                newState.bookings = action.bookings
+                return newState
             default: 
                 return state;
         }

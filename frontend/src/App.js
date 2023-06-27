@@ -9,6 +9,7 @@ import CreateNewSpot from "./components/CreateNewSpot";
 import SignupFormModal from "./components/SignupFormModal";
 import ManageSpots from "./components/ManageSpots";
 import GetSpotForUpdated from "./components/UpdateSpot/GetSpotForUpdated";
+import UsersTrips from "./components/UsersTrips";
 
 
 function App() {
@@ -24,14 +25,13 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded &&
         <Switch>
-          <Route path="/signup">
-            <SignupFormModal />
-          </Route>
+          <Route path="/signup" component={SignupFormModal} />
           <Route exact path="/" component={GetAllSpots}/>
           <Route path="/spots/new" component={CreateNewSpot} />
           <Route path="/spots/current" component={ManageSpots}/>
           <Route path="/spots/:spotId/edit" component={GetSpotForUpdated}/>
           <Route path="/spots/:spotId" component={GetSingleSpot} />
+          <Route path="/bookings/current" component={UsersTrips}/>
         </Switch>}
       </div>
     </>
