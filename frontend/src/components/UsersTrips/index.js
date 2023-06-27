@@ -28,17 +28,21 @@ const UsersTrips = () => {
                                 <img className="destination-img" src={spotsObj.Spot.previewImage} alt="place"/>
                             </NavLink>
                             <div className="destination-details">
-                                <span className="destination-dates">{new Date(spotsObj.startDate).toLocaleDateString(undefined, {
+                            <span className="destination-dates">
+                                {new Date(spotsObj.startDate).toLocaleDateString(undefined, {
                                     month: "long",
                                     day: "numeric",
+                                    timeZone: "UTC" // Replace with your desired time zone
                                 })} - {new Date(spotsObj.endDate).toLocaleDateString(undefined, {
                                     month: "long",
                                     day: "numeric",
-                                })}</span>
+                                    timeZone: "UTC" // Replace with your desired time zone
+                                })}
+                            </span>
                                 <h2 className="destination-city">{spotsObj.Spot.city}</h2>
                                 <OpenModalButton 
                                     buttonText="Change Reservation"
-                                    modalComponent={<ChangeReservationModal />}
+                                    modalComponent={<ChangeReservationModal startDate={spotsObj.startDate} endDate={spotsObj.endDate} guests={spotsObj.numberOfGuests} maxGuests={spotsObj.Spot.guests}/>}
                                     className="change-booking"/>
                             </div>
                         </div>
