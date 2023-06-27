@@ -4,6 +4,7 @@ import { thunkGetUserBookings } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalButton from '../OpenModelButton';
 import { NavLink } from 'react-router-dom'
+import ChangeReservationModal from '../ChangeReservationModal';
 
 const UsersTrips = () => {
     const dispatch= useDispatch();
@@ -37,6 +38,7 @@ const UsersTrips = () => {
                                 <h2 className="destination-city">{spotsObj.Spot.city}</h2>
                                 <OpenModalButton 
                                     buttonText="Change Reservation"
+                                    modalComponent={<ChangeReservationModal />}
                                     className="change-booking"/>
                             </div>
                         </div>
