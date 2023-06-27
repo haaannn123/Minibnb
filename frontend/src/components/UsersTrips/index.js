@@ -42,7 +42,7 @@ const UsersTrips = () => {
                                 <h2 className="destination-city">{spotsObj.Spot.city}</h2>
                                 <OpenModalButton 
                                     buttonText="Change Reservation"
-                                    modalComponent={<ChangeReservationModal startDate={spotsObj.startDate} endDate={spotsObj.endDate} guests={spotsObj.numberOfGuests} maxGuests={spotsObj.Spot.guests}/>}
+                                    modalComponent={<ChangeReservationModal startDate={spotsObj.startDate} endDate={spotsObj.endDate} guests={spotsObj.numberOfGuests} maxGuests={spotsObj.Spot.guests} bookingId={spotsObj.id}/>}
                                     className="change-booking"/>
                             </div>
                         </div>

@@ -1,15 +1,25 @@
 import { useState } from 'react';
 import OpenModalButton from '../OpenModelButton';
 import "./ChangeReservationModal.css"
+import { useDispatch } from 'react-redux';
+import DeleteBookings from '../DeleteBooking';
+import { thunkUpdateBookings } from '../../store/bookings';
 
-const ChangeReservationModal = ({startDate, endDate, guests, maxGuests}) => {
+const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingId}) => {
 
+    const dispatch = useDispatch();
     const [startDateVal, setStartDateVal] = useState(startDate);
     const [endDateVal, setEndDateVal] = useState(endDate);
     const [guestsVal, setGuestsVal] = useState(guests);
 
     const handleSubmit = () => {
 
+        const new_booking = {
+            startDate: startDateVal,
+            endDate: endDateVal,
+            numberOfGuests: guestsVal
+        }
+        dispatch(thunkUpdateBookings(bookingId, new_booking))
     }
 
     return(
@@ -54,7 +64,8 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests}) => {
                 <button className="change-reservation-button" type="submit">Change</button>
                 <OpenModalButton 
                     className="delete-reservation-button"
-                    buttonText="cancel reservation"/>
+                    buttonText="cancel reservation"
+                    modalComponent={<DeleteBookings bookingId={bookingId}/>}/>
             </div>
         </form>
     )
