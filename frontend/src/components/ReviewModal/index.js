@@ -43,25 +43,19 @@ function ReviewModal({ spotId }) {
 
   const getStarClass = (number) => {
     if (number <= hoverNumber) {
-      return "fa-solid fa-star";
+      return "fa-solid fa-star rating-star";
     }
     if (number <= stars) {
-      return "fa-solid fa-star";
+      return "fa-solid fa-star rating-star";
     } else {
-      return "fa-regular fa-star";
+      return "fa-regular fa-star rating-star";
     }
   };
 
   return (
-    <form className="review-modal" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="review-modal-container">
         <h1>How was your stay?</h1>
-        <textarea
-          placeholder="Leave your review here..."
-          className="textarea-review"
-          value={review}
-          onChange={(event) => setReviews(event.target.value)}
-        ></textarea>
         <div className="star-rating">
           <div>
             <i
@@ -111,10 +105,17 @@ function ReviewModal({ spotId }) {
               }}
               onMouseEnter={() => setHoverNumber(5)}
               onMouseLeave={() => setHoverNumber(0)}
-            ></i>{" "}
-            Stars
+            ></i>
           </div>
         </div>
+        <textarea
+          rows="10"
+          cols="40"
+          placeholder="Leave your review here..."
+          className="textarea-review"
+          value={review}
+          onChange={(event) => setReviews(event.target.value)}
+        ></textarea>
         <button className="submit-review-button" disabled={stars === null || review.length < 10}>
           Submit Your Review
         </button>

@@ -1,13 +1,15 @@
 .star-rating {
   display: flex;
   justify-content: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
 }
 
 .review-modal-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 20px 20px 20px;
+  padding: .5rem 2rem;
 }
 
 .submit-review-button {
@@ -16,4 +18,9 @@
 
 .textarea-review {
   width: 95%;
+}
+
+.rating-star{
+  font-size: 25px;
+  color: rgb(216, 216, 140);
 }
