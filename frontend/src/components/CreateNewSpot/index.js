@@ -161,13 +161,12 @@ const CreateNewSpot = () => {
                   onChange={(event) => setState(event.target.value)}
               />
           </div>
-
         </div>
-        <label className="label-seperate description">
-          <h3 className="section-title">Describe your place to guests</h3>
-          <span className="details-text">Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the
-          neighborhood.</span>
-          <textarea
+        <h3 className="section-title">Describe your place to guests</h3>
+        <label for="description" className="description-label">Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about theneighborhood.</label>
+        <p className="errors">{errors.description}</p>
+        <textarea
+            id="description"
             className="description-input"
             type="text"
             placeholder="Please write at least 30 characters"
@@ -176,14 +175,12 @@ const CreateNewSpot = () => {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
-        </label>
-        <p className="errors">{errors.description}</p>
-        <label className="label-seperate">
-          <h3 className="section-title">Create a title for your spot</h3>
-          Catch guests' attention with a spot title that highlights what makes your place special.
-          <input type="text" placeholder="Name of your spot" value={name} onChange={(event) => setName(event.target.value)} />
-        </label>
+
+
+        <h3 className="section-title">Create a title for your spot</h3>
+        <label>Catch guests' attention with a spot title that highlights what makes your place special.</label>
         <p className="errors">{errors.name}</p>
+        <input type="text" placeholder="Name of your spot" value={name} onChange={(event) => setName(event.target.value)} />
         <label className="label-seperate">
           <h3 className="section-title">Set a base price for your spot</h3>
           Competitive pricing can help your listing stand out and rank higher in search results.
