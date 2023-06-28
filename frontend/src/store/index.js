@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducer,
   reviews: reviewReducer,
-  bookingsReducer
+  bookingsReducer,
 });
 
 // in production, the enhancer should only apply the thunk middlware

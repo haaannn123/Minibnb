@@ -10,6 +10,7 @@ import SignupFormModal from "./components/SignupFormModal";
 import ManageSpots from "./components/ManageSpots";
 import GetSpotForUpdated from "./components/UpdateSpot/GetSpotForUpdated";
 import UsersTrips from "./components/UsersTrips";
+import SearchResults from "./components/Search/SearchResults";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/spots/:spotId/edit" component={GetSpotForUpdated}/>
           <Route path="/spots/:spotId" component={GetSingleSpot} />
           <Route path="/bookings/current" component={UsersTrips}/>
+          <Route path="/search/:search_terms" component={SearchResults}/>
         </Switch>}
       </div>
     </>

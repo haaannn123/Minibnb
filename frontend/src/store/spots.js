@@ -128,6 +128,16 @@ export const removeSpot = (spotId) => async (dispatch) => {
   }
 };
 
+export const thunkGetSearchResults = (query) => async (dispatch) => {
+  const response = await fetch (`/api/search/${query}`);
+
+  if (response.ok){
+      const searchResults = await response.json();
+      console.log("SEARCH RESULTS", searchResults)
+      dispatch(allSpots(searchResults));
+  }
+}
+
 /* Reducer */
 let initialState = {
   allSpots: {},
@@ -137,6 +147,7 @@ let initialState = {
 
 const spotReducer = (state = initialState, action) => {
   let newState;
+  console.log('ACTION', action)
   switch (action.type) {
     case GET_SPOTS:
       newState = { ...state };
