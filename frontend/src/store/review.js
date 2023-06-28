@@ -42,8 +42,7 @@ export const newReview = (review, spotId, user) => async (dispatch ) => {
         const reviews = await res.json();
         reviews.User = user;
         dispatch(createReviews(reviews));
-        window.location.reload()
-        return reviews;
+        dispatch(fetchReviews())
     }
 }
 
@@ -54,6 +53,7 @@ export const removeReviews = (reviewId) => async (dispatch) => {
 
     if (res.ok){
         await dispatch(deleteReview(reviewId))
+        dispatch(fetchReviews())
     }
 }
 

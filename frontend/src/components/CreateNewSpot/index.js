@@ -19,6 +19,10 @@ const CreateNewSpot = () => {
   const [img2, setImg2] = useState("");
   const [img3, setImg3] = useState("");
   const [img4, setImg4] = useState("");
+  const [guests, setGuests] = useState(1);
+  const [bedrooms, setBedrooms] = useState(0)
+  const [beds, setBeds] = useState(0)
+  const [baths, setBaths] = useState(0)
   const [errors, setErrors] = useState("");
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -55,6 +59,10 @@ const CreateNewSpot = () => {
       name,
       price,
       prevImage,
+      guests,
+      baths, 
+      bedrooms,
+      bedrooms,
       lat: 80.123213,
       lng: 100.123,
       Owner: owner,
@@ -132,7 +140,7 @@ const CreateNewSpot = () => {
                 placeholder="Address"
                 value={address}
                 onChange={(event) => setAddress(event.target.value)}
-              />
+            />
           </div>
         </div>
         <div className="city-state">
@@ -175,19 +183,28 @@ const CreateNewSpot = () => {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
-
-
+              <h3>How many guests can your place accomodate?</h3>
+              <span>Check that you have enough beds to accomodate all of your guests comfortably</span>
+              <label for="create-guests" >Guests</label>
+              <input id="create-guests" className="long-input"type="number" value={guests} onChange={(e) => setGuests(e.target.value)}/>
+              <h3>How many bedrooms can guests use?</h3>
+              <label for="create-bedrooms">Bedrooms</label>
+              <input type="number" id="create-bedrooms" className="long-input" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}/>
+              <lable for="create-beds">Beds</lable>
+              <input id="create-beds" type="number" className="long-input" value={beds} onChange={(e) => setBeds(e.target.value)}/>
+              <label for="create-baths">Baths</label>
+              <input type="number" id="create-baths" className="long-input" value={baths} onChange={(e)=> setBaths(e.target.value)}/>
         <h3 className="section-title">Create a title for your spot</h3>
         <label>Catch guests' attention with a spot title that highlights what makes your place special.</label>
         <p className="errors">{errors.name}</p>
-        <input type="text" placeholder="Name of your spot" value={name} onChange={(event) => setName(event.target.value)} />
+        <input className="long-input" type="text" placeholder="Name of your spot" value={name} onChange={(event) => setName(event.target.value)} />
         <label className="label-seperate">
           <h3 className="section-title">Set a base price for your spot</h3>
           Competitive pricing can help your listing stand out and rank higher in search results.
           <div className="price-input-container">
             <p>$</p>
             <input
-              className="price-input"
+              className="long-input"
               type="text"
               placeholder="Price per night(USD)"
               value={price}
@@ -200,28 +217,33 @@ const CreateNewSpot = () => {
           <h3 className="section-title">Liven up your spot with photos</h3>
           Submit a link to at least one photo to publish your spot.
           <input 
+              className="long-input"
               type="text" 
               placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
               value={prevImage} 
               onChange={(event) => setPrevImage(event.target.value)} 
           />
           <input 
+              className="long-input"
               type="text" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img1} 
               onChange={(e) => setImg1(e.target.value)}
           />
           <input 
+              className="long-input"
               type="text" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img2} 
               onChange={(e) => setImg2(e.target.value)}
           />
           <input 
+              className="long-input"
               type="text" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img3} 
               onChange={(e) => setImg3(e.target.value)}/>
           <input 
+                        className="long-input"
               type="text" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img4} 
