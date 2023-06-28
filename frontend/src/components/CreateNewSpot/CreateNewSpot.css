@@ -7,8 +7,14 @@
   display: flex;
   flex-direction: column;
   margin: 50px 200px 50px 200px;
-  background-color: rgb(242, 242, 242);
-  padding: 10px;
+  background-color: white;
+  border: none;
+  padding: 1rem 3rem;
+  box-shadow: 0px 5px 15px rgb(154, 154, 154);
+}
+
+.create-spot-header{
+
 }
 
 .inner-inputs {
@@ -19,25 +25,55 @@
 }
 
 .long-input {
-  width: 95%;
-  margin-bottom: 20px;
+  width: 100%;
+  height: 1.5rem;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
-.guest-text {
-  margin-bottom: 40px;
+.guest-text{
+  color: rgb(103, 103, 103);
 }
 
-/* .create-spot-subsection {
-  width: 90%;
-  border-bottom: 1px solid black;
-  margin-bottom: 10px;
-  padding: 10px;
-} */
+.details-text{
+  color: rgb(103, 103, 103);
+  margin-top: -20px;
+}
 
-/* DO MEDIA QUERIES */
+
+.country-street-address{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: -10px;
+}
+
+.city-state{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.city-city{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+
+.country-values{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  margin-top: -10px;
+}
 
 .label-seperate {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(177, 177, 177, 0.645);
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -68,12 +104,8 @@
   margin-top: 10px;
 }
 
-.city-label {
-  width: 60%;
-}
-
-.state-label {
-  width: 40%;
+.city-label, .state-label {
+  padding-bottom: 1rem;
 }
 
 .city-input {
