@@ -22,6 +22,10 @@ const UpdateSpot = ({ spot }) => {
   const [bedrooms, setBedrooms] = useState(spot.bedrooms)
   const [beds, setBeds] = useState(spot.beds)
   const [baths, setBaths] = useState(spot.bath)
+  const [img1, setImg1] = useState("");
+  const [img2, setImg2] = useState("");
+  const [img3, setImg3] = useState("");
+  const [img4, setImg4] = useState("");
   const [prevImage, setPrevImage] = useState(spot.SpotImages[0].url);
   const [errors, setErrors] = useState("");
 
@@ -123,35 +127,42 @@ const UpdateSpot = ({ spot }) => {
       </label>
       <p className="errors">{errors.price}</p>
       <label>
-        <h3>Liven up your spot with photos</h3>
-        Submit a link to at least one photo to publish your spot.
-        <input type="text" placeholder="Preview Image URL" value={prevImage} onChange={(event) => setPrevImage(event.target.value)} />
-        <p className="errors">{errors.prevImage}</p>
-        {/* <input
-            type="text"
-            placeholder='Image URL'
-            value={image1}
-            onChange={(event) => setImage1(event.target.value)}/>
-        <p className="errors">{errors.image1}</p>
-        <input
-            type="text"
-            placeholder='Image URL'
-            value={image2}
-            onChange={(event) => setImage2(event.target.value)}/>
-        <p className="errors">{errors.image2}</p>
-        <input
-            type="text"
-            placeholder='Image URL'
-            value={image3}
-            onChange={(event) => setImage3(event.target.value)}/>
-        <p className="errors">{errors.image3}</p>
-        <input
-            type="text"
-            placeholder='Image URL'
-            value={image4}
-            onChange={(event) => setImage4(event.target.value)}/>
-        <p className="errors">{errors.image4}</p> */}
-      </label>
+      <h3 className="section-title">Liven up your spot with photos</h3>
+          Submit a link to at least one photo to publish your spot.
+          <input 
+              className="long-input"
+              type="url" 
+              placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
+              value={prevImage} 
+              onChange={(event) => setPrevImage(event.target.value)} 
+          />
+          <input 
+              className="long-input"
+              type="url" 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
+              value={img1} 
+              onChange={(e) => setImg1(e.target.value)}
+          />
+          <input 
+              className="long-input"
+              type="url" 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img2} 
+              onChange={(e) => setImg2(e.target.value)}
+          />
+          <input 
+              className="long-input"
+              type="url" 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
+              value={img3} 
+              onChange={(e) => setImg3(e.target.value)}/>
+          <input 
+              className="long-input"
+              type="url" 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
+              value={img4} 
+              onChange={(e) => setImg4(e.target.value)}/>
+          <p className="errors">{errors.prevImage}</p>
+        </label>
       <div>
         <button>Update your Spot</button>
       </div>
