@@ -218,33 +218,33 @@ const CreateNewSpot = () => {
           Submit a link to at least one photo to publish your spot.
           <input 
               className="long-input"
-              type="text" 
+              type="url" 
               placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
               value={prevImage} 
               onChange={(event) => setPrevImage(event.target.value)} 
           />
           <input 
               className="long-input"
-              type="text" 
+              type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img1} 
               onChange={(e) => setImg1(e.target.value)}
           />
           <input 
               className="long-input"
-              type="text" 
+              type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img2} 
               onChange={(e) => setImg2(e.target.value)}
           />
           <input 
               className="long-input"
-              type="text" 
+              type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img3} 
               onChange={(e) => setImg3(e.target.value)}/>
           <input 
                         className="long-input"
-              type="text" 
+              type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img4} 
               onChange={(e) => setImg4(e.target.value)}/>
