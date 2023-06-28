@@ -93,7 +93,7 @@ const GetSingleSpot = () => {
 
   const ifUser = () => {
     if (sessionUser && sessionUser.id !== singleSpot.ownerId && userReview !== sessionUser.id) {
-      return <OpenModalButton buttonText="Post Your Review" modalComponent={<ReviewModal spotId={spotId} />} />;
+      return <OpenModalButton className="post-review-button" buttonText="Post A Review" modalComponent={<ReviewModal spotId={spotId} />} />;
     }
   };
 
@@ -211,7 +211,6 @@ const GetSingleSpot = () => {
           </div>
         </div>
         <div className="reviews-section-container">
-          
           {ifUser()}
           {renderReviews()}
         </div>
