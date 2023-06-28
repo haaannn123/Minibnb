@@ -123,7 +123,8 @@ export const removeSpot = (spotId) => async (dispatch) => {
     method: "DELETE",
   });
   if (res.ok) {
-    await dispatch(deleteSpot(spotId));
+    dispatch(deleteSpot(spotId));
+    dispatch(fetchUserSpots())
   }
 };
 

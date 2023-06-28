@@ -1,105 +1,90 @@
 .manage-spots-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  width: 100vw;
-  position: relative;
   font-family: "Montserrat", sans-serif;
-  margin-left: 10px;
-  margin-right: 30px;
+}
+
+.manage-spots-all-cards{
+  display: flex;
+  gap: 2rem; 
 }
 
 .manage-spots-card{
-    display: flex;
-    flex-direction: column;
-    padding: 6px;
-    margin: 6px;
-    height: 390px;
-    font-size: 90%;
-    position: relative;
-    text-decoration: none;
-    color: black;
+  width: 19rem;
+  height: 25rem;
+  /* box-shadow: 0px 5px 10px rgba(154, 154, 154, 0.38); */
 }
 
-/* .manage-spots-card::before,
-.manage-spots-card::after {
-  --scale: 0;
-  position: absolute;
-  top: -0.25rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(410%) scale(var(--scale));
+.manage-spots-image{
+  height: 15rem;
+  width: 19rem;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-.manage-spots-card::before {
-  content: attr(data-tooltip);
+.manage-spots-city{
+  font-size: 15px;
+}
+
+.manage-spots-location{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.manage-spots-rating{
+  font-size: 15px;
+}
+
+.manage-spots-guests{
+  color: rgb(113, 113, 113);
+  font-size: 14px;
+}
+
+.manage-spots-price{
+  font-size: 14px;
+}
+
+.manage-spots-update-button{
+  background-color: #ff385c;
   color: white;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  text-align: center;
-  width: max-content;
-  max-width: 100%;
-  background: rgba(54, 52, 52, 0.346);
+  font-family: "Montserrat", sans-serif;
+  width: 50%;
+  border-radius: 5px;
+  padding: .25rem;
+  border: none;
 }
 
-.manage-spots-card:hover::before {
-  --scale: 1;
-} */
+.manage-spots-update-button:hover{
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgb(154, 154, 154);
+}
 
-.card-location {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.manage-spots-delete-button{
+  background-color: white;
+  color: #ff385c;
+  font-family: "Montserrat", sans-serif;
+  width: 50%;
+  border-radius: 5px;
+  padding: .25rem;
+  border: 1px solid #ff385c;
+}
 
-  .card-image {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+.manage-spots-delete-button:hover{
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgb(154, 154, 154);
+}
 
-  .rating {
-    font-weight: 1px;
-  }
 
-  .stars-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .star {
-    font-size: 10px;
-    margin-right: 3px;
-  }
-
-  .spot-price {
-    margin: 0px 0px 0px 0px;
-  }
-
-  @media (max-width: 549px) {
-    .card {
-      width: 90%;
-      height: 640px;
+  @media screen and (min-width: 1441px){
+    .manage-spots-container{
+      padding: 1rem 20rem;
     }
   }
-
-  @media (min-width: 550px) and (max-width: 949px) {
-    .card {
-      width: 40%;
-      height: 350px;
-    }
-  }
-
-  @media (min-width: 950px) and (max-width: 1127px) {
-    .card {
-      width: 27%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .card {
-      width: 22%;
-      height: 300px;
+  
+  @media screen and (max-width: 1440px){
+    .manage-spots-container{
+      padding: 1rem 4.5rem;
     }
   }

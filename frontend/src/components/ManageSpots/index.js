@@ -5,11 +5,12 @@ import { fetchUserSpots } from "../../store/spots";
 import { NavLink } from "react-router-dom";
 import DeleteSpotModal from "../DeleteSpotModal";
 import OpenModalButton from "../OpenModelButton";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ManageSpots = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userSpots = Object.values(useSelector((state) => state.spots.user));
-  const sessionUser = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
     dispatch(fetchUserSpots());
@@ -27,32 +28,29 @@ const ManageSpots = () => {
     }
   };
 
+  const handleClick = (spotId) => {
+      history.push(`/spots/${spotId}/edit`)
+  }
+
   return (
-    <div className="spots">
-      <h1>Manage Spots</h1>
-      {createSpotButton()}
-      <div className="manage-spots-container">
-        {userSpots.map((spot) => {
-          return (
-            <div>
-              <NavLink className="manage-spots-card" to={`/spots/${spot.id}`}>
-                <img className="card-image" src={spot.previewImage} alt="house"></img>
-                <div className="card-location">
-                  <h3>{`${spot.city}, ${spot.state}`}</h3>
-                  <div className="stars-container">
-                    <i className="fa-sharp fa-solid fa-star star"></i>
-                    <h3 className="rating">{spot.avgRating}</h3>
-                  </div>
-                </div>
-                <h4 className="spot-price">{`$${spot.price} night`}</h4>
-              </NavLink>
-              <NavLink to={`/spots/${spot.id}/edit`}>
-                <button>Update</button>
-              </NavLink>
-              <OpenModalButton buttonText="Delete" modalComponent={<DeleteSpotModal spotId={spot.id} />}></OpenModalButton>
-            </div>
-          );
-        })}
+    <div className="manage-spots-container">
+      <h1>Manage Listings</h1>
+      <div className="manage-spots-all-cards">
+      {userSpots.map((spot) => {
+        return (
+          <div className="manage-spots-card">
+              <img className="manage-spots-image" src={spot.previewImage} alt="house"></img>
+              <div className="manage-spots-location">
+                <h3 className="manage-spots-city">{`${spot.city}, ${spot.state}`}</h3>
+                <h3 className="manage-spots-rating"><i className="fa-sharp fa-solid fa-star star"></i> {spot.avgRating}</h3>
+              </div>
+              <span className="manage-spots-guests">{spot.guests} {spot.guests === 1? "guest" : "guests"}</span>
+              <h4 className="manage-spots-price">{`$${spot.price} night`}</h4>
+              <button className="manage-spots-update-button" onClick={() => handleClick(spot.id)}>Update Listing</button>
+              <OpenModalButton className="manage-spots-delete-button"buttonText="Delete Listing" modalComponent={<DeleteSpotModal spotId={spot.id} />}></OpenModalButton>
+          </div>
+        );
+      })}
       </div>
     </div>
   );

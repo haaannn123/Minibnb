@@ -17,13 +17,13 @@ const DeleteSpotModal = ({ spotId }) => {
     return closeModal();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form  className="delete-spot-modal-container"onSubmit={handleSubmit}>
       <h1>Confirm Delete</h1>
-      <h1>Are you sure you want to remove this spot from the listings?</h1>
+      <h3>Are you sure you want to remove this spot from the listings?</h3>
       <button className="delete-spot-button" type="submit">
         Yes (Delete Spot)
       </button>
-      <button className="cancle-delete-button" onClick={closeModalSubmit}>
+      <button className="spot-cancel-delete-button" onClick={closeModalSubmit}>
         No (Keep Spot)
       </button>
     </form>

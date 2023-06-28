@@ -29,24 +29,22 @@ const GetAllSpots = () => {
   };
 
   return (
-    <div className="spots">
-      <div className="cards-container">
+      <div className="all-spots-container">
         {spots.map((spot) => {
           return (
-            <NavLink className="card" key={spot.id} to={`/spots/${spot.id}`} data-tooltip={spot.name}>
-              <img src={spot.previewImage} alt="house" className="card-image" />
-              <div className="card-location">
-                <h3>{`${spot.city}, ${spot.state}`}</h3>
-                <div className="stars-container">
-                  <i className="fa-sharp fa-solid fa-star star"></i>
-                  <h3 className="rating">{spot.avgRating === 0 ? "New" : getStars(spot.avgRating)}</h3>
-                </div>
+            <div className="all-spots-card">
+              <NavLink className="all-spots-navlink" to={`/spots/${spot.id}`}>
+              <img src={spot.previewImage} alt="house" className="all-spots-card-image" />
+              <div className="all-spots-card-details">
+                  <h3 className="all-spots-city">{`${spot.city}, ${spot.state}`}</h3>
+                  <h3 className="rating"><i className="fa-sharp fa-solid fa-star star all-spots-star"></i>{spot.avgRating === 0 ? "New" : getStars(spot.avgRating)}</h3>
               </div>
-              <h4 className="spot-price">{`$${getPrice(spot.price)} night`}</h4>
-            </NavLink>
+              <span className="all-spots-guests">{spot.guests} {spot.guests === 1? "guest": "guests"}</span>
+              <h4 className="all-spots-price">{`$${getPrice(spot.price)} night`}</h4>
+              </NavLink>
+            </div>
           );
         })}
-      </div>
     </div>
   );
 };
