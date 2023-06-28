@@ -215,10 +215,11 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
       message: "Forbidden",
       statusCode: 403,
     });
-  } else {
+  }
+
     const newImage = await SpotImage.create({ spotId, ...req.body });
     res.status(200).json(newImage);
-  }
+  
 });
 
 // Edit a spot

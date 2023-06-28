@@ -92,19 +92,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       guests: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       bedrooms: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       beds : {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       bath: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       }
     },
     {

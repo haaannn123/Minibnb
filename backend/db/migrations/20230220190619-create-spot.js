@@ -61,19 +61,15 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       guests:{
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       bedrooms: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       beds: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       bath: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

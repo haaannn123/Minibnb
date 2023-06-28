@@ -39,6 +39,9 @@
 .label-seperate {
   border-bottom: 1px solid black;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .create-spot-container {

@@ -11,12 +11,14 @@ const CreateNewSpot = () => {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState();
   const [prevImage, setPrevImage] = useState("");
+  const [img1, setImg1] = useState("");
+  const [img2, setImg2] = useState("");
+  const [img3, setImg3] = useState("");
+  const [img4, setImg4] = useState("");
   const [errors, setErrors] = useState("");
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -32,14 +34,18 @@ const CreateNewSpot = () => {
     if (!name.length) err.name = "Name is required";
     if (!price) err.price = "Price is required";
     if (!prevImage.length) err.prevImage = "Preview Image is required";
-    if (!prevImage.endsWith('jpg') || !prevImage.endsWith('.jpeg') || !prevImage.endsWith('.png'))
+    if (!prevImage.endsWith('jpg') || !prevImage.endsWith('.jpeg') || !prevImage.endsWith('.png'));
+    if (img1 !== "" && !img1.endsWith('.png') && !img1.endsWith('.jpg') && !img1.endsWith('.jpeg')) err.img = 'Image URL must end in .png, .jpg, or .jpeg'
+    if (img2 !== "" && !img2.endsWith('.png') && !img2.endsWith('.jpg') && !img2.endsWith('.jpeg')) err.img2 = 'Image URL must end in .png, .jpg, or .jpeg'
+    if (img3 !== "" && !img3.endsWith('.png') && !img3.endsWith('.jpg') && !img3.endsWith('.jpeg')) err.img3 = 'Image URL must end in .png, .jpg, or .jpeg'
+    if (img4 !== "" && !img4.endsWith('.png') && !img4.endsWith('.jpg') && !img4.endsWith('.jpeg')) err.img4 = 'Image URL must end in .png, .jpg, or .jpeg'
     setErrors(err);
 
     if (Object.values(err).length > 0){
       return;
     }
     // removed id: sessionUser.id
-    const spotImages = [{ url: prevImage, preview: "true" }];
+
     const owner = { id: sessionUser.id, firstName: sessionUser.firstName, lastName: sessionUser.lastName };
     const spot = {
       country,
@@ -56,7 +62,41 @@ const CreateNewSpot = () => {
       //   SpotImages: spotImages
     };
 
-    const promise = await dispatch(newSpot(spot, spotImages));
+    let photoArr = [];
+
+        let previewImg = {
+            url: prevImage,
+            preview: true
+        }
+
+        photoArr.push(previewImg)
+
+        if (img1) {
+            photoArr.push({
+                url: img1,
+                preview: false
+            });
+        }
+        if (img2) {
+            photoArr.push({
+                url: img2,
+                preview: false
+            });
+        }
+        if (img3) {
+            photoArr.push({
+                url: img3,
+                preview: false
+            });
+        }
+        if (img4) {
+            photoArr.push({
+                url: img4,
+                preview: false
+            });
+        }
+
+    const promise = await dispatch(newSpot(spot, photoArr));
     if (promise) {
       history.push(`/spots/${promise.id}`);
       return;
@@ -150,14 +190,28 @@ const CreateNewSpot = () => {
         </div>
       </label>
       <p className="errors">{errors.price}</p>
-      <label className="label-seperate">
+        <label className="label-seperate">
         <h3 className="section-title">Liven up your spot with photos</h3>
         Submit a link to at least one photo to publish your spot.
-        <input type="text" placeholder="Preview Image URL" value={prevImage} onChange={(event) => setPrevImage(event.target.value)} />
-        <input type="text"/>
-        <input type="text"/>
-        <input type="text"/>
-        <input type="text"/>
+        <input 
+            type="text" 
+            placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
+            value={prevImage} 
+            onChange={(event) => setPrevImage(event.target.value)} 
+        />
+        <input 
+            type="text" 
+            placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
+            value={img1} 
+            onChange={(e) => setImg1(e.target.value)}
+        />
+        <input 
+            type="text" 
+            placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img2} 
+            onChange={(e) => setImg2(e.target.value)}
+        />
+        <input type="text" placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img3} onChange={(e) => setImg3(e.target.value)}/>
+        <input type="text" placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={img4} onChange={(e) => setImg4(e.target.value)}/>
         <p className="errors">{errors.prevImage}</p>
       </label>
       <div className="create-spot-container">
