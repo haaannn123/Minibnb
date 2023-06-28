@@ -33,6 +33,71 @@
     padding: 10px;
   }
 
+
+
+.search-results-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-results-card{
+  border: none;
+  height: 25rem;
+  width: 19rem;
+}
+
+.all-spots-card-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all-spots-guests{
+  font-size: 14px;
+  color: rgb(86, 86, 86);
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.rating{
+  font-size: 15px;
+}
+
+.rating .all-spots-star{
+      font-size: 15px;
+}
+
+.all-spots-navlink{
+  text-decoration: none;
+  color: black
+}
+
+.all-spots-price{
+  font-size: 14px;
+}
+
+.all-spots-card-image{
+  height: 15rem;
+  width: 19rem;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.all-spots-city{
+  font-size: 15px;
+  margin: 0px;
+  padding: 0px;
+}
+
   @media screen and (min-width: 1441px){
     .search-results-container{
       padding: 1rem 20rem;

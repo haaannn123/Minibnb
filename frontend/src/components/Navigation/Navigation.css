@@ -110,3 +110,20 @@
 .auth-button {
   list-style: none;
 }
+
+@media screen and (min-width: 1441px){
+  .navbar{
+    padding: 1rem 20rem;
+  }
+
+  .dropdown-user-info{
+    margin-top: 230px;
+    margin-right: 320px;
+  }
+}
+
+@media screen and (max-width: 1440px){
+  .navbar{
+    padding: 1rem 4.5rem;
+  }
+}

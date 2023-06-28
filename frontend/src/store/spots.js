@@ -94,7 +94,6 @@ export const fetchUserSpots = () => async (dispatch) => {
 
   if (res.ok) {
     const spots = await res.json();
-    console.log("SPOTS:", spots);
     dispatch(userSpot(spots));
     return spots;
   }
@@ -124,7 +123,7 @@ export const removeSpot = (spotId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(deleteSpot(spotId));
-    dispatch(fetchUserSpots())
+    // dispatch(fetchUserSpots())
   }
 };
 
@@ -133,7 +132,6 @@ export const thunkGetSearchResults = (query) => async (dispatch) => {
 
   if (response.ok){
       const searchResults = await response.json();
-      console.log("SEARCH RESULTS", searchResults)
       dispatch(allSpots(searchResults));
   }
 }

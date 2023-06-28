@@ -1,21 +1,21 @@
 import "./DeleteSpotModal.css";
 import { useModal } from "../../context/Modal";
-import { removeSpot } from "../../store/spots";
+import { fetchUserSpots, removeSpot } from "../../store/spots";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 const DeleteSpotModal = ({ spotId }) => {
+
   const { closeModal } = useModal();
   const dispatch = useDispatch();
-  const history = useHistory;
 
   const handleSubmit = () => {
-    dispatch(removeSpot(spotId)).then(closeModal);
+
+    dispatch(removeSpot(spotId))
+    dispatch(fetchUserSpots())
+    closeModal();
+
   };
 
-  const closeModalSubmit = (e) => {
-    e.preventDefault();
-    return closeModal();
-  };
   return (
     <form  className="delete-spot-modal-container"onSubmit={handleSubmit}>
       <h1>Confirm Delete</h1>
@@ -23,7 +23,7 @@ const DeleteSpotModal = ({ spotId }) => {
       <button className="delete-spot-button" type="submit">
         Yes (Delete Spot)
       </button>
-      <button className="spot-cancel-delete-button" onClick={closeModalSubmit}>
+      <button className="spot-cancel-delete-button" onClick={closeModal}>
         No (Keep Spot)
       </button>
     </form>

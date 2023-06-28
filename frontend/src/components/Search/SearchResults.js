@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
+import './Search.css'
+
 
 
 const SearchResults = () => {
@@ -33,7 +35,7 @@ const SearchResults = () => {
                 ) : (
                     searchResult.map(obj => {
                         return (
-                            <div className="all-spots-card">
+                            <div className="search-results-card">
                             <NavLink className="all-spots-navlink" to={`/spots/${obj.id}`}>
                             <img src={obj.previewImage} alt="house" className="all-spots-card-image" />
                             <div className="all-spots-card-details">

@@ -47,6 +47,14 @@
     text-decoration: underline;
 }
 
-@media screen and (max-width: 1440px){
-   
-}
+@media screen and (min-width: 1441px){
+    .user-trips-container{
+      padding: 1rem 20rem;
+    }
+  }
+  
+  @media screen and (max-width: 1440px){
+    .user-trips-container{
+      padding: 1rem 4.5rem;
+    }
+  }
