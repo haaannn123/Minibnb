@@ -18,6 +18,10 @@ const UpdateSpot = ({ spot }) => {
   const [description, setDescription] = useState(spot.description);
   const [name, setName] = useState(spot.name);
   const [price, setPrice] = useState(spot.price);
+  const [guests, setGuests] = useState(spot.guests);
+  const [bedrooms, setBedrooms] = useState(spot.bedrooms)
+  const [beds, setBeds] = useState(spot.beds)
+  const [baths, setBaths] = useState(spot.bath)
   const [prevImage, setPrevImage] = useState(spot.SpotImages[0].url);
   const [errors, setErrors] = useState("");
 
@@ -83,22 +87,6 @@ const UpdateSpot = ({ spot }) => {
           <p className="errors">{errors.state}</p>
           <input type="text" placeholder="State" value={state} onChange={(event) => setState(event.target.value)} />
         </label>
-        {/* <label>Latitude
-            <p className='errors'>{errors.lat}</p>
-        <input
-            type="text"
-            placeholder='Latitude'
-            value={lat}
-            onChange={(event) => setLat(event.target.value)}/>,
-        </label>
-        <label>Longitude
-            <p className='errors'>{errors.lng}</p>
-        <input
-            type="text"
-            placeholder='Longitude'
-            value={lng}
-            onChange={(event) => setLng(event.target.value)}/>
-        </label> */}
       </div>
       <label>
         <h3>Describe your place to guests</h3>
@@ -106,6 +94,17 @@ const UpdateSpot = ({ spot }) => {
         neighborhood.
         <input type="text" placeholder="Description" value={description} onChange={(event) => setDescription(event.target.value)} />
       </label>
+      <h3>How many guests can your place accomodate?</h3>
+              <span>Check that you have enough beds to accomodate all of your guests comfortably</span>
+              <label for="create-guests" >Guests</label>
+              <input id="create-guests" className="long-input"type="number" value={guests} onChange={(e) => setGuests(e.target.value)}/>
+              <h3>How many bedrooms can guests use?</h3>
+              <label for="create-bedrooms">Bedrooms</label>
+              <input type="number" id="create-bedrooms" className="long-input" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}/>
+              <lable for="create-beds">Beds</lable>
+              <input id="create-beds" type="number" className="long-input" value={beds} onChange={(e) => setBeds(e.target.value)}/>
+              <label for="create-baths">Baths</label>
+              <input type="number" id="create-baths" className="long-input" value={baths} onChange={(e)=> setBaths(e.target.value)}/>
       <p className="errors">{errors.description}</p>
       <label>
         <h3>Create a title for your spot</h3>

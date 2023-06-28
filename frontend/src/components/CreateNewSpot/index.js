@@ -243,7 +243,7 @@ const CreateNewSpot = () => {
               value={img3} 
               onChange={(e) => setImg3(e.target.value)}/>
           <input 
-                        className="long-input"
+              className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               value={img4} 
