@@ -154,6 +154,10 @@ const CreateNewSpot = () => {
         <h3 className="section-title">Liven up your spot with photos</h3>
         Submit a link to at least one photo to publish your spot.
         <input type="text" placeholder="Preview Image URL" value={prevImage} onChange={(event) => setPrevImage(event.target.value)} />
+        <input type="text"/>
+        <input type="text"/>
+        <input type="text"/>
+        <input type="text"/>
         <p className="errors">{errors.prevImage}</p>
       </label>
       <div className="create-spot-container">

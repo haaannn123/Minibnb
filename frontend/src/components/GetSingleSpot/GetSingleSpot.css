@@ -1,57 +1,48 @@
-
 .spot-details-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-family: "Montserrat", sans-serif;
 }
 
 .spot-images-container {
   display: flex;
-  flex-direction: row;
-  max-height: 500px;
-  width: 95vw;
+  height: 500px;
 }
 
-.preview-image {
+.preview-image{
   width: 50%;
+  height: 494px;
+  margin-right: 0px;
+}
+
+.four-images-container{
+  width: 50%;
+  padding: 0;
+  margin: 0px;
+  height: 100%;
+  align-items: flex-start;
+}
+
+.small-images{
+  width: 50%;
+  height: 49%;
+  margin: 0px;
   object-fit: cover;
-  max-height: 500px;
-  margin: 2px;
-  height: 407px;
-  border: 1px solid black;
-}
-
-.four-images {
-  display: flex;
-  flex-direction: row;
-  max-height: 600px;
-  width: 50%;
-  height: 800px
-}
-
-.four-images-subset {
-  display: flex;
-  flex-direction: column;
-  width: 57%;
 }
 
 .image-coming {
   width: 94%;
-  height: 40%;
+  height: 25%;
   object-fit: cover;
   border: 1px solid black;
-  margin: 2px;
 }
 
 .single-spot-details {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   border-bottom: 1px solid black;
   padding-bottom: 30px;
-  width: 95%;
 }
 
 .single-spot-details-info {
@@ -169,4 +160,28 @@
 
 .home-occupancy{
   color:rgb(118, 118, 118)
+}
+
+#spot-details-header{
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+}
+
+.spot-details-subheading{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+@media screen and (min-width: 1441px){
+  .spot-details-container{
+    padding: 1rem 20rem;
+  }
+}
+
+@media screen and (max-width: 1440px){
+  .spot-details-container{
+    padding: 1rem 4.5rem;
+  }
 }

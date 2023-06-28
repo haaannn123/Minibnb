@@ -10,6 +10,8 @@ import { thunkCreateBookings, thunkGetUserBookings } from "../../store/bookings"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const GetSingleSpot = () => {
+
+
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const currentDate = new Date().toISOString().split('T')[0];
@@ -18,17 +20,27 @@ const GetSingleSpot = () => {
   const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
+  
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
-  const history = useHistory()
+  const spotImages = singleSpot.SpotImages;
+
+
+ 
+  const numberReviews = singleSpot.numReviews;
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch(fetchSingleSpot(spotId));
+    dispatch(thunkGetUserBookings())
+  }, [dispatch, spotId]);
+
+  
 
   let userReview;
   for (let reviewObj of allReviews) {
     userReview = reviewObj.userId;
   }
-  const spotImages = singleSpot.SpotImages;
-  const numberReviews = singleSpot.numReviews;
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,14 +75,14 @@ const GetSingleSpot = () => {
     if (reviews === 0) {
       return (
         <div className="review-info">
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
           <p>New</p>
         </div>
       );
     } else {
       return (
         <div className="review-info">
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
           <p>{getStars(singleSpot.avgStarRating)}</p>
           <div className="centered-dot">·</div>
           <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
@@ -89,17 +101,17 @@ const GetSingleSpot = () => {
     if (numberReviews === 0) {
       return (
         <div className="reviews-header">
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
           <h3>New</h3>
         </div>
       );
     } else {
       return (
         <div className="reviews-header">
-          <i class="fa-sharp fa-solid fa-star"></i>
+          <i className="fa-sharp fa-solid fa-star"></i>
           <h4>{getStars(singleSpot?.avgStarRating)}</h4>
           <div className="centered-dot">·</div>
-          <h4>{numberReviews > 1 ? `${numberReviews} Reviews` : `${numberReviews} Review`}</h4>
+          <h4>{numberReviews > 1 ? `${numberReviews} Reviews ` : `${numberReviews} Review`}</h4>
         </div>
       );
     }
@@ -114,42 +126,35 @@ const GetSingleSpot = () => {
   };
 
 
-
-
-  useEffect(() => {
-    dispatch(fetchSingleSpot(spotId));
-    dispatch(thunkGetUserBookings())
-  }, [dispatch, spotId]);
-
-
   if (!singleSpot) return null;
   if (!spotImages) return null;
   if (!singleSpot.Owner) return null;
 
+  console.log('SPOT IMAGEAS:', spotImages[0])
+  let previewImg = spotImages[0]
+  let img1 = spotImages[1];
+  let img2 = spotImages[2]
+  let img3 = spotImages[3]
+  let img4 = spotImages[4]
+
   return (
     <>
       <div className="spot-details-container">
-        <h3>{singleSpot.name}</h3>
-        <h4>
-          {singleSpot.city}, {singleSpot.state}, {singleSpot.country}
-        </h4>
-        {spotImages.map((obj) => {
-          return (
-            <div className="spot-images-container">
-              <img src={obj.url} alt="cottage house" className="preview-image" />
-              <div className="four-images">
-                <div className="four-images-subset">
-                  <img src="https://i.imgur.com/zuH81uv.png" alt="coming soon..." className="image-coming"></img>
-                  <img src="https://i.imgur.com/zuH81uv.png" alt="coming soon..." className="image-coming"></img>
-                </div>
-                <div className="four-images-subset">
-                  <img src="https://i.imgur.com/zuH81uv.png" alt="coming soon..." className="image-coming"></img>
-                  <img src="https://i.imgur.com/zuH81uv.png" alt="coming soon..." className="image-coming"></img>
-                </div>
+        <h1 id="spot-details-header">{singleSpot.name}</h1>
+        <div  className="spot-details-subheading">
+        <div>{reviewHeader()}</div>
+        <div>·</div>
+        <div>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
+        </div>
+        <div className="spot-images-container">
+              <img src={previewImg.url} alt="cottage house" className="preview-image"/>
+              <div className="four-images-container">
+                  <img className="small-images" src={img1 ? img1.url : "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images" src={img2? img2.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images" src={img3? img3.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images" src={img4? img4.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
               </div>
-            </div>
-          );
-        })}
+        </div>
         <div className="single-spot-details">
           <div className="single-spot-details-info">
             <h2>Entire home hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}</h2>
@@ -206,7 +211,7 @@ const GetSingleSpot = () => {
           </div>
         </div>
         <div className="reviews-section-container">
-          {reviewHeader()}
+          
           {ifUser()}
           {renderReviews()}
         </div>

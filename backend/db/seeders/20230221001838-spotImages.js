@@ -12,8 +12,28 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "https://i.imgur.com/ukHB3cL.png",
+        url: "https://i.imgur.com/gMljqMV.png",
         preview: true,
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/agJJMMN.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/7dg3tFC.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/rLGsaXU.png",
+        preview: false,
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/lVdmgkX.png",
+        preview: false,
       },
       {
         spotId: 2,
