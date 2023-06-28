@@ -22,10 +22,10 @@ const UpdateSpot = ({ spot }) => {
   const [bedrooms, setBedrooms] = useState(spot.bedrooms)
   const [beds, setBeds] = useState(spot.beds)
   const [baths, setBaths] = useState(spot.bath)
-  const [img1, setImg1] = useState("");
-  const [img2, setImg2] = useState("");
-  const [img3, setImg3] = useState("");
-  const [img4, setImg4] = useState("");
+  const [img1, setImg1] = useState(spot.SpotImages[1].url);
+  const [img2, setImg2] = useState(spot.SpotImages[2].url);
+  const [img3, setImg3] = useState(spot.SpotImages[3].url);
+  const [img4, setImg4] = useState(spot.SpotImages[4].url);
   const [prevImage, setPrevImage] = useState(spot.SpotImages[0].url);
   const [errors, setErrors] = useState("");
 
