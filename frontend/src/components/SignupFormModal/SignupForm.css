@@ -1,27 +1,36 @@
-.signup-text{
-    display: flex;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-}
-
 .signup-container-form{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0px 30px 30px 30px;
+    padding: 1rem 3rem;
     font-family: 'Montserrat', sans-serif;
+    gap: .5rem;
+    align-items: center;
+}
 
+.signup-header-text{
+    margin: 0px;
+    padding-bottom: .5rem;
+}
+
+.signup-credentials-input{
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 14px;
 }
 
 .signup-button{
-    background-color: #FF385C;
-    color: white;
-    margin: 8px;
-    box-shadow: 2px 2px 1px black;
+    background-color: white;
+    color:black;
+    height: 26px;
     font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    border: 1.5px solid black;
+    border-radius: 5px;
 }
 
-.signup-inputs{
-    margin: 1px;
-    font-family: 'Montserrat', sans-serif;
+.signup-button:hover{
+    background-color: rgb(179, 255, 187);
+    cursor: pointer;
 }

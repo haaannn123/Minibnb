@@ -65,6 +65,7 @@
   border-radius: 10px;
   padding: 1.5rem;
   box-shadow: 0px 5px 10px grey;
+  align-items: center;
 }
 
 .profile-dropdown-login-button{
