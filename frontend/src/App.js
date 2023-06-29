@@ -8,7 +8,7 @@ import GetSingleSpot from "./components/GetSingleSpot";
 import CreateNewSpot from "./components/CreateNewSpot";
 import SignupFormModal from "./components/SignupFormModal";
 import ManageSpots from "./components/ManageSpots";
-import GetSpotForUpdated from "./components/UpdateSpot/GetSpotForUpdated";
+import UpdateSpot from "./components/UpdateSpot";
 import UsersTrips from "./components/UsersTrips";
 import SearchResults from "./components/Search/SearchResults";
 
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/" component={GetAllSpots}/>
           <Route path="/spots/new" component={CreateNewSpot} />
           <Route path="/spots/current" component={ManageSpots}/>
-          <Route path="/spots/:spotId/edit" component={GetSpotForUpdated}/>
+          <Route path="/spots/:spotId/edit" component={UpdateSpot}/>
           <Route path="/spots/:spotId" component={GetSingleSpot} />
           <Route path="/bookings/current" component={UsersTrips}/>
           <Route path="/search/:search_terms" component={SearchResults}/>
