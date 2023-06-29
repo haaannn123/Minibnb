@@ -63,7 +63,7 @@ function LoginFormModal() {
                   />
             </div>
             <div className="login-button-container">
-            <button  className="login-button" type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+            <button  className="login-button" type="submit" >Log In</button>
             <div className="divider">
                 <div className="line"></div>
                 <span className="or">or</span>

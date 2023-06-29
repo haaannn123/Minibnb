@@ -34,6 +34,7 @@ function SignupFormModal() {
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json();
+          console.log('errors', data.errors)
           if (data && data.errors) setErrors(data.errors);
         });
     } else {
@@ -48,9 +49,15 @@ function SignupFormModal() {
   return (
       <form onSubmit={handleSubmit}>
       <div className="signup-container-form">
-      {errors.email && <p className="errors">{errors.email}</p>}
-      {errors.username && <p className="errors">{errors.username}</p>}
       <h1 className="signup-header-text">Sign Up</h1>
+      <div className="signup-errors-container">
+          {errors.email && <p className="errors">{errors.email}</p>}
+          {errors.username && <p className="errors">{errors.username}</p>}
+          {errors.firstName && <p className="errors">{errors.firstName}</p>}
+          {errors.lastName && <p className="errors">{errors.lastName}</p>}
+          {errors.password && <p className="errors">{errors.password}</p>}
+          {errors.confirmPassword && (<p className="errors">{errors.confirmPassword}</p>)}
+      </div>
       <span>Welcome to Minibnb</span>
           <input
             type="text"
@@ -76,7 +83,6 @@ function SignupFormModal() {
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        {errors.firstName && <p className="errors">{errors.firstName}</p>}
           <input
             type="text"
             className="signup-credentials-input"
@@ -85,7 +91,6 @@ function SignupFormModal() {
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        {errors.lastName && <p className="errors">{errors.lastName}</p>}
           <input
             type="password"
             className="signup-credentials-input"
@@ -94,7 +99,6 @@ function SignupFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        {errors.password && <p className="errors">{errors.password}</p>}
           <input
             type="password"
             className="signup-credentials-input"
@@ -103,10 +107,7 @@ function SignupFormModal() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        {errors.confirmPassword && (
-          <p className="errors">{errors.confirmPassword}</p>
-        )}
-        <button className="signup-button" type="submit" disabled={!email.length || (!username.length) || !firstName.length|| !lastName.length || !password.length || !confirmPassword.length || username.length < 4 || password.length < 6}>Sign Up</button>
+        <button className="signup-button" type="submit">Sign Up</button>
         </div>
       </form>
   );
