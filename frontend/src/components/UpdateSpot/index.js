@@ -1,4 +1,4 @@
-
+import './UpdateSpot.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -6,18 +6,19 @@ import { fetchSingleSpot, updateSpot } from "../../store/spots";
 
 const UpdateSpot = () => {
   const { spotId } = useParams();
+  console.log('SPOT ID', spotId)
   const dispatch = useDispatch();
   const history = useHistory();
 
   const spot = useSelector((state) => state.spots.singleSpot);
-  console.log('SPOT images:', spot.SpotImages)
-  const [errors, setErrors] = useState("");
+  console.log('SPOT', spot)
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    dispatch(fetchSingleSpot(spotId))
+    dispatch(fetchSingleSpot(parseInt(spotId)))
 }, [dispatch, spotId])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     let country = e.target.country.value;
@@ -30,7 +31,7 @@ const UpdateSpot = () => {
     let guests = e.target.guests.value;
     let bedrooms = e.target.bedrooms.value;
     let beds = e.target.beds.value;
-    let baths = e.target.baths.value;
+    let bath = e.target.bath.value;
     let prevImage = e.target.prevImage.value;
     let img1 =  e.target.img1.value;
     let img2 = e.target.img2.value;
@@ -52,7 +53,11 @@ const UpdateSpot = () => {
     if (img4 !== "" && !img4.endsWith('.png') && !img4.endsWith('.jpg') && !img4.endsWith('.jpeg')) err.img4 = 'Image URL must end in .png, .jpg, or .jpeg'
     setErrors(err);
 
-    if (Object.values(err).length > 0) return;
+    if (Object.values(err).length > 0){
+      setErrors(err)
+    } else {
+
+    
     const spot = {
       country,
       address,
@@ -64,7 +69,7 @@ const UpdateSpot = () => {
       guests,
       beds,
       bedrooms,
-      bath : baths,
+      bath : bath,
       //prevImage,
       lat: 80.123213,
       lng: 100.123,
@@ -105,9 +110,10 @@ const UpdateSpot = () => {
         }
 
     if (spot) {
-      await dispatch(updateSpot(spot, spotId, photoArr));
-      history.push(`/spots/${spotId}`);
+      dispatch(updateSpot(spot, parseInt(spotId), photoArr));
+      history.push(`/spots/${parseInt(spotId)}`);
     }
+  }
   };
 
   if (!spot) return null;
@@ -121,93 +127,99 @@ const UpdateSpot = () => {
       <label>
         Country
         <p className="errors">{errors.country}</p>
-        <input type="text" placeholder="Country" defaultValue={spot.country} />
+        <input name="country" type="text" placeholder="Country" defaultValue={spot.country} />
       </label>
       <label>
         Street Address
         <p className="errors">{errors.address}</p>
-        <input type="text" placeholder="Address" defaultValue={spot.address} />
+        <input name="address" type="text" placeholder="Address" defaultValue={spot.address} />
       </label>
       <div className="inner-inputs">
         <label>
           City
           <p className="errors">{errors.city}</p>
-          <input type="text" placeholder="City" defaultValue={spot.city} />,
+          <input name="city" type="text" placeholder="City" defaultValue={spot.city} />,
         </label>
         <label>
           State
           <p className="errors">{errors.state}</p>
-          <input type="text" placeholder="State" defaultValue={spot.state} />
+          <input name="state" type="text" placeholder="State" defaultValue={spot.state} />
         </label>
       </div>
       <label>
         <h3>Describe your place to guests</h3>
         Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the
         neighborhood.
-        <input type="text" placeholder="Description" defaultValue={spot.description}  />
+        <input name="description" type="text" placeholder="Description" defaultValue={spot.description}  />
       </label>
       <h3>How many guests can your place accomodate?</h3>
               <span>Check that you have enough beds to accomodate all of your guests comfortably</span>
               <label for="create-guests" >Guests</label>
-              <input id="create-guests" className="long-input"type="number" defaultValue={spot.guests}/>
+              <input name="guests" id="create-guests" className="long-input"type="number" defaultValue={spot.guests}/>
               <h3>How many bedrooms can guests use?</h3>
               <label for="create-bedrooms">Bedrooms</label>
-              <input type="number" id="create-bedrooms" className="long-input" defaultValue={spot.bedrooms}/>
-              <lable for="create-beds">Beds</lable>
-              <input id="create-beds" type="number" className="long-input" defaultValue={spot.beds} />
+              <input name="bedrooms" type="number" id="create-bedrooms" className="long-input" defaultValue={spot.bedrooms}/>
+              <label for="create-beds">Beds</label>
+              <label for="create-beds">Beds</label>
+              <input name="beds" id="create-beds" type="number" className="long-input" defaultValue={spot.beds} />
               <label for="create-baths">Baths</label>
-              <input type="number" id="create-baths" className="long-input" defaultValue={spot.bath} />
+              <input name="bath" type="number" id="create-baths" className="long-input" defaultValue={spot.bath} />
       <p className="errors">{errors.description}</p>
       <label>
         <h3>Create a title for your spot</h3>
         Catch guests' attention with a spot title that highlights what makes your place special.
-        <input type="text" placeholder="Name of your spot" defaultValue={spot.name} />
+        <input name="name" type="text" placeholder="Name of your spot" defaultValue={spot.name} />
       </label>
       <p className="errors">{errors.title}</p>
       <label>
         <h3>Set a base price for your spot</h3>
         Competitive pricing can help your listing stand out and rank higher in search results. $
-        <input type="text" placeholder="Price per night(USD)" defaultValue={spot.price} />
+        <input name="price" type="text" placeholder="Price per night(USD)" defaultValue={spot.price} />
       </label>
       <p className="errors">{errors.price}</p>
       <label>
       <h3 className="section-title">Liven up your spot with photos</h3>
           Submit a link to at least one photo to publish your spot.
           <input 
+              name="prevImage"
               className="long-input"
               type="url" 
               placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
               defaultValue={spot.SpotImages[0].url} 
           />
           <input 
+              name="img1"
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[1].url} 
-      
           />
           <input 
+              name="img2"
               className="long-input"
               type="url" 
-              placeholder="Image must end in '.png', '.jpg', '.jpeg'" defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[2].url} 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
+              defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[2].url} 
              
           />
           <input 
+              name="img3"
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
-              defaultValue={spot.SpotImages[3] === undefined ? null : spot.SpotImages[2].url} 
+              defaultValue={spot.SpotImages[3] === undefined ? null : spot.SpotImages[3].url} 
               />
           <input 
+              name="img4"
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
-              defaultValue={spot.SpotImages[4] === undefined ? null : spot.SpotImages[2].url} 
+              defaultValue={spot.SpotImages[4] === undefined ? null : spot.SpotImages[4].url} 
               />
           <p className="errors">{errors.prevImage}</p>
         </label>
       <div>
-        <button>Update your Spot</button>
+        <button className="update-spot-button-button">Update your Spot</button>
       </div>
     </form>
   );

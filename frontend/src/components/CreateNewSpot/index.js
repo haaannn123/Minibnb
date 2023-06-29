@@ -190,7 +190,7 @@ const CreateNewSpot = () => {
               <h3>How many bedrooms can guests use?</h3>
               <label for="create-bedrooms">Bedrooms</label>
               <input type="number" id="create-bedrooms" className="long-input" value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}/>
-              <lable for="create-beds">Beds</lable>
+              <label for="create-beds">Beds</label>
               <input id="create-beds" type="number" className="long-input" value={beds} onChange={(e) => setBeds(e.target.value)}/>
               <label for="create-baths">Baths</label>
               <input type="number" id="create-baths" className="long-input" value={baths} onChange={(e)=> setBaths(e.target.value)}/>

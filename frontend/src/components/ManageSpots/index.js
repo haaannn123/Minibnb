@@ -39,14 +39,16 @@ const ManageSpots = () => {
       {userSpots.map((spot) => {
         return (
           <div className="manage-spots-card">
-              <img className="manage-spots-image" src={spot.previewImage} alt="house"></img>
-              <div className="manage-spots-location">
-                <h3 className="manage-spots-city">{`${spot.city}, ${spot.state}`}</h3>
-                <h3 className="manage-spots-rating"><i className="fa-sharp fa-solid fa-star star"></i> {spot.avgRating}</h3>
-              </div>
-              <span className="manage-spots-guests">{spot.guests} {spot.guests === 1? "guest" : "guests"}</span>
-              <h4 className="manage-spots-price">{`$${spot.price} night`}</h4>
-              <button className="manage-spots-update-button" onClick={() => handleClick(spot.id)}>Update Listing</button>
+              <NavLink className="manage-spots-navlink" to={`/spots/${spot.id}`}>
+                <img className="manage-spots-image" src={spot.previewImage} alt="house"></img>
+                <div className="manage-spots-location">
+                  <h3 className="manage-spots-city">{`${spot.city}, ${spot.state}`}</h3>
+                  <h3 className="manage-spots-rating"><i className="fa-sharp fa-solid fa-star star"></i> {spot.avgRating}</h3>
+                </div>
+                <span className="manage-spots-guests">{spot.guests} {spot.guests === 1? "guest" : "guests"}</span>
+                <h4 className="manage-spots-price">{`$${spot.price} night`}</h4>
+                </NavLink>
+                <button className="manage-spots-update-button" onClick={() => handleClick(spot.id)}>Update Listing</button>
               <OpenModalButton className="manage-spots-delete-button"buttonText="Delete Listing" modalComponent={<DeleteSpotModal spotId={spot.id} />}></OpenModalButton>
           </div>
         );

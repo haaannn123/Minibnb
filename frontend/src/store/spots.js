@@ -139,7 +139,7 @@ export const removeSpot = (spotId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(deleteSpot(spotId));
-    // dispatch(fetchUserSpots())
+    dispatch(fetchUserSpots())
   }
 };
 
@@ -161,7 +161,6 @@ let initialState = {
 
 const spotReducer = (state = initialState, action) => {
   let newState;
-  console.log('ACTION', action)
   switch (action.type) {
     case GET_SPOTS:
       newState = { ...state };
@@ -193,9 +192,9 @@ const spotReducer = (state = initialState, action) => {
       newState.singleSpot[action.spot] = action.list;
       return newState;
     case DELETE_SPOT:
-      const updatedState = { ...state };
-      delete updatedState.allSpots[action.spotId];
-      return updatedState;
+      newState = { ...state };
+      delete newState.allSpots[action.spotId];
+      return newState;
     default:
       return state;
   }

@@ -4,16 +4,17 @@ import { fetchUserSpots, removeSpot } from "../../store/spots";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 const DeleteSpotModal = ({ spotId }) => {
+  console.log('SPOT IDHERE', spotId)
 
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     dispatch(removeSpot(spotId))
-    dispatch(fetchUserSpots())
+    window.location.reload()
     closeModal();
-
   };
 
   return (

@@ -1,0 +1,10 @@
+.update-spot-button-button{
+  background-color: #ff385c;
+  color: white;
+  margin: 8px;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  padding: .5rem;
+  width: 100%;
+  border-radius: 10px;
+}

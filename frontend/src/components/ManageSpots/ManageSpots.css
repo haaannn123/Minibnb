@@ -61,6 +61,11 @@
   box-shadow: 0px 5px 10px rgb(154, 154, 154);
 }
 
+.manage-spots-navlink{
+  text-decoration: none;
+  color: black
+}
+
 .manage-spots-delete-button{
   background-color: white;
   color: #ff385c;
