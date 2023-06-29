@@ -65,10 +65,10 @@ function ProfileButton({ user }) {
         ) : (
           <div className="dropdown-user-info">
             <li className="auth-button">
-              <OpenModalButton buttonText="Log In" onButtonClick={closeMenu} modalComponent={<LoginFormModal />} />
+              <OpenModalButton className="profile-dropdown-login-button" buttonText="Log In" onButtonClick={closeMenu} modalComponent={<LoginFormModal />} />
             </li>
             <li className="auth-button">
-              <OpenModalButton buttonText="Sign Up" onButtonClick={closeMenu} modalComponent={<SignupFormModal />} />
+              <OpenModalButton className="profile-dropdown-signup-button" buttonText="Sign Up" onButtonClick={closeMenu} modalComponent={<SignupFormModal />} />
             </li>
           </div>
         )}

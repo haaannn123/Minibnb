@@ -63,11 +63,26 @@
   margin-top: 230px;
   margin-right: 60px;
   border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.578);
+  padding: 1.5rem;
+  box-shadow: 0px 5px 10px grey;
 }
 
+.profile-dropdown-login-button{
+  font-weight: 600;
+}
+
+.profile-dropdown-login-button, .profile-dropdown-signup-button{
+  border: none;
+  background-color: white;
+  width: 100%;
+  padding: .5rem;
+  font-size: 15px;
+}
+
+.profile-dropdown-login-button:hover, .profile-dropdown-signup-button:hover{
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+}
 
 .manage-spots {
   color: black;

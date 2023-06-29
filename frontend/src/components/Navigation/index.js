@@ -20,8 +20,15 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="user-dropdown">
-        <OpenModalButton buttonText="Log In" modalComponent={<LoginFormModal />} />
-        <OpenModalButton buttonText="Sign Up" modalComponent={<SignupFormModal />} />
+        <OpenModalButton 
+            
+            buttonText="Log In" 
+            modalComponent={<LoginFormModal />} 
+        />
+        <OpenModalButton 
+            buttonText="Sign Up" 
+            modalComponent={<SignupFormModal />} 
+        />
       </div>
     );
     }
