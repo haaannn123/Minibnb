@@ -37,42 +37,42 @@ function LoginFormModal() {
   }
 
   return (
-    <>
-    <div className="login-modal-container">
-      <h1 >Log In</h1>
       <form onSubmit={handleSubmit}>
-      {errors.credential && (
-          <p className="credentials-error">{errors.credential}</p>
-        )}
-        <div className="credentials-container">
-        <label>
-          <input
-            className="credentials-input"
-            type="text"
-            placeholder="Username or Email"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            className="credentials-input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        </div>
-        <div className="login-button-container">
-        <button  className="login-button" type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-        <button className="demo-user-button" onClick={demoUser}>Log in as Demo User</button>
-        </div>
+          <div className="login-modal-container">
+          <h1 className="login-modal-header" >Log In</h1>
+          <span>Welcome to Minibnb</span>
+          {errors.credential && (
+              <p className="credentials-error">{errors.credential}</p>
+            )}
+            <div className="credentials-container">
+                <input
+                    className="credentials-input bottom"
+                    type="text"
+                    placeholder="Username or Email"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                  />
+                  <input
+                    className="credentials-input top"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+            </div>
+            <div className="login-button-container">
+            <button  className="login-button" type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+            <div className="divider">
+                <div className="line"></div>
+                <span className="or">or</span>
+                <div className="line"></div>
+            </div>
+            <button className="demo-user-button" onClick={demoUser}>Log in as Demo User</button>
+            </div>
+          </div>
       </form>
-      </div>
-    </>
   );
 }
 
