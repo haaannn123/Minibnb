@@ -21,7 +21,7 @@ const UsersTrips = () => {
         < div className="user-trips-container">
             <h1 className="user-trips-header">Upcoming Trips</h1>
             <div className="user-trips-card-container">
-                {userTrips.map(spotsObj => {
+                {userTrips.length > 1? (userTrips.map(spotsObj => {
                     return(
                         <div className="destination-card">
                             <NavLink to={`/spots/${spotsObj.id}`}>
@@ -47,6 +47,8 @@ const UsersTrips = () => {
                             </div>
                         </div>
                 )}
+                )): (
+                    <span>You don't have any trips coming up, make a reservation by clicking on a spot and selecting the appropriate dates and guests!</span>
                 )}
             </div>
         </div>
