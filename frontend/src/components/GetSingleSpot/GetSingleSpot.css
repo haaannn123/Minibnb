@@ -12,6 +12,7 @@
 .spot-images-container {
   display: flex;
   height: 500px;
+  gap: 5px;
 }
 
 .preview-image{

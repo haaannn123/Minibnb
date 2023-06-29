@@ -98,6 +98,11 @@
   padding: 0px;
 }
 
+.search-bar-img{
+  width: 10px;
+  height: 10px
+}
+
   @media screen and (min-width: 1441px){
     .search-results-container{
       padding: 1rem 20rem;

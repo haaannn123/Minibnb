@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Search.css';
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetSearchResults } from '../../store/spots';
+import { NavLink } from "react-router-dom";
 
 function SearchBar() {
   const [query, setQuery] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // const results = useSelector(state => state.resultsReducer.results)
-  
   const handleInputChange = (event) => {
     setQuery(event.target.value);
   }

@@ -12,9 +12,11 @@ router.get('/:query', async (req, res) => {
   
     let spots = await Spot.findAll({
       where: {
-        city: {
-          [Op.like]: `%${query}%` // Search for spots with the given city
-        }
+        [Op.or]: [
+          { city: { [Op.like]: `%${query}%` } },
+          { state: { [Op.like]: `%${query}%` } },
+          { country: { [Op.like]: `%${query}%` } }
+        ]
       }
     })
 
