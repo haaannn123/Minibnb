@@ -10,6 +10,7 @@ const UpdateSpot = () => {
   const history = useHistory();
 
   const spot = useSelector((state) => state.spots.singleSpot);
+  console.log('SPOT images:', spot.SpotImages)
   const [errors, setErrors] = useState("");
 
   useEffect(() => {
@@ -69,15 +70,45 @@ const UpdateSpot = () => {
       lng: 100.123,
     };
 
+    let photoArr = [];
+
+        let previewImg = {
+            url: prevImage,
+            preview: true
+        }
+
+        photoArr.push(previewImg)
+
+        if (img1) {
+            photoArr.push({
+                url: img1,
+                preview: false
+            });
+        }
+        if (img2) {
+            photoArr.push({
+                url: img2,
+                preview: false
+            });
+        }
+        if (img3) {
+            photoArr.push({
+                url: img3,
+                preview: false
+            });
+        }
+        if (img4) {
+            photoArr.push({
+                url: img4,
+                preview: false
+            });
+        }
+
     if (spot) {
-      await dispatch(updateSpot(spot, spotId));
+      await dispatch(updateSpot(spot, spotId, photoArr));
       history.push(`/spots/${spotId}`);
     }
   };
-
-  useEffect(() => {
-      dispatch(fetchSingleSpot(spotId))
-  }, [dispatch, spotId])
 
   if (!spot) return null;
   if (!spot.SpotImages) return null
@@ -101,42 +132,42 @@ const UpdateSpot = () => {
         <label>
           City
           <p className="errors">{errors.city}</p>
-          <input type="text" placeholder="City" value={spot.city} />,
+          <input type="text" placeholder="City" defaultValue={spot.city} />,
         </label>
         <label>
           State
           <p className="errors">{errors.state}</p>
-          <input type="text" placeholder="State" value={spot.state} />
+          <input type="text" placeholder="State" defaultValue={spot.state} />
         </label>
       </div>
       <label>
         <h3>Describe your place to guests</h3>
         Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the
         neighborhood.
-        <input type="text" placeholder="Description" value={spot.description}  />
+        <input type="text" placeholder="Description" defaultValue={spot.description}  />
       </label>
       <h3>How many guests can your place accomodate?</h3>
               <span>Check that you have enough beds to accomodate all of your guests comfortably</span>
               <label for="create-guests" >Guests</label>
-              <input id="create-guests" className="long-input"type="number" value={spot.guests}/>
+              <input id="create-guests" className="long-input"type="number" defaultValue={spot.guests}/>
               <h3>How many bedrooms can guests use?</h3>
               <label for="create-bedrooms">Bedrooms</label>
-              <input type="number" id="create-bedrooms" className="long-input" value={spot.bedrooms}/>
+              <input type="number" id="create-bedrooms" className="long-input" defaultValue={spot.bedrooms}/>
               <lable for="create-beds">Beds</lable>
-              <input id="create-beds" type="number" className="long-input" value={spot.beds} />
+              <input id="create-beds" type="number" className="long-input" defaultValue={spot.beds} />
               <label for="create-baths">Baths</label>
-              <input type="number" id="create-baths" className="long-input" value={spot.bath} />
+              <input type="number" id="create-baths" className="long-input" defaultValue={spot.bath} />
       <p className="errors">{errors.description}</p>
       <label>
         <h3>Create a title for your spot</h3>
         Catch guests' attention with a spot title that highlights what makes your place special.
-        <input type="text" placeholder="Name of your spot" value={spot.name} />
+        <input type="text" placeholder="Name of your spot" defaultValue={spot.name} />
       </label>
       <p className="errors">{errors.title}</p>
       <label>
         <h3>Set a base price for your spot</h3>
         Competitive pricing can help your listing stand out and rank higher in search results. $
-        <input type="text" placeholder="Price per night(USD)" value={spot.price} />
+        <input type="text" placeholder="Price per night(USD)" defaultValue={spot.price} />
       </label>
       <p className="errors">{errors.price}</p>
       <label>
@@ -146,32 +177,32 @@ const UpdateSpot = () => {
               className="long-input"
               type="url" 
               placeholder="Preview Image URL, image must end in '.png', '.jpg', .'jpeg'" 
-              value={spot.SpotImages[0].url} 
+              defaultValue={spot.SpotImages[0].url} 
           />
           <input 
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
-              value={spot.SpotImages[1].url} 
+              defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[1].url} 
       
           />
           <input 
               className="long-input"
               type="url" 
-              placeholder="Image must end in '.png', '.jpg', '.jpeg'" value={spot.SpotImages[2].url} 
+              placeholder="Image must end in '.png', '.jpg', '.jpeg'" defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[2].url} 
              
           />
           <input 
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
-              value={spot.SpotImages[3].url} 
+              defaultValue={spot.SpotImages[3] === undefined ? null : spot.SpotImages[2].url} 
               />
           <input 
               className="long-input"
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
-              value={spot.SpotImages[4].url} 
+              defaultValue={spot.SpotImages[4] === undefined ? null : spot.SpotImages[2].url} 
               />
           <p className="errors">{errors.prevImage}</p>
         </label>
