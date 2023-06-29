@@ -130,7 +130,6 @@ const GetSingleSpot = () => {
   if (!spotImages) return null;
   if (!singleSpot.Owner) return null;
 
-  console.log('SPOT IMAGEAS:', spotImages[0])
   let previewImg = spotImages[0]
   let img1 = spotImages[1];
   let img2 = spotImages[2]

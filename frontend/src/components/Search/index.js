@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useState } from 'react';
 import './Search.css';
-import { useHistory, useLocation } from "react-router-dom"
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom"
+import { useDispatch } from 'react-redux';
 import { thunkGetSearchResults } from '../../store/spots';
-import { NavLink } from "react-router-dom";
 
 function SearchBar() {
   const [query, setQuery] = useState('');

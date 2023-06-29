@@ -33,7 +33,6 @@ router.get('/:query', async (req, res) => {
     let url;
     for (let obj of spotImage) {
         url = obj.url;
-        console.log('SPOTOBJ:', url)
     }
 
     if (url) {

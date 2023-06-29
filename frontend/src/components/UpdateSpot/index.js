@@ -6,12 +6,10 @@ import { fetchSingleSpot, updateSpot } from "../../store/spots";
 
 const UpdateSpot = () => {
   const { spotId } = useParams();
-  console.log('SPOT ID', spotId)
   const dispatch = useDispatch();
   const history = useHistory();
 
   const spot = useSelector((state) => state.spots.singleSpot);
-  console.log('SPOT', spot)
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
