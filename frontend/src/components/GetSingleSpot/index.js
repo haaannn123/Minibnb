@@ -10,16 +10,20 @@ import { thunkCreateBookings, thunkGetUserBookings } from "../../store/bookings"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const GetSingleSpot = () => {
-
-
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const currentDate = new Date().toISOString().split('T')[0];
   const [startDate, setStartDate] = useState(currentDate);
   const [guests, setGuests] = useState()
+  const [totalBeforeTaxes, setTotalBeforeTaxes] = useState(0);
+  const [totalDays, setTotalDays] = useState(0);
+  const [cleaningFee, setCleaningFee] = useState(0)
+  const [airBnbFee, setAirBnbFee] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0)
   const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
+  const bookings = useSelector(state => state.bookingsReducer.bookings.Bookings)
   
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
@@ -30,11 +34,39 @@ const GetSingleSpot = () => {
   const numberReviews = singleSpot.numReviews;
   const history = useHistory();
 
+  const getPrice = (price) => {
+    if (price && typeof price === "number") {
+      const roundedPrice = Math.ceil(price);
+      return parseInt(roundedPrice);
+    } else {
+      return price;
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
     dispatch(thunkGetUserBookings())
   }, [dispatch, spotId]);
 
+  const calculateTotalAmount = () => {
+    const pricePerNight = singleSpot.price;
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+    setTotalDays(totalDays);
+    const totalBeforeTaxes = totalDays * pricePerNight;
+    setTotalBeforeTaxes(totalBeforeTaxes);
+    const cleaningFee = (totalBeforeTaxes * .1)
+    setCleaningFee(getPrice(cleaningFee))
+    const airBnbFee = (totalBeforeTaxes * .14)
+    setAirBnbFee(getPrice(airBnbFee))
+    const totalAmount = totalBeforeTaxes + cleaningFee + airBnbFee;
+    setTotalAmount(totalAmount)
+  };
+
+  useEffect(() => {
+    calculateTotalAmount();
+  }, [startDate, endDate, singleSpot.price]);
   
 
   let userReview;
@@ -44,6 +76,8 @@ const GetSingleSpot = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
 
     let bookings = {
       startDate,
@@ -63,13 +97,7 @@ const GetSingleSpot = () => {
     }
   };
 
-  const getPrice = (price) => {
-    if (price && typeof price === "number") {
-      return price.toFixed(2);
-    } else {
-      return price;
-    }
-  };
+
 
   const checkReviews = (reviews) => {
     if (reviews === 0) {
@@ -177,7 +205,7 @@ const GetSingleSpot = () => {
           <div className="single-spot-reservation">
             <div className="single-spot-reservation-info">
               <div className="single-spot-price-container">
-                <p className="single-spot-price">${getPrice(singleSpot.price)} night</p>
+                <p className="single-spot-price">${singleSpot.price} night</p>
               </div>
               <p>{checkReviews(singleSpot.numReviews)}</p>
             </div>
@@ -220,6 +248,23 @@ const GetSingleSpot = () => {
             </div>
             <button type="submit" className="reserve-button">Reserve</button>
             <p className="text-under-reserve-button">You won't be charged yet</p>
+            <div className="single-spot-total-price">
+                <div className="single-spot-total-price-sub">${singleSpot.price} X {totalDays} nights</div>
+                <div className="single-spot-total-price-sub">${totalBeforeTaxes}</div>
+            </div>
+            <div className="single-spot-total-price">
+              <div className="single-spot-total-price-sub">Cleaning Fee</div>
+              <div className="single-spot-total-price-sub">${cleaningFee}</div>
+            </div>
+            <div className="single-spot-total-price">
+              <div className="single-spot-total-price-sub">Minibnb Fee</div>
+              <div className="single-spot-total-price-sub">${airBnbFee}</div>
+            </div>
+            <div className="single-spot-total-price">
+              <div>Total before taxes</div>
+              <div>${getPrice(totalAmount)}</div>
+            </div>
+            
             </form>
           </div>
         </div>

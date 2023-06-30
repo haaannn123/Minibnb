@@ -23,6 +23,17 @@
   padding-top: 1rem;
 }
 
+.single-spot-total-price-sub{
+  color:rgb(118, 118, 118)
+}
+
+.single-spot-total-price{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 1rem;
+}
+
 .self-check-in-header{
   margin: 5px;
   padding: 0px;
@@ -105,7 +116,7 @@
 .single-spot-reservation {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 35%;
   border: 1px solid rgb(179, 179, 179);
   border-radius: 10px;
   padding: 1rem 1.5rem;
