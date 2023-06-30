@@ -116,7 +116,6 @@ const UpdateSpot = () => {
   }
   };
 
-  console.log('SPOT', spot)
 
   if (!spot) return null;
   if (!spot.SpotImages) return null

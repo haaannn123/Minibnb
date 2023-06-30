@@ -67,16 +67,30 @@ router.get("/", async (req, res) => {
         spotId: spot.id,
       },
     });
-    let url;
-    for (let obj of spotImage) {
-      url = obj.url;
+    // let url;
+
+    // for (let obj of spotImage) {
+    //   url = obj.url;
+    // }
+
+    const image = await SpotImage.findOne({
+      where:{
+        spotId: spot.id,
+        preview: true
+      }
+    })
+
+    if (!image){
+      spot.previewImage = null;
+    } else {
+      spot.previewImage = image.url
     }
 
-    if (url) {
-      spot.previewImage = url;
-    } else {
-      spot.previewImage = null;
-    }
+    // if (url) {
+    //   spot.previewImage = url;
+    // } else {
+    //   spot.previewImage = null;
+    // }
   }
 
   res.status(200).json({

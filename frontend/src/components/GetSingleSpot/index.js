@@ -93,7 +93,7 @@ const GetSingleSpot = () => {
 
   const ifUser = () => {
     if (sessionUser && sessionUser.id !== singleSpot.ownerId && userReview !== sessionUser.id) {
-      return <OpenModalButton className="post-review-button" buttonText="Post A Review" modalComponent={<ReviewModal spotId={spotId} />} />;
+      return <OpenModalButton className="post-review-button" buttonText="Leave A Review" modalComponent={<ReviewModal spotId={spotId} />} />;
     }
   };
 
@@ -149,16 +149,30 @@ const GetSingleSpot = () => {
               <img src={previewImg.url} alt="cottage house" className="preview-image"/>
               <div className="four-images-container">
                   <img className="small-images" src={img1 ? img1.url : "https://i.imgur.com/zuH81uv.png"} alt=""/>
-                  <img className="small-images" src={img2? img2.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
-                  <img className="small-images" src={img3? img3.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
-                  <img className="small-images" src={img4? img4.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images top-right" src={img2? img2.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images " src={img3? img3.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
+                  <img className="small-images bottom-right" src={img4? img4.url: "https://i.imgur.com/zuH81uv.png"} alt=""/>
               </div>
         </div>
         <div className="single-spot-details">
           <div className="single-spot-details-info">
-            <h2>Entire home hosted by {singleSpot.Owner.firstName} {singleSpot.Owner.lastName}</h2>
+            <h2 className="single-spot-header-host">Entire home hosted by {singleSpot.Owner.firstName}</h2>
             <p className="home-occupancy">{singleSpot.guests} guests · {singleSpot.bedrooms} bedrooms · {singleSpot.beds} beds · {singleSpot.bath} baths</p>
-            <h4>{singleSpot.description}</h4>
+            <div className="home-info">
+              <span className="material-symbols-outlined door">door_open</span>
+              <div className="home-info-sub">
+                <h3 className="self-check-in-header">Self check-in</h3>
+                <span className="self-check-in-description">Check yourself in with the lockbox.</span>
+              </div>
+            </div>
+            <div className="home-info">
+              <span class="material-symbols-outlined door">social_leaderboard</span>
+              <div className="home-info-sub">
+                <h3 className="self-check-in-header">{singleSpot.Owner.firstName} is a Superhost</h3>
+                <span className="self-check-in-description">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
+              </div>
+            </div>
+            <span className="single-spot-description">{singleSpot.description}</span>
           </div>
           <div className="single-spot-reservation">
             <div className="single-spot-reservation-info">

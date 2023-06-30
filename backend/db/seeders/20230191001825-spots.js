@@ -15,7 +15,7 @@ module.exports = {
         ownerId: 1,
         address: "7683 Erb Way",
         city: "Salt Lake City",
-        state: "Nevada",
+        state: "Utah",
         country: "United States",
         lat: 37.7073317,
         lng: -121.4011945,
@@ -127,7 +127,7 @@ module.exports = {
       {
         ownerId: 8,
         address: "456 Hillside Avenue",
-        city: "Asheville",
+        city: "Tokyo",
         state: "Tokyo",
         country: "Japan",
         lat: 35.6076629,

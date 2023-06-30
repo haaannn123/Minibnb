@@ -171,7 +171,6 @@ const spotReducer = (state = initialState, action) => {
     case SINGLE_SPOT_ON_CHANGE: 
       newState = {...state};
       let singleSpot = newState.singleSpot;
-      console.log(action.payload)
       singleSpot[action.payload.key] = action.payload.value
       
       return newState;
