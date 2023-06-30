@@ -21,7 +21,7 @@ const UsersTrips = () => {
         < div className="user-trips-container">
             <h1 className="user-trips-header">Upcoming Trips</h1>
             <div className="user-trips-card-container">
-                {userTrips.length > 1? (userTrips.map(spotsObj => {
+                {userTrips.length > 0? (userTrips.map(spotsObj => {
                     return(
                         <div className="destination-card">
                             <NavLink to={`/spots/${spotsObj.id}`}>

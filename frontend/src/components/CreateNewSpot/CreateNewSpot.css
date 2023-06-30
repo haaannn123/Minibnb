@@ -89,11 +89,11 @@
 }
 
 .create-spot-button {
-  background-color: #ff385c;
-  color: white;
+  background-color: rgb(179, 255, 187);
+  color: black;
   margin: 8px;
   font-family: "Montserrat", sans-serif;
-  border: none;
+  border: 2px solid black;
   padding: .5rem;
   width: 100%;
   border-radius: 10px;

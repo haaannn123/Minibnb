@@ -7,8 +7,14 @@ export const CREATE_SPOT = "spots/CREATE_SPOT";
 export const USER_SPOT = "spots/USER_SPOT";
 export const UPDATE_SPOT = "spots/UPDATE_SPOT";
 export const DELETE_SPOT = "spots/DELETE_SPOT";
+export const SINGLE_SPOT_ON_CHANGE = "spots/SINGLE_SPOT_ON_CHANGE"
 
 /* Action Creator */
+export const singleSpotOnChange = (key, value) => ({
+  type: SINGLE_SPOT_ON_CHANGE,
+  payload: {key: key, value: value}
+})
+
 export const allSpots = (spots) => ({
   type: GET_SPOTS,
   spots,
@@ -49,11 +55,11 @@ export const fetchSpots = () => async (dispatch) => {
   }
 };
 
-export const fetchSingleSpot = (spotId) => async (dispatch) => {
+export const fetchSingleSpot = (spotId, updateForm) => async (dispatch) => {
   const res = await fetch(`/api/spots/${spotId}`);
   if (res.ok) {
-    const spotId = await res.json();
-    dispatch(singleSpot(spotId));
+    const spotId = await res.json();    
+      dispatch(singleSpot(spotId));
   }
 };
 
@@ -162,6 +168,13 @@ let initialState = {
 const spotReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
+    case SINGLE_SPOT_ON_CHANGE: 
+      newState = {...state};
+      let singleSpot = newState.singleSpot;
+      console.log(action.payload)
+      singleSpot[action.payload.key] = action.payload.value
+      
+      return newState;
     case GET_SPOTS:
       newState = { ...state };
       const allSpots = {};
@@ -171,7 +184,7 @@ const spotReducer = (state = initialState, action) => {
       newState.allSpots = allSpots;
       return newState;
     case GET_SINGLE_SPOT:
-      newState = { ...state, singleSpot: { ...state.singleSpot } };
+      newState = { ...state,  };
       // const singleSpot = {}
       newState.singleSpot = action.spotId;
       return newState;

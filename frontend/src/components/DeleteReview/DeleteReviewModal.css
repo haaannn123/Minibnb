@@ -1,21 +1,33 @@
 .delete-review-button {
-  background-color: #ff385c;
-  color: white;
+  background-color: white;
+  color: black;
   margin: 8px;
   margin-top: 18px;
-  box-shadow: 2px 2px 1px black;
   height: 26px;
   font-family: "Montserrat", sans-serif;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.delete-review-button:hover{
+  cursor: pointer;
+  background-color: rgb(179, 255, 187);
 }
 
 .cancle-delete-button {
-  background-color: rgb(102, 102, 102);
-  color: white;
+  background-color: white;
+  color: black;
   margin: 8px;
   margin-top: 18px;
-  box-shadow: 2px 2px 1px black;
   height: 26px;
   font-family: "Montserrat", sans-serif;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.cancle-delete-button:hover{
+  cursor: pointer;
+  background-color: rgb(255, 255, 179)
 }
 
 .delete-review-container {

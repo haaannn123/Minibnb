@@ -13,14 +13,26 @@
 }
 
 .submit-review-button {
-  width: 80%;
+    background-color: white;
+    color:black;
+    height: 26px;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.submit-review-button:hover{
+  cursor: pointer;
+  background-color: rgb(179, 255, 187);
 }
 
 .textarea-review {
-  width: 95%;
+  width: 100%;
 }
 
 .rating-star{
   font-size: 25px;
-  color: rgb(216, 216, 140);
+  color: rgb(165, 165, 165);
 }

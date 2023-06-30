@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchReviews } from "../../store/review";
 import OpenModalButton from "../OpenModelButton";
 import DeleteReview from "../DeleteReview";
+import "./GetSpotReviews.css"
 
 const GetSpotReview = () => {
   const { spotId } = useParams();
@@ -28,7 +29,7 @@ const GetSpotReview = () => {
 
   const deleteButtonReview = (review) => {
     if (sessionUser && sessionUser.id === review.userId) {
-      return <OpenModalButton buttonText="Delete" modalComponent={<DeleteReview reviewId={review.id} spotId={spotId} />} />;
+      return <OpenModalButton className="review-delete-button-here"buttonText="Delete" modalComponent={<DeleteReview reviewId={review.id} spotId={spotId} />} />;
     }
   };
 

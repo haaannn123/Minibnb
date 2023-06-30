@@ -2,7 +2,7 @@ import './UpdateSpot.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { fetchSingleSpot, updateSpot } from "../../store/spots";
+import { fetchSingleSpot, singleSpotOnChange, updateSpot } from "../../store/spots";
 
 const UpdateSpot = () => {
   const { spotId } = useParams();
@@ -14,7 +14,9 @@ const UpdateSpot = () => {
 
   useEffect(() => {
     dispatch(fetchSingleSpot(parseInt(spotId)))
-}, [dispatch, spotId])
+  }, [dispatch, spotId])
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -114,8 +116,11 @@ const UpdateSpot = () => {
   }
   };
 
+  console.log('SPOT', spot)
+
   if (!spot) return null;
   if (!spot.SpotImages) return null
+  if (parseInt(spot.id) !== parseInt(spotId)) return null;
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
@@ -125,23 +130,42 @@ const UpdateSpot = () => {
       <label>
         Country
         <p className="errors">{errors.country}</p>
-        <input name="country" type="text" placeholder="Country" defaultValue={spot.country} />
+        <input
+          name="country" 
+          type="text" 
+          placeholder="Country" 
+          defaultValue={spot.country} 
+        />
       </label>
       <label>
         Street Address
         <p className="errors">{errors.address}</p>
-        <input name="address" type="text" placeholder="Address" defaultValue={spot.address} />
+        <input 
+          name="address" 
+          type="text" 
+          placeholder="Address" 
+          defaultValue={spot.address} />
       </label>
       <div className="inner-inputs">
-        <label>
+      <label>
           City
           <p className="errors">{errors.city}</p>
-          <input name="city" type="text" placeholder="City" defaultValue={spot.city} />,
-        </label>
+        <input 
+          name="city" 
+          type="text" 
+          placeholder="City" 
+          defaultValue={spot.city} 
+        />
+      </label>
         <label>
           State
           <p className="errors">{errors.state}</p>
-          <input name="state" type="text" placeholder="State" defaultValue={spot.state} />
+          <input 
+              name="state" 
+              type="text" 
+              placeholder="State" 
+              defaultValue={spot.state}
+          />
         </label>
       </div>
       <label>

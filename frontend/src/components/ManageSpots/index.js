@@ -36,7 +36,7 @@ const ManageSpots = () => {
     <div className="manage-spots-container">
       <h1>Manage Listings</h1>
       <div className="manage-spots-all-cards">
-        {userSpots.length > 1 ? (
+        {userSpots.length > 0 ? (
           userSpots.map((spot) => {
             return (
               <div className="manage-spots-card" key={spot.id}>
