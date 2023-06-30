@@ -132,8 +132,8 @@ module.exports = {
         country: "Japan",
         lat: 35.6076629,
         lng: -82.5234993,
-        name: "Kanao Tsuyuri",
-        description: "Stay with us forever, we will protect you from demons.",
+        name: "Traditional Japanese Home",
+        description: "Beautiful home in the middle of Tokyo, Japan",
         price: 200.0,
         guests: 5,
         bedrooms: 4,
@@ -174,6 +174,22 @@ module.exports = {
         beds: 4,
         bath: 2,
       },
+      {
+        ownerId: 1,
+        address: "163 Hollywood Avenue",
+        city: "San Diego",
+        state: "California",
+        country: "United States",
+        lat: 45.7582633,
+        lng: -110.8693425,
+        name: "Cozy guest studio with private deck",
+        description: "Cozy, small studio that is full of charm!!! Walking distance to amazing restaurants, and shops, but tucked away in a canyon, so you can also enjoy the peace. Guests will get to unwind on the private deck outdoors with the view of the canyon and fairy lights overhead. Or wake up with the complimentary coffee and enjoy the custom morning playlist on the tablet. Our space is equipped with bathroom, A/C/heat, private deck, queen bed, bar fridge, microwave, tablet and laundry.",
+        price: 85.0,
+        guests: 2,
+        bedrooms: 1,
+        beds: 1,
+        bath: 1,
+      }
     ]);
   },
 
@@ -183,7 +199,7 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        name: { [Op.in]: ["Han's House", "Brennan's Home", "William's Home", "Cameron's House", "Andrea's House"] },
+        name: { [Op.in]: ["By the Lake", "Happy House", "Youtuber's House", "The Mile High Retreat", "The Houston Haven", "The San Francisco Escape", "Cedar Grove Retreat", "Traditional Japanese Home", "The Boulder Retreat", "The Salt Lake City Sanctuary", "Cozy guest studio with private deck"] },
       },
       {}
     );

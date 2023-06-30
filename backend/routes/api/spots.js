@@ -110,9 +110,8 @@ router.get("/current", async (req, res) => {
     },
   });
 
-  let spotObj;
   for (let spot of currentUserSpots) {
-    spotObj = spot.dataValues;
+    const spotObj = spot.dataValues;
     const reviews = await Review.findAll({
       where: {
         spotId: spot.id,
@@ -130,16 +129,14 @@ router.get("/current", async (req, res) => {
 
     spotObj.avgRating = avg;
 
-    const spotImage = await SpotImage.findAll({
+    const spotImages = await SpotImage.findAll({
       where: {
         spotId: spot.id,
       },
     });
-    let url;
-    for (let obj of spotImage) {
-      url = obj.url;
-    }
-    spotObj.previewImage = url;
+
+    const previewImage = spotImages.find((image) => image.preview === true);
+    spotObj.previewImage = previewImage ? previewImage.url : null;
   }
 
   if (!currentUserSpots.length) {
@@ -148,10 +145,11 @@ router.get("/current", async (req, res) => {
       statusCode: 404,
     });
   } else {
-    let currUserSpotObj = { Spots: currentUserSpots };
+    const currUserSpotObj = { Spots: currentUserSpots };
     res.status(200).json(currUserSpotObj);
   }
 });
+
 
 // Get details of a Spot from an id
 router.get("/:spotId", async (req, res) => {

@@ -219,6 +219,26 @@ module.exports = {
         spotId: 10,
         url: "https://i.imgur.com/Rilppgv.png",
         preview: false
+      },{
+        spotId: 11,
+        url: "https://i.imgur.com/7WYDx8H.png",
+        preview: true
+      },{
+        spotId: 11,
+        url: "https://i.imgur.com/YxTJ4LN.png",
+        preview: false
+      },{
+        spotId: 11,
+        url: "https://i.imgur.com/RuW3Pa4.png",
+        preview: false
+      },{
+        spotId: 11,
+        url: "https://i.imgur.com/SRf2zZW.png",
+        preview: false
+      },{
+        spotId: 11,
+        url: "https://i.imgur.com/TzgQGnN.png",
+        preview: false
       }
     ])
   },
@@ -227,7 +247,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      id : {[Op.in] : [1, 2, 3, 4, 5]}
+      id : {[Op.in] : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
     }, {})
   }
 };
