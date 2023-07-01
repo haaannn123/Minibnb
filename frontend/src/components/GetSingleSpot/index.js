@@ -20,7 +20,7 @@ const GetSingleSpot = () => {
   const [cleaningFee, setCleaningFee] = useState(0)
   const [airBnbFee, setAirBnbFee] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0)
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState({})
   const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
@@ -75,23 +75,26 @@ const GetSingleSpot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     let bookings = {
       startDate,
       endDate,
       numberOfGuests: guests
-    }
+    };
+  
     dispatch(thunkCreateBookings(singleSpot.id, bookings))
-    .catch(async (res) => {
-      const data = await res.json();
-      const errors = Object.values(data.errors);
-      if (!errors){
-        history.push('/bookings/current')
-      }
-      setErrors(errors)
-    })
-    
-  }
+      .then(() => {
+        history.push('/bookings/current');
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors({ message: data.message });
+        }
+      });
+  };
+  
+  
 
   const getStars = (stars) => {
     if (stars && typeof stars === "number") {
@@ -251,7 +254,7 @@ const GetSingleSpot = () => {
               </div>
             </div>
             <div className='booking-signup-errors'>
-              {errors.map((error, idx) => <p className="errors" key={idx}>*{error}</p>)}
+              <p className="errors">{errors.message}</p>
             </div>
             <button type="submit" className="reserve-button">Reserve</button>
             <p className="text-under-reserve-button">You won't be charged yet</p>
