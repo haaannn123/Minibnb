@@ -10,6 +10,7 @@ const UsersTrips = () => {
     const dispatch= useDispatch();
 
     const userTrips = useSelector(state => state.bookingsReducer.bookings.Bookings)
+    console.log('USERS BOOKINGS:', userTrips)
     
     useEffect(() => {
         dispatch(thunkGetUserBookings())
@@ -23,8 +24,10 @@ const UsersTrips = () => {
             <div className="user-trips-card-container">
                 {userTrips.length > 0? (userTrips.map(spotsObj => {
                     return(
-                        <div className="destination-card" key={spotsObj.id}>
-                            <NavLink to={`/spots/${spotsObj.id}`}>
+                        <div className="destination-card" key={spotsObj.spotId}>
+                            <NavLink to={`/spots/${spotsObj.spotId}`}>
+                                {/* {console.log('ID HERE:', spotsObj.id)} */}
+                                {/* {console.log('SPOTSOBJ:', spotsObj)} */}
                                 <img className="destination-img" src={spotsObj.Spot.previewImage} alt="place"/>
                             </NavLink>
                             <div className="destination-details">

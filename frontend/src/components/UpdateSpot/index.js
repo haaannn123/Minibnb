@@ -221,7 +221,6 @@ const UpdateSpot = () => {
               type="url" 
               placeholder="Image must end in '.png', '.jpg', '.jpeg'" 
               defaultValue={spot.SpotImages[1] === undefined ? null : spot.SpotImages[2].url} 
-             
           />
           <input 
               name="img3"
