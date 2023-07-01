@@ -1,0 +1,24 @@
+.footer-container {
+    background-color: white;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 12vh;
+    width: 100%;
+    margin-top: auto;
+}
+
+.links-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* row-gap: .5em; */
+}
+
+.fa-brands {
+    font-size: 35px;
+    color: rgba(137, 145, 153, 0.773);
+    border-radius: 50%;
+
+}

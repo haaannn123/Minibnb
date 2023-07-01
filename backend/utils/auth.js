@@ -53,9 +53,9 @@ const setTokenCookie = (res, user) => {
   const requireAuth = function (req, _res, next) {
     if (req.user) return next();
 
-    const err = new Error('Authentication required');
-    err.title = 'Authentication required';
-    err.errors = { message: 'Authentication required' };
+    const err = new Error('You must be signed in');
+    err.title = 'You must be signed in';
+    err.errors = { message: 'You must be signed in' };
     err.status = 401;
     return next(err);
   }

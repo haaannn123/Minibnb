@@ -11,6 +11,8 @@ import ManageSpots from "./components/ManageSpots";
 import UpdateSpot from "./components/UpdateSpot";
 import UsersTrips from "./components/UsersTrips";
 import SearchResults from "./components/Search/SearchResults";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   return (
     <>
     <div className="entire-container">
+      <ScrollToTop />
       <Navigation isLoaded={isLoaded}/>
       {isLoaded &&
         <Switch>
@@ -34,7 +37,9 @@ function App() {
           <Route path="/spots/:spotId" component={GetSingleSpot} />
           <Route path="/bookings/current" component={UsersTrips}/>
           <Route path="/search/:search_terms" component={SearchResults}/>
-        </Switch>}
+        </Switch>
+        } 
+        <Footer />
       </div>
     </>
   );
