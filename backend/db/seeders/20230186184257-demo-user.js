@@ -74,10 +74,10 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('coolbeans123')
         },
         {
-        firstName: 'Gabriel',
-        lastName: 'Parker',
-        email: 'GabrielParker@user.io',
-        username: 'GabrielParker',
+        firstName: 'Chris',
+        lastName: 'Ludwell',
+        email: 'CLudwell@user.io',
+        username: 'CLudwell',
         hashedPassword: bcrypt.hashSync('coolbeans123')
         },
     ], {});
