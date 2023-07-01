@@ -13,9 +13,9 @@ router.get('/:query', async (req, res) => {
     let spots = await Spot.findAll({
       where: {
         [Op.or]: [
-          { city: { [Op.like]: `%${query}%` } },
-          { state: { [Op.like]: `%${query}%` } },
-          { country: { [Op.like]: `%${query}%` } }
+          { city: { [Op.iLike]: `%${query}%` } },
+          { state: { [Op.iLike]: `%${query}%` } },
+          { country: { [Op.iLike]: `%${query}%` } }
         ]
       }
     })
