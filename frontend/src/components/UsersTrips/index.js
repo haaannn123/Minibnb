@@ -23,7 +23,7 @@ const UsersTrips = () => {
             <div className="user-trips-card-container">
                 {userTrips.length > 0? (userTrips.map(spotsObj => {
                     return(
-                        <div className="destination-card">
+                        <div className="destination-card" key={spotsObj.id}>
                             <NavLink to={`/spots/${spotsObj.id}`}>
                                 <img className="destination-img" src={spotsObj.Spot.previewImage} alt="place"/>
                             </NavLink>

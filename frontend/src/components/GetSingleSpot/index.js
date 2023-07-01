@@ -20,17 +20,16 @@ const GetSingleSpot = () => {
   const [cleaningFee, setCleaningFee] = useState(0)
   const [airBnbFee, setAirBnbFee] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0)
+  const [errors, setErrors] = useState([])
   const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
-  const bookings = useSelector(state => state.bookingsReducer.bookings.Bookings)
-  
+  const bookings = useSelector(state => state.bookingsReducer.bookings.Bookings);
+  console.log('BOOKINGS:', bookings)
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
   const spotImages = singleSpot.SpotImages;
 
-
- 
   const numberReviews = singleSpot.numReviews;
   const history = useHistory();
 
@@ -74,19 +73,24 @@ const GetSingleSpot = () => {
     userReview = reviewObj.userId;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-
 
     let bookings = {
       startDate,
       endDate,
       numberOfGuests: guests
     }
-
     dispatch(thunkCreateBookings(singleSpot.id, bookings))
-    history.push('/bookings/current')
+    .catch(async (res) => {
+      const data = await res.json();
+      const errors = Object.values(data.errors);
+      if (!errors){
+        history.push('/bookings/current')
+      }
+      setErrors(errors)
+    })
+    
   }
 
   const getStars = (stars) => {
@@ -194,7 +198,7 @@ const GetSingleSpot = () => {
               </div>
             </div>
             <div className="home-info">
-              <span class="material-symbols-outlined door">social_leaderboard</span>
+              <span className="material-symbols-outlined door">social_leaderboard</span>
               <div className="home-info-sub">
                 <h3 className="self-check-in-header">{singleSpot.Owner.firstName} is a Superhost</h3>
                 <span className="self-check-in-description">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
@@ -245,6 +249,9 @@ const GetSingleSpot = () => {
                       min="1"
                       required/>
               </div>
+            </div>
+            <div className='booking-signup-errors'>
+              {errors.map((error, idx) => <p className="errors" key={idx}>*{error}</p>)}
             </div>
             <button type="submit" className="reserve-button">Reserve</button>
             <p className="text-under-reserve-button">You won't be charged yet</p>

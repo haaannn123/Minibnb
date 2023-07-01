@@ -21,6 +21,7 @@ const DeleteBookings = ({bookingId}) => {
     return (
         <div className="delete-bookings-container">
             <h1>Are you sure you want to delete this reservation?</h1>
+            <span>This action cannot be undone</span>
             <button className="delete-bookings-button" onClick={handleYesClick}>Yes, cancel this reservation</button>
             <button className="delete-cancel-reservation-button"onClick={handleNoClick}>No, keep this reservation</button>
         </div>

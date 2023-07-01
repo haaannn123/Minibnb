@@ -35,7 +35,7 @@ const SearchResults = () => {
                 ) : (
                     searchResult.map(obj => {
                         return (
-                            <div className="search-results-card">
+                            <div className="search-results-card" key={obj.id}>
                             <NavLink className="all-spots-navlink" to={`/spots/${obj.id}`}>
                             <img src={obj.previewImage} alt="house" className="all-spots-card-image" />
                             <div className="all-spots-card-details">

@@ -32,7 +32,7 @@ const GetAllSpots = () => {
       <div className="all-spots-container">
         {spots.map((spot) => {
           return (
-            <div className="all-spots-card">
+            <div className="all-spots-card" key={spot.id}>
               <NavLink className="all-spots-navlink" to={`/spots/${spot.id}`}>
               <img src={spot.previewImage} alt="house" className="all-spots-card-image" />
               <div className="all-spots-card-details">

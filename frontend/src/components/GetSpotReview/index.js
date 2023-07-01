@@ -37,7 +37,7 @@ const GetSpotReview = () => {
     <>
       {reviews.map((review) => {
         return (
-          <div>
+          <div key={review.id}>
             <h4>{review.User.firstName}</h4>
             <h5>{formattedDate(review)}</h5>
             <h5>{review.review}</h5>
