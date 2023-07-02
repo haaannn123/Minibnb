@@ -47,18 +47,18 @@
 }
 
 .manage-spots-update-button{
-  background-color: #ff385c;
-  color: white;
+  background-color: white;
+  color: black;
   font-family: "Montserrat", sans-serif;
   width: 50%;
   border-radius: 5px;
   padding: .25rem;
-  border: none;
+  border: 1px solid black;
 }
 
 .manage-spots-update-button:hover{
   cursor: pointer;
-  box-shadow: 0px 5px 10px rgb(154, 154, 154);
+  background-color: rgb(179, 255, 187);
 }
 
 .manage-spots-navlink{
@@ -68,17 +68,17 @@
 
 .manage-spots-delete-button{
   background-color: white;
-  color: #ff385c;
+  color: black;
   font-family: "Montserrat", sans-serif;
   width: 50%;
   border-radius: 5px;
   padding: .25rem;
-  border: 1px solid #ff385c;
+  border: 1px solid black;
 }
 
 .manage-spots-delete-button:hover{
   cursor: pointer;
-  box-shadow: 0px 5px 15px rgb(154, 154, 154);
+  background-color: rgb(255, 255, 179);
 }
 
 

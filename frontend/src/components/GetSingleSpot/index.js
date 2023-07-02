@@ -77,7 +77,7 @@ const GetSingleSpot = () => {
     e.preventDefault();
   
     if (sessionUser.id === singleSpot.ownerId) {
-      setErrors({ message: "You can't make a reservation for your own spot." });
+      setErrors({ message: "You can't make a reservation for your own spot silly" });
       return;
     }
   
