@@ -24,8 +24,8 @@ const GetSingleSpot = () => {
   const endDateDate = new Date(new Date(startDate).getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
-  const bookings = useSelector(state => state.bookingsReducer.bookings.Bookings);
-  console.log('BOOKINGS:', bookings)
+  const userBookings = useSelector(state => state.bookingsReducer.bookings.Bookings);
+  console.log('BOOKINGS:', userBookings)
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
   const spotImages = singleSpot.SpotImages;
@@ -76,6 +76,11 @@ const GetSingleSpot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
+    if (sessionUser.id === singleSpot.ownerId) {
+      setErrors({ message: "You can't make a reservation for your own spot." });
+      return;
+    }
+  
     let bookings = {
       startDate,
       endDate,
@@ -88,6 +93,7 @@ const GetSingleSpot = () => {
       })
       .catch(async (res) => {
         const data = await res.json();
+        console.log('DATA:', data);
         if (data && data.errors) {
           setErrors({ message: data.message });
         }
@@ -95,7 +101,8 @@ const GetSingleSpot = () => {
   };
   
   
-
+  
+  
   const getStars = (stars) => {
     if (stars && typeof stars === "number") {
       return stars.toFixed(1);
