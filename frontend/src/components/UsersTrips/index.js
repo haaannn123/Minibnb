@@ -82,7 +82,9 @@ const UsersTrips = () => {
                                 </div>
                             </div>
                         ))
-                    ) : null}
+                    ) :(
+                        <span>You haven't booked any trips with us! All your previous stays will be displayed here!</span>
+                    )}
                 </div>
             </div>
         </>
