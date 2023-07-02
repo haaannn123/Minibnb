@@ -28,6 +28,14 @@ const ManageSpots = () => {
     }
   };
 
+  const renderAvgRating = (avgRating) => {
+    if (avgRating === 0){
+      return 'New'
+    } else {
+      return avgRating
+    }
+  }
+
   const handleClick = (spotId) => {
       history.push(`/spots/${spotId}/edit`)
   }
@@ -45,7 +53,7 @@ const ManageSpots = () => {
                   <div className="manage-spots-location">
                     <h3 className="manage-spots-city">{`${spot.city}, ${spot.state}`}</h3>
                     <h3 className="manage-spots-rating">
-                      <i className="fa-sharp fa-solid fa-star star"></i> {spot.avgRating}
+                      <i className="fa-sharp fa-solid fa-star star"></i> {renderAvgRating(spot.avgRating)}
                     </h3>
                   </div>
                   <span className="manage-spots-guests">{spot.guests} {spot.guests === 1 ? "guest" : "guests"}</span>
