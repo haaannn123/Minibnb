@@ -25,21 +25,18 @@ router.get('/:query', async (req, res) => {
     spot = spotObj.dataValues;
     
     
-    const spotImage = await SpotImage.findAll({
-        where: {
-            spotId: spot.id,
-        },
-    });
-    let url;
-    for (let obj of spotImage) {
-        url = obj.url;
-    }
-
-    if (url) {
-        spot.previewImage = url;
-      } else {
-        spot.previewImage = null;
+    const image = await SpotImage.findOne({
+      where:{
+        spotId: spot.id,
+        preview: true
       }
+    })
+
+    if (!image){
+      spot.previewImage = null;
+    } else {
+      spot.previewImage = image.url
+    }
 
 
       const reviews = await Review.findAll({
