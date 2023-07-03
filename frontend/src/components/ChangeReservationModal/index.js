@@ -35,6 +35,7 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingI
                             type="date"
                             id="bookings-checkin"
                             value={startDateVal}
+                            min={startDateVal}
                             onChange={(e) => setStartDateVal(e.target.value)}
                         />
                     </div>
@@ -45,6 +46,7 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingI
                             type="date"
                             id="bookings-checkout"
                             value={endDateVal}
+                            min={startDateVal}
                             onChange={(e)=> setEndDateVal(e.target.value)}
                         />
                     </div>
