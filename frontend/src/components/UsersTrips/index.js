@@ -10,7 +10,6 @@ const UsersTrips = () => {
     const dispatch= useDispatch();
 
     const userTrips = useSelector(state => state.bookingsReducer.bookings.Bookings)
-    console.log('USERS BOOKINGS:', userTrips)
     
     useEffect(() => {
         dispatch(thunkGetUserBookings())

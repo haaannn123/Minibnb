@@ -25,7 +25,6 @@ const GetSingleSpot = () => {
   const [endDate, setEndDate] = useState(endDateDate)
   const sessionUser = useSelector((state) => state.session.user);
   const userBookings = useSelector(state => state.bookingsReducer.bookings.Bookings);
-  console.log('BOOKINGS:', userBookings)
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   const allReviews = Object.values(useSelector((state) => state.reviews.spot));
   const spotImages = singleSpot.SpotImages;
@@ -75,6 +74,10 @@ const GetSingleSpot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!sessionUser){
+      setErrors({message: "You must be signed in to make a reservation!"})
+    }
   
     if (sessionUser.id === singleSpot.ownerId) {
       setErrors({ message: "You can't make a reservation for your own spot silly" });
@@ -93,7 +96,6 @@ const GetSingleSpot = () => {
       })
       .catch(async (res) => {
         const data = await res.json();
-        console.log('DATA:', data);
         if (data && data.errors) {
           setErrors({ message: data.message });
         }
