@@ -4,15 +4,20 @@ import "./ChangeReservationModal.css"
 import { useDispatch } from 'react-redux';
 import DeleteBookings from '../DeleteBooking';
 import { thunkUpdateBookings } from '../../store/bookings';
+import { useModal } from '../../context/Modal';
 
 const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingId}) => {
 
     const dispatch = useDispatch();
+    const currentDate = new Date().toISOString().split('T')[0];
     const [startDateVal, setStartDateVal] = useState(startDate);
     const [endDateVal, setEndDateVal] = useState(endDate);
     const [guestsVal, setGuestsVal] = useState(guests);
+    const [errors, setErrors] = useState({})
+    const { closeModal } = useModal();
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
         const new_booking = {
             startDate: startDateVal,
@@ -20,6 +25,13 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingI
             numberOfGuests: guestsVal
         }
         dispatch(thunkUpdateBookings(bookingId, new_booking))
+        .then(closeModal)
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.error){
+             setErrors({ message: data.message});
+            }
+        })
     }
 
     return(
@@ -35,7 +47,7 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingI
                             type="date"
                             id="bookings-checkin"
                             value={startDateVal}
-                            min={startDateVal}
+                            min={currentDate}
                             onChange={(e) => setStartDateVal(e.target.value)}
                         />
                     </div>
@@ -63,6 +75,7 @@ const ChangeReservationModal = ({startDate, endDate, guests, maxGuests, bookingI
                     type="number"/>
                 <h2>Cancellation Policy</h2>
                 <p className="cancellation-paragraph">Accomodation and service fee for the first 30 nights are non-refundable. Cancel before check-in and get back the cleaning fee, if you paid one.</p>
+                {errors && <p className="errors">{errors.message}</p>}
                 <button className="change-reservation-button" type="submit">Change</button>
                 <OpenModalButton 
                     className="delete-reservation-button"
