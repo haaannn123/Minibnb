@@ -271,7 +271,7 @@ const GetSingleSpot = () => {
             <button type="submit" className="reserve-button">Reserve</button>
             <p className="text-under-reserve-button">You won't be charged yet</p>
             <div className="single-spot-total-price">
-                <div className="single-spot-total-price-sub">${singleSpot.price} X {totalDays} nights</div>
+                <div className="single-spot-total-price-sub">${singleSpot.price} x {totalDays} nights</div>
                 <div className="single-spot-total-price-sub">${totalBeforeTaxes}</div>
             </div>
             <div className="single-spot-total-price">
