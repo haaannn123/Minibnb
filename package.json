@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/haaannn123/AirBnb/issues"
   },
-  "homepage": "https://github.com/haaannn123/AirBnb#readme"
+  "homepage": "https://github.com/haaannn123/AirBnb#readme",
+  "dependencies": {
+    "react-scroll": "^1.8.9"
+  }
 }
