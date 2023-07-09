@@ -55,7 +55,7 @@ function ReviewModal({ spotId }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="review-modal-container">
-        <h1>How was your stay?</h1>
+        <h1 className="review-modal-header">How was your stay?</h1>
         <div className="star-rating">
           <div>
             <i
