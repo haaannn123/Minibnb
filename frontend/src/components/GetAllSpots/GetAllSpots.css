@@ -1,7 +1,7 @@
 .all-spots-container{
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 20px;
 }
 
 .all-spots-card{
@@ -40,7 +40,7 @@
 
 .all-spots-navlink{
   text-decoration: none;
-  color: black
+  color: rgba(0, 0, 0, 0.823)
 }
 
 .all-spots-price{
