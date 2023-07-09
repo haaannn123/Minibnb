@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import "./GetAllSpots.css";
+import Footer from "../Footer";
 
 const GetAllSpots = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const GetAllSpots = () => {
             </div>
           );
         })}
+    <Footer />
     </div>
   );
 };

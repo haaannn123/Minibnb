@@ -39,7 +39,7 @@ function App() {
           <Route path="/search/:search_terms" component={SearchResults}/>
         </Switch>
         } 
-        <Footer />
+        
       </div>
     </>
   );
