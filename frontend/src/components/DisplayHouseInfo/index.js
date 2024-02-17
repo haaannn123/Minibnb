@@ -1,8 +1,11 @@
 import './DisplayHouseInfo.css'
 
-const DisplayHouseInfo= (image, location, rating, guests, price, bedrooms, beds, baths) => {
+const DisplayHouseInfo= ({image, location, rating, guests, price, bedrooms, beds, baths}) => {
     return(
-        <div>Hello</div>
+        <div>
+            <img src={image} alt="house"/>
+
+        </div>
     )
 }
 
