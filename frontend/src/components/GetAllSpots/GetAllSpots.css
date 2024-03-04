@@ -1,20 +1,17 @@
 .all-spots-container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 1rem;
 }
 
 .all-spots-card{
-  border: none;
-  height: 25rem;
-  width: 19rem;
+  
 }
 
 .all-spots-card-details{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
 }
 
 .all-spots-guests{
@@ -62,15 +59,4 @@
 }
 
 
-@media screen and (min-width: 1441px){
-  .all-spots-container{
-    padding: 1rem 20rem;
-  }
-}
-
-@media screen and (max-width: 1440px){
-  .all-spots-container{
-    padding: 1rem 5rem;
-  }
-}
 

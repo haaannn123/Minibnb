@@ -8,7 +8,7 @@ import ReviewModal from "../ReviewModal";
 import "./GetSingleSpot.css";
 import { thunkCreateBookings, thunkGetUserBookings } from "../../store/bookings";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Link } from 'react-scroll'
+// import { Link } from 'react-scroll'
 
 const GetSingleSpot = () => {
   const { spotId } = useParams();
@@ -186,9 +186,9 @@ const GetSingleSpot = () => {
       <div className="spot-details-container">
         <h1 id="spot-details-header">{singleSpot.name}</h1>
         <div  className="spot-details-subheading">
-        <Link to="review" spy={true} smooth={true} offset={50} duration={500} className="rating-details">
+        {/* <Link to="review" spy={true} smooth={true} offset={50} duration={500} className="rating-details">
           <div>{reviewHeader()}</div>
-        </Link>
+        </Link> */}
         <div>·</div>
         <div>{singleSpot.city}, {singleSpot.state}, {singleSpot.country}</div>
         </div>
