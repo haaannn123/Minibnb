@@ -4,7 +4,7 @@
   top: 0%;
   z-index: 30;
   background-color: white;
-  padding: 1rem 4rem;
+  padding: 1rem 7rem;
   border-bottom: 1px solid rgb(217, 217, 217);
   justify-content: space-between;
   position: sticky;
@@ -126,21 +126,4 @@
 
 .auth-button {
   list-style: none;
-}
-
-@media screen and (min-width: 1441px){
-  .navbar{
-    padding: 1rem 20rem;
-  }
-
-  .dropdown-user-info{
-    margin-top: 230px;
-    margin-right: 320px;
-  }
-}
-
-@media screen and (max-width: 1440px){
-  .navbar{
-    padding: 1rem 4.5rem;
-  }
 }
